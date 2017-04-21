@@ -1,0 +1,118 @@
+# -- Developer --------------------------------------------
+/workbench
+/app/Providers/AdminServiceProvider.php
+/app/Providers/BookingServiceProvider.php
+/app/Providers/CmsServiceProvider.php
+/app/Providers/ComunikServiceProvider.php
+/app/Providers/CrmServiceProvider.php
+/app/Providers/FormsServiceProvider.php
+/app/Providers/HotelsServiceProvider.php
+/app/Providers/MarketServiceProvider.php
+/app/Providers/NavToolsServiceProvider.php
+/app/Providers/OctopusServiceProvider.php
+/app/Providers/ShoppingCartServiceProvider.php
+/app/Providers/SpasServiceProvider.php
+/app/Providers/WineriesServiceProvider.php
+/app/Providers/ProjectsServiceProvider.php
+/app/Providers/PulsarServiceProvider.php
+/app/Providers/FacturaDirectaServiceProvider.php
+/app/Providers/HotelManagerServiceProvider.php
+/app/Providers/VinipadServiceProvider.php
+
+
+# -- Web --------------------------------------------
+/public/packages/
+/public/pulsar/
+
+
+# -- Pulsar -----------------------------------------
+/config/pulsar.admin.php
+/tests/Feature/AdminTest.php
+
+/storage/exports/
+
+composer.dev.lock
+
+# -- Laravel -----------------------------------------
+Homestead.yaml
+Homestead.json
+.env
+!/database/
+/database/migrations/*
+!/database/migrations/
+/database/seeds/*
+!/database/seeds/
+
+# -- Composer -----------------------------------------
+composer.phar
+composer.lock
+composer.server.lock
+/vendor/
+
+# -- Sistemas Operativos ------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+!.gitignore
+!.gitkeep
+*~
+
+# Mac OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# -- Editores -----------------------------------------
+# vim
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# eclipse
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+.buildpath
+
+# phpstorm
+.idea/
+
+# textmate
+*.tmproj
+*.tmproject
+tmtags
+
+# sublimetext
+/*.sublime-project
+*.sublime-workspace
+
+# netbeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
