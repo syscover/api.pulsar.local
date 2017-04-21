@@ -22,6 +22,11 @@ class CoreServiceProvider extends ServiceProvider
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-core/angular' => public_path('/pulsar')
         ]);
+
+        // register config files
+        $this->publishes([
+            $this->app->basePath() . '/workbench/syscover/pulsar-core/src/config/pulsar.core.php' => config_path('pulsar.core.php'),
+        ]);
     }
 
 	/**

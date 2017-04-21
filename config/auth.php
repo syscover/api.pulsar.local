@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'crm' => [
+            'driver'    => 'session',
+            'provider'  => 'crmCustomer',
+        ],
     ],
 
     /*
@@ -65,9 +69,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => App\User::class,
+//        ],
+        'crmCustomer' => [
+            'driver'    => 'eloquent',
+            'model'     => Syscover\Crm\Models\Customer::class,
         ],
 
         // 'users' => [
@@ -92,10 +100,18 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
+
+//        'users' => [
+//            'provider' => 'users',
+//            'table' => 'password_resets',
+//            'expire' => 60,
+//        ],
+
+        'crmPasswordBroker' => [
+            'provider'  => 'crmCustomer',
+            'email'     => 'pulsar::emails.password',
+            'table'     => 'password_resets',
+            'expire'    => 60,
         ],
     ],
 
