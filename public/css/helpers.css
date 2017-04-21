@@ -1625,3 +1625,7 @@ body.sys_no-scroll {
 .sys_preload-veil__content > *{
     width:100%;
 }
+
+.pointer{
+    cursor: pointer !important;
+}

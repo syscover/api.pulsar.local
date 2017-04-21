@@ -8,7 +8,19 @@
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-md-8 offset-md-2">
+
             <h1 class="margin-vertical-10">Sing In</h1>
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('postSingIn-' . user_lang()) }}" method="post">
 
                 {{ csrf_field() }}
@@ -43,16 +55,6 @@
                     <label for="repassword">Repeat Password</label>
                     <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Password" required>
                 </div>
-
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <button type="submit" class="btn btn-primary">Sing In</button>
             </form>

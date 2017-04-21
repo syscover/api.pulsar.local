@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'throttle'              => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         // pulsar providers
-        'pulsar.navTools'       => \Syscover\NavTools\Middleware\NavTools::class,
+        'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
+        'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
     ];
 }

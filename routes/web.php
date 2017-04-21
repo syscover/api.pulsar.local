@@ -1,8 +1,10 @@
 <?php
 
-Route::group(['middleware' => ['pulsar.navTools']], function () {
+Route::group(['middleware' => ['pulsar.navtools']], function () {
 
-    Route::get('/', function () { return view('www.content.home'); });
+    Route::get('/',                                                                         ['as' => 'home',                                'uses' => '\App\Http\Controllers\WebFrontendController@home']);
+    Route::get('/es',                                                                       ['as' => 'home-es',                             'uses' => '\App\Http\Controllers\WebFrontendController@home']);
+    Route::get('/en',                                                                       ['as' => 'home-en',                             'uses' => '\App\Http\Controllers\WebFrontendController@home']);
 
 
     // CUSTOMER ACCOUNT
@@ -17,5 +19,21 @@ Route::group(['middleware' => ['pulsar.navTools']], function () {
     Route::post('/es/cuenta/registro',                                                      ['as' => 'postSingIn-es',                       'uses' => '\App\Http\Controllers\CustomerFrontendController@postSingIn']);
 
     Route::post('/account/login',                                                           ['as' => 'postLogin',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@postLogin']);
+
+});
+
+Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function() {
+
+    // CUSTOMER ACCOUNT
+    // EN
+    Route::match(['get', 'post'], '/en/account',                                            ['as' => 'account-en',                          'uses' => '\App\Http\Controllers\CustomerFrontendController@account']);
+    Route::put('/en/account/sing-in',                                                       ['as' => 'putSingIn-en',                        'uses' => '\App\Http\Controllers\CustomerFrontendController@putSingIn']);
+    Route::match(['get', 'post'], '/en/account/logout',                                     ['as' => 'logout-en',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@logout']);
+
+    // ES
+    Route::match(['get', 'post'], '/es/cuenta',                                             ['as' => 'account-es',                          'uses' => '\App\Http\Controllers\CustomerFrontendController@account']);
+    Route::put('/es/cuenta/registro',                                                       ['as' => 'putSingIn-es',                        'uses' => '\App\Http\Controllers\CustomerFrontendController@putSingIn']);
+    Route::match(['get', 'post'], '/es/cuenta/logout',                                      ['as' => 'logout-es',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@logout']);
+
 
 });

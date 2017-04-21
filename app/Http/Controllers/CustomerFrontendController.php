@@ -5,7 +5,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-
 // CRM
 use Syscover\Crm\Models\Group;
 use Syscover\Crm\Services\CustomerService;
@@ -125,6 +124,78 @@ class CustomerFrontendController extends Controller
         }
         else
         {
+            // show message
+            $request->session()->flash('successMessage', [
+                'value'     => true,
+                'message'   => '<strong>New customer</strong> has been saved.'
+            ]);
+
+            return redirect()->route('account-' . user_lang());
+        }
+    }
+
+    public function putSingIn(Request $request)
+    {
+        $rules   = [
+            'name'      => 'required|max:255',
+            'surname'   => 'required|max:255',
+            'email'     => 'required|max:255|email|unique:customer,email',
+            'password'  => 'required|between:4,15|same:repassword',
+        ];
+
+        if($request->input('email') == auth('crm')->user()->email)
+            $rules['email'] = 'required|max:255|email';
+
+        if(! $request->has('password'))
+            $rules['password'] = '';
+
+        // manual validate
+        $validator = Validator::make($request->all(), $rules);
+
+        // manage fails
+        if ($validator->fails())
+        {
+            if($request->input('responseType') == 'json')
+            {
+                return response()->json([
+                    'status'    => 'error',
+                    'errors'    => $validator->messages()
+                ], 422);
+            }
+            else
+            {
+                return redirect()
+                    ->route('account-' . user_lang())
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
+
+        // update customer
+        $customer = CustomerService::updateCustomer($request);
+
+        // update password
+        if($request->has('password'))
+            CustomerService::updatePassword($request);
+
+        // auth the customer created
+        Auth::guard('crm')->login($customer);
+
+        if($request->input('responseType') == 'json')
+        {
+            return response()->json([
+                'status'    => 'success',
+                'customer'  => auth('crm')->user()
+            ]);
+        }
+        else
+        {
+            // show message
+            $request->session()->flash('successMessage', [
+                'value'     => true,
+                'message'   => '<strong>Customer</strong> has been updated.'
+            ]);
+
             return redirect()->route('account-' . user_lang());
         }
     }
@@ -189,8 +260,7 @@ class CustomerFrontendController extends Controller
                 ], 200);
             } else {
                 return redirect()
-                    ->intended()
-                    ->route($this->redirectTo . user_lang());
+                    ->intended(route($this->redirectTo . user_lang()));
             }
         }
 
@@ -211,5 +281,32 @@ class CustomerFrontendController extends Controller
                 ])
                 ->withInput();
         }
+    }
+
+    /**
+     * Logout user and load default tax rules.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        auth('crm')->logout();
+
+        return redirect()
+            ->route($this->logoutPath . user_lang());
+    }
+
+    /**
+     * Show account view
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function account(Request $request)
+    {
+        $response['groups']     = Group::builder()->get();
+        $response['customer']   = auth('crm')->user();
+
+        return view('www.content.account', $response);
     }
 }

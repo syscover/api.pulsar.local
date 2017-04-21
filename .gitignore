@@ -28,7 +28,7 @@
 # -- Pulsar -----------------------------------------
 /config/pulsar.core.php
 /config/pulsar.admin.php
-/config/navTools.php
+/config/pulsar.navtools.php
 /tests/Feature/AdminTest.php
 
 /storage/exports/

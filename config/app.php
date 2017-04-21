@@ -180,7 +180,7 @@ return [
         /*
          * Pulsar Application Service Providers...
          */
-        App\Providers\NavToolsServiceProvider::class,
+        App\Providers\NavtoolsServiceProvider::class,
         App\Providers\CoreServiceProvider::class,
         App\Providers\AdminServiceProvider::class,
         App\Providers\CrmServiceProvider::class,

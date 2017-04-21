@@ -12,38 +12,58 @@
     @yield('head')
 </head>
 <body>
+
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Pulsar</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">{{ trans('www.home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="#">{{ trans_choice('www.product', 2) }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('getLogin-' . user_lang()) }}">Login</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ trans('www.my_account') }}
+                    </a>
+                    @if(auth('crm')->check())
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ route('account-' . user_lang()) }}">{{ trans('www.my_account') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout-' . user_lang()) }}">{{ trans('www.logout') }}</a>
+                        </div>
+                    @endif
+                    @if(auth('crm')->guest())
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ route('getLogin-' . user_lang()) }}">{{ trans('www.login') }}</a>
+                        </div>
+                    @endif
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Disabled</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle pointer" id="languageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ trans_choice('www.language', 1) }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="languageMenu">
+                        <a class="dropdown-item" href="{{ get_lang_route('es') }}">{{ trans('www.spanish') }}</a>
+                        <a class="dropdown-item" href="{{ get_lang_route('en') }}">{{ trans('www.english') }}</a>
+                    </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
+
     <div class="container-fluid">
         @yield('content')
     </div>
+
     <script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('vendor/tether/js/tether.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
 </body>
 </html>
