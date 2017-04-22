@@ -1,6 +1,6 @@
 @extends('www.layouts.default')
 
-@section('title', 'HOME')
+@section('title', 'Home')
 
 @section('head')
 @stop

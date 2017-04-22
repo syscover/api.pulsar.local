@@ -16,6 +16,7 @@ class AdminTest extends TestCase
      */
     public function testGetProfiles()
     {
+
         $response = $this->json('GET', route('profile'));
 
         $response->assertStatus(200);
