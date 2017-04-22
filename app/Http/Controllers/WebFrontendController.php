@@ -9,11 +9,11 @@ class WebFrontendController extends Controller
 {
     public function home()
     {
-        return view('www.content.home');
+        return view('web.content.home');
     }
 
     public function forms()
     {
-        return view('www.content.forms');
+        return view('web.content.forms');
     }
 }

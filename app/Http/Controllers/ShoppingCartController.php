@@ -31,7 +31,7 @@ class ShoppingCartController extends Controller
         // get cart items from shoppingCart
         $response['cartItems'] = CartProvider::instance()->getCartItems();
 
-        return view('www.content.shopping_cart', $response);
+        return view('web.content.shopping_cart', $response);
     }
 
     /**
@@ -55,7 +55,7 @@ class ShoppingCartController extends Controller
         $attachment = Attachment::builder()
             ->where('lang_id', user_lang())
             ->where('resource_id', 'market-product')
-            ->where('family_id', config('www.attachmentsFamily.productSheet'))
+            ->where('family_id', config('web.attachmentsFamily.productSheet'))
             ->where('object_id', $product->id_111)
             ->first();
 

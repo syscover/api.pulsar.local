@@ -71,7 +71,7 @@ class CustomerFrontendController extends Controller
         // get customer groups
         $response['groups'] = Group::builder()->get();
 
-        return view('www.content.sing_in', $response);
+        return view('web.content.sing_in', $response);
     }
 
     /**
@@ -208,7 +208,7 @@ class CustomerFrontendController extends Controller
     public function getLogin()
     {
         $response = [];
-        return view('www.content.login', $response);
+        return view('web.content.login', $response);
     }
 
     /**
@@ -307,6 +307,6 @@ class CustomerFrontendController extends Controller
         $response['groups']     = Group::builder()->get();
         $response['customer']   = auth('crm')->user();
 
-        return view('www.content.account', $response);
+        return view('web.content.account', $response);
     }
 }

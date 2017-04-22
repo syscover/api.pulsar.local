@@ -1,4 +1,4 @@
-@extends('www.layouts.default')
+@extends('web.layouts.default')
 
 @section('title', 'Login')
 

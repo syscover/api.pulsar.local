@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         // pulsar providers
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
         'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
+        'pulsar.tax.rule'       => \Syscover\Market\Middleware\TaxRule::class,
     ];
 }

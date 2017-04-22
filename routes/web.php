@@ -35,5 +35,18 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::put('/es/cuenta/registro',                                                       ['as' => 'putSingIn-es',                        'uses' => '\App\Http\Controllers\CustomerFrontendController@putSingIn']);
     Route::match(['get', 'post'], '/es/cuenta/logout',                                      ['as' => 'logout-es',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@logout']);
 
+});
 
+// Route with pulsar.tax.rule, this instance taxCountry and taxCustomerClass from data customer loged,
+// necessary to show tax products according to the customer.
+Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function () {
+
+    // MARKET ROUTES
+    // EN
+Route::get('/en/product/list',                                                              ['as' => 'productList-en',                          'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
+    Route::get('/en/product/{category}/{slug}',                                             ['as' => 'product-en',                          'uses' => '\App\Http\Controllers\MarketFrontendController@getProduct']);
+
+    // ES
+    Route::get('/es/producto/listado',                                                      ['as' => 'productList-es',                      'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
+    Route::get('/es/producto/{category}/{slug}',                                            ['as' => 'product-es',                          'uses' => '\App\Http\Controllers\MarketFrontendController@getProduct']);
 });
