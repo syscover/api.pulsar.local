@@ -28,6 +28,7 @@
 # -- Pulsar -----------------------------------------
 /config/pulsar.core.php
 /config/pulsar.admin.php
+/config/pulsar.market.php
 /config/pulsar.navtools.php
 /tests/Feature/AdminTest.php
 
