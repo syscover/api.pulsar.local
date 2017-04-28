@@ -20,6 +20,21 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
 
     Route::post('/account/login',                                                           ['as' => 'postLogin',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@postLogin']);
 
+    // SHOPPING CART
+    // EN
+    Route::get('/en/shopping/cart',                                                         ['as' => 'getShoppingCart-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@getShoppingCart']);
+    Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   ['as' => 'postShoppingCart-en',                 'uses' => '\App\Http\Controllers\ShoppingCartController@postShoppingCart']);
+    Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               ['as' => 'deleteShoppingCart-en',               'uses' => '\App\Http\Controllers\ShoppingCartController@deleteShoppingCart']);
+    Route::put('/en/shopping/cart/update',                                                  ['as' => 'putShoppingCart-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@putShoppingCart']);
+    Route::post('/en/shopping/cart/check/coupon/code',                                      ['as' => 'checkCouponCode-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@checkCouponCode']);
+
+    // ES
+    Route::get('/es/carro/de/compra',                                                       ['as' => 'getShoppingCart-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@getShoppingCart']);
+    Route::match(['get', 'post'], '/es/carro/de/compra/anadir/producto/{slug}',             ['as' => 'postShoppingCart-es',                 'uses' => '\App\Http\Controllers\ShoppingCartController@postShoppingCart']);
+    Route::match(['get', 'post'], '/es/carro/de/compra/borrar/producto/{rowId}',            ['as' => 'deleteShoppingCart-es',               'uses' => '\App\Http\Controllers\ShoppingCartController@deleteShoppingCart']);
+    Route::put('/es/carro/de/comprar/actualizar',                                           ['as' => 'putShoppingCart-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@putShoppingCart']);
+    Route::post('/es/carro/de/comprar/comprueba/codigo/cupon',                              ['as' => 'checkCouponCode-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@checkCouponCode']);
+
 });
 
 Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function() {

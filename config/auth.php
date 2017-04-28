@@ -45,6 +45,7 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
         'crm' => [
             'driver'    => 'session',
             'provider'  => 'crmCustomer',

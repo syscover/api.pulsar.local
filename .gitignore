@@ -1,6 +1,7 @@
 # -- Developer --------------------------------------------
 /workbench
 /app/Providers/AdminServiceProvider.php
+/app/Providers/CoreServiceProvider.php
 /app/Providers/BookingServiceProvider.php
 /app/Providers/CmsServiceProvider.php
 /app/Providers/ComunikServiceProvider.php

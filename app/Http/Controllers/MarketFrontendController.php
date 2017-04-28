@@ -35,7 +35,6 @@ class MarketFrontendController extends Controller
             ->get()
             ->keyBy('object_id');
         */
-
         
         return view('web.content.product_list', $response);
     }
