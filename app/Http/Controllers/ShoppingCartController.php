@@ -46,41 +46,13 @@ class ShoppingCartController extends Controller
         $parameters = $request->route()->parameters();
 
         $product = Product::builder()
-            ->where('lang_id_112', user_lang())
-            ->where('slug_112', $parameters['slug'])
-            ->where('active_111', true)
-            ->first();
-
-        // get image to shopping cart
-        $attachment = Attachment::builder()
             ->where('lang_id', user_lang())
-            ->where('resource_id', 'market-product')
-            ->where('family_id', config('web.attachmentsFamily.productSheet'))
-            ->where('object_id', $product->id_111)
+            ->where('slug', $parameters['slug'])
+            ->where('active', true)
             ->first();
 
         // create a property on product to save image for shopping cart list
-        $product->shoppingCartImage = $attachment;
-
-        // get tax rule with default parameters
-        $taxRules = TaxRule::builder()
-            ->where('country_id_103', config('market.taxCountry'))
-            ->where('customer_class_tax_id_106', config('market.taxCustomerClass'))
-            ->where('product_class_tax_id_107', $product->product_class_tax_id_111)
-            ->orderBy('priority_104', 'asc')
-            ->get();
-
-        // create taxRule with format for shopping cart
-        $taxRulesShoppingCart = [];
-        foreach ($taxRules as $taxRule)
-        {
-            $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
-                Lang::has($taxRule->translation_104) ? trans($taxRule->translation_104) : $taxRule->name_104,
-                $taxRule->tax_rate_103,
-                $taxRule->priority_104,
-                $taxRule->sort_order_104
-            );
-        }
+        //$product->shoppingCartImage = $attachment;
 
         //**************************************************************************************
         // Know if product is transportable
@@ -93,8 +65,19 @@ class ShoppingCartController extends Controller
         // You can change this value, if you have same product transportable and downloadable
         //
         //***************************************
-        $isTransportable = $product->type_id_111 == 2 || $product->type_id_111 == 3? true : false;
+        $isTransportable = $product->type_id == 2 || $product->type_id == 3? true : false;
 
+        // create taxRule with format for shopping cart
+        $taxRulesShoppingCart = [];
+        foreach ($product->tax_rules as $taxRule)
+        {
+            $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
+                Lang::has($taxRule->translation) ? trans($taxRule->translation) : $taxRule->name,
+                $taxRule->taxRateZones->sum('tax_rate'),
+                $taxRule->priority,
+                $taxRule->sort
+            );
+        }
 
         // when get price from product, internally calculate subtotal and total.
         // we don't want save this object on shopping cart, if login user with different prices and add same product, will be different because the product will have different prices
@@ -105,11 +88,11 @@ class ShoppingCartController extends Controller
             // instance row to add product
             CartProvider::instance()->add(
                 new Item(
-                    $product->id_111,
-                    $product->name_112,
+                    $product->id,
+                    $product->name,
                     1,
-                    $product->price_111,
-                    $product->weight_111,
+                    $product->price,
+                    $product->weight,
                     $isTransportable,
                     $taxRulesShoppingCart,
                     [
