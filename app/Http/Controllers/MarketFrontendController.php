@@ -18,13 +18,13 @@ class MarketFrontendController extends Controller
     {
         // Get all active products
         $response['products'] = Product::builder()
-            ->where('lang_id', user_lang())
+            ->where('product_lang.lang_id', user_lang())
             ->where('product.active', true)
             ->orderBy('product.sort', 'asc')
             ->get()
             ->load('categories'); // lazy load categories
 
-        
+
         // get atachments to products
         /*
         $response['attachments'] = Attachment::builder()
@@ -38,5 +38,41 @@ class MarketFrontendController extends Controller
 
         
         return view('web.content.product_list', $response);
+    }
+
+    /**
+     * function to show singular product
+     *
+     * @param   Request     $request
+     * @return  \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getProduct(Request $request)
+    {
+        // get parameters from url route
+        $parameters = $request->route()->parameters();
+
+        $response = [];
+
+        $response['product'] = Product::builder()
+            ->where('product_lang.lang_id', user_lang())
+            ->where('product_lang.slug', $parameters['slug'])
+            ->where('product.active', true)
+            ->first()
+            ->load('categories'); // lazy load categories;
+
+        // check that product exist
+        if($response['product'] == null)
+            return view('errors.common', ['message' => 'Error! Product not exist']);
+
+        // get atachments to product
+        /*response['attachments'] = Attachment::builder()
+            ->where('lang_id', user_lang())
+            ->where('resource_id', 'market-product')
+            ->where('object_id', $response['product']->id)
+            ->where('family_id', config('www.attachmentsFamily.productSheet'))
+            ->orderBy('sorting', 'asc')
+            ->get();*/
+
+        return view('web.content.product', $response);
     }
 }
