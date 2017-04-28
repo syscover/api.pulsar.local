@@ -56,12 +56,14 @@ class MarketFrontendController extends Controller
             ->where('product_lang.lang_id', user_lang())
             ->where('product_lang.slug', $parameters['slug'])
             ->where('product.active', true)
-            ->first()
-            ->load('categories'); // lazy load categories;
+            ->first();
 
         // check that product exist
         if($response['product'] == null)
             return view('errors.common', ['message' => 'Error! Product not exist']);
+
+        $response['product']->load('categories'); // lazy load categories;
+
 
         // get atachments to product
         /*response['attachments'] = Attachment::builder()

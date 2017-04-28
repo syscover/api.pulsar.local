@@ -18,7 +18,7 @@
                         <p class="card-text">Price: {{ $product->getPrice() }} €</p>
                         <p class="card-text"><small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small></p>
                         <a href="{{ route('product-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">Show Product</a>
-                        <a href="{{ route('product-'. user_lang(), ['category' => 'xxx', 'slug' => $product->slug]) }}" class="btn btn-primary">Add to cart</a>
+                        <a href="{{ route('product-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">Add to cart</a>
                     </div>
                 </div>
 

@@ -185,6 +185,7 @@ return [
         App\Providers\AdminServiceProvider::class,
         App\Providers\CrmServiceProvider::class,
         App\Providers\MarketServiceProvider::class,
+        App\Providers\ShoppingCartServiceProvider::class,
 
 
     ],
@@ -235,6 +236,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
 
     ],
 

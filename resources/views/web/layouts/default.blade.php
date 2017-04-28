@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('productList-' . user_lang()) }}">{{ trans_choice('web.product', 2) }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('web.shopping_cart') }}</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('web.my_account') }}
