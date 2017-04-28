@@ -38,10 +38,12 @@ class MarketFrontendController extends Controller
             ->orderBy('product.sort', 'asc')
             ->get();
 
+
+
         // Get all categories from products
-        $productsCategories = ProductsCategories::builder(user_lang())
-            ->whereIn('product_id', $response['products']->pluck('id'))
-            ->get();
+//        $productsCategories = ProductsCategories::builder(user_lang())
+//            ->whereIn('product_id', $response['products']->pluck('id'))
+//            ->get();
 
 
 

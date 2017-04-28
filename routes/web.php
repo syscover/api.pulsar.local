@@ -43,7 +43,7 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
 
     // MARKET ROUTES
     // EN
-Route::get('/en/product/list',                                                              ['as' => 'productList-en',                          'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
+    Route::get('/en/product/list',                                                          ['as' => 'productList-en',                      'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
     Route::get('/en/product/{category}/{slug}',                                             ['as' => 'product-en',                          'uses' => '\App\Http\Controllers\MarketFrontendController@getProduct']);
 
     // ES
