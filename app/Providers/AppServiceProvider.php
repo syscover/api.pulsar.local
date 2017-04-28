@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
             // $query->bindings
             // $query->time
 
-           // Log::info($query->sql);
+            Log::info($query->sql);
         });
     }
 
