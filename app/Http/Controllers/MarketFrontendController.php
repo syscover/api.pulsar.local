@@ -38,6 +38,11 @@ class MarketFrontendController extends Controller
             ->orderBy('product.sort', 'asc')
             ->get();
 
+        // lazy load categories
+        $response['products']->load('categories');
+
+
+
 
 
         // Get all categories from products

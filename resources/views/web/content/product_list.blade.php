@@ -16,18 +16,14 @@
                         <h4 class="card-title">{{ $product->name }}</h4>
                         <p class="card-text">{!! $product->description !!}</p>
                         <p class="card-text">Price: {{ $product->getPrice() }} €</p>
-                        <a href="#" class="btn btn-primary">Show Product</a>
+                        <a href="{{ route('product-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">Show Product</a>
+                        <a href="{{ route('product-'. user_lang(), ['category' => 'xxx', 'slug' => $product->slug]) }}" class="btn btn-primary">Add to cart</a>
                     </div>
                 </div>
 
 
 
-                {{--<div class="col-md-12">--}}
-                    {{--<h3>--}}
-                        {{--<a href="{{ route('product-'. user_lang(), ['category' => $product->mappedCategory->slug_110, 'slug' => $product->slug_112]) }}">{{ $product->name_112 }}</a>--}}
-                    {{--</h3>--}}
-                    {{--{!! $product->description_112 !!}--}}
-                    {{--<br>--}}
+
                     {{--{{ $product->getPrice() }} €<br>--}}
 
                     {{--@if(config('market.taxProductDisplayPrices') == \Syscover\ShoppingCart\Cart::PRICE_WITH_TAX)--}}
@@ -36,16 +32,16 @@
                     {{--@if(config('market.taxProductDisplayPrices') == \Syscover\ShoppingCart\Cart::PRICE_WITHOUT_TAX)--}}
                         {{--<small><strong>{{ trans_choice('market::pulsar.tax_not_included', 1) }} ({{ $product->getTaxAmount() }}€)</strong></small>--}}
                     {{--@endif--}}
+
                     {{--@foreach($product->taxRules as $taxRule)--}}
                         {{--<br>--}}
                         {{--<small>{{ trans($taxRule->translation_104) }} {{ $taxRule->getTaxRate() }}%</small>--}}
                     {{--@endforeach--}}
-                    {{--<br><br>--}}
-                    {{--<a href="{{ route('product-'. user_lang(), ['category' => $product->mappedCategory->slug_110, 'slug' => $product->slug_112]) }}">{{ trans('web.show_product') }}</a>--}}
-                    {{--<br>--}}
+
+
                     {{--<a href="{{ route('postShoppingCart-' . user_lang(), ['slug' => $product->slug_112]) }}">{{ trans('web.add_to_shopping_cart') }}</a>--}}
-                    {{--<hr>--}}
-                {{--</div>--}}
+
+
 
         @endforeach
     </div>
