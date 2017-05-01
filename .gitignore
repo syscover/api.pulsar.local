@@ -35,6 +35,7 @@
 /tests/Feature/AdminTest.php
 
 /storage/exports/
+/resources/views/vendor/
 
 composer.dev.lock
 

@@ -21,16 +21,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">{{ trans('web.home') }}</a>
+                <li class="nav-item {{ active_route(['home', 'home-' . user_lang()], 'active') }}">
+                    <a class="nav-link" href="{{ route('home') }}">{{ trans('web.home') }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ active_route('productList-' . user_lang(), 'active') }}">
                     <a class="nav-link" href="{{ route('productList-' . user_lang()) }}">{{ trans_choice('web.product', 2) }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ active_route('getShoppingCart-' . user_lang(), 'active') }}">
                     <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('web.shopping_cart') }}</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ active_route(['account-' . user_lang(), 'getLogin-' . user_lang()], 'active') }}">
                     <a class="nav-link dropdown-toggle pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('web.my_account') }}
                     </a>
