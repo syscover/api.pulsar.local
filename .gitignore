@@ -31,6 +31,7 @@
 /config/pulsar.admin.php
 /config/pulsar.market.php
 /config/pulsar.navtools.php
+/config/pulsar.crm.php
 /config/pulsar.shopping-cart.php
 /tests/Feature/AdminTest.php
 
