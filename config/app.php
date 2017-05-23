@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        /*
+         * Thirdparty Service Providers...
+         */
+        //Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Pulsar Application Service Providers...
          */
@@ -236,8 +242,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
-
+        'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class
     ],
 
 ];
