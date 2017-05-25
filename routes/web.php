@@ -6,8 +6,8 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::get('/es',                                                                       ['as' => 'home-es',                             'uses' => '\App\Http\Controllers\WebFrontendController@home']);
     Route::get('/en',                                                                       ['as' => 'home-en',                             'uses' => '\App\Http\Controllers\WebFrontendController@home']);
 
-    Route::get('/es/404',                                                                   ['as' => '404-es',                              function () {return view('errors.404');}]);
-    Route::get('/en/404',                                                                   ['as' => '404-en',                              function () {return view('errors.404');}]);
+    //Route::get('/es/404',                                                                   ['as' => '404-es',                              function () {return view('errors.404');}]);
+    //Route::get('/en/404',                                                                   ['as' => '404-en',                              function () {return view('errors.404');}]);
 
 
     // CUSTOMER ACCOUNT
