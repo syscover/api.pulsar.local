@@ -22,8 +22,9 @@
 
 
 # -- Web --------------------------------------------
-/public/packages/
+/public/storage/
 /public/pulsar/
+/public/packages/
 
 
 # -- Pulsar -----------------------------------------
