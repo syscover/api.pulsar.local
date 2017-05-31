@@ -25,6 +25,11 @@ class MarketFrontendController extends Controller
             ->load('categories'); // lazy load categories
 
 
+
+//        foreach ($response['products'] as $product){
+//        }
+
+
         // get atachments to products
         /*
         $response['attachments'] = Attachment::builder()
