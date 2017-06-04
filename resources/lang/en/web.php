@@ -2,7 +2,7 @@
 
 return [
 
-    'add_to_shopping_cart'  => 'Add to shopping cart',
+    'add_to_shopping_cart'  => 'Buy',
     'apply'                 => 'Apply',
     'checkout'              => 'Checkout',
     'contact'               => 'Contact',

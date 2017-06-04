@@ -2,7 +2,7 @@
 
 return [
 
-    'add_to_shopping_cart'  => 'Añadir al carro de compra',
+    'add_to_shopping_cart'  => 'Comprar',
     'apply'                 => 'Aplicar',
     'checkout'              => 'Hacer pedido',
     'contact'               => 'Contacto',

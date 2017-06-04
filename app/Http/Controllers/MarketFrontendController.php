@@ -20,26 +20,10 @@ class MarketFrontendController extends Controller
         $response['products'] = Product::builder()
             ->where('product_lang.lang_id', user_lang())
             ->where('product.active', true)
+            ->where('product.parent_product_id', null) // discard children products
             ->orderBy('product.sort', 'asc')
             ->get()
             ->load('categories'); // lazy load categories
-
-
-
-//        foreach ($response['products'] as $product){
-//        }
-
-
-        // get atachments to products
-        /*
-        $response['attachments'] = Attachment::builder()
-            ->where('lang_id', user_lang())
-            ->where('resource_id', 'market-product')
-            ->where('family_id', config('web.attachmentsFamily.productList'))
-            ->orderBy('sorting', 'asc')
-            ->get()
-            ->keyBy('object_id');
-        */
         
         return view('web.content.product_list', $response);
     }
