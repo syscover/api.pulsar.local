@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard'     => 'pulsar',
+        'passwords' => 'pulsarPasswordBroker',
     ],
 
     /*
@@ -50,6 +50,11 @@ return [
             'driver'    => 'session',
             'provider'  => 'crmCustomer',
         ],
+
+        'pulsar' => [
+            'driver'    => 'session',
+            'provider'  => 'pulsarUser',
+        ],
     ],
 
     /*
@@ -70,19 +75,10 @@ return [
     */
 
     'providers' => [
-//        'users' => [
-//            'driver' => 'eloquent',
-//            'model' => App\User::class,
-//        ],
-        'crmCustomer' => [
+        'pulsarUser' => [
             'driver'    => 'eloquent',
-            'model'     => Syscover\Crm\Models\Customer::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+            'model'     => Syscover\Admin\Models\User::class,
+        ]
     ],
 
     /*
@@ -108,9 +104,8 @@ return [
 //            'expire' => 60,
 //        ],
 
-        'crmPasswordBroker' => [
-            'provider'  => 'crmCustomer',
-            'email'     => 'pulsar::emails.password',
+        'pulsarPasswordBroker' => [
+            'provider'  => 'pulsarUser',
             'table'     => 'password_resets',
             'expire'    => 60,
         ],

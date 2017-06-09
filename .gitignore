@@ -34,6 +34,8 @@
 /config/pulsar.navtools.php
 /config/pulsar.crm.php
 /config/pulsar.shopping-cart.php
+/config/jwt.php
+/config/cors.php
 /tests/Feature/AdminTest.php
 
 /storage/exports/

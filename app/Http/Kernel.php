@@ -61,5 +61,9 @@ class Kernel extends HttpKernel
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
         'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
         'pulsar.tax.rule'       => \Syscover\Market\Middleware\TaxRule::class,
+
+        // JWT
+        'jwt.auth'              => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        'jwt.refresh'           => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];
 }
