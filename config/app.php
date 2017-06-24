@@ -182,6 +182,7 @@ return [
          * Thirdparty Service Providers...
          */
         //Intervention\Image\ImageServiceProvider::class,
+        Folklore\GraphQL\ServiceProvider::class,
 
         /*
          * Pulsar Application Service Providers...
@@ -243,7 +244,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'GraphQL' => Folklore\GraphQL\Support\Facades\GraphQL::class,
     ],
 
 ];

@@ -36,7 +36,7 @@
 /config/pulsar.cms.php
 /config/pulsar.shopping-cart.php
 /config/jwt.php
-/config/cors.php
+/config/graphql.php
 /tests/Feature/AdminTest.php
 
 /storage/exports/

@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Syscover\Core\GraphQL\CoreGraphQLServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,10 @@ class CoreServiceProvider extends ServiceProvider
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-core/src/config/pulsar.core.php' => config_path('pulsar.core.php'),
         ]);
+
+        // register GraphQL types and schema
+        CoreGraphQLServiceProvider::bootGraphQLTypes();
+        CoreGraphQLServiceProvider::bootGraphQLSchema();
     }
 
 	/**
