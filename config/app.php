@@ -181,7 +181,6 @@ return [
         /*
          * Thirdparty Service Providers...
          */
-        //Intervention\Image\ImageServiceProvider::class,
         Folklore\GraphQL\ServiceProvider::class,
 
         /*
@@ -194,6 +193,7 @@ return [
         App\Providers\MarketServiceProvider::class,
         App\Providers\CmsServiceProvider::class,
         App\Providers\ShoppingCartServiceProvider::class,
+
     ],
 
     /*
