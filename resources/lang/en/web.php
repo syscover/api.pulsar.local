@@ -4,6 +4,8 @@ return [
 
     'add_to_shopping_cart'  => 'Buy',
     'apply'                 => 'Apply',
+    'article'               => 'Article|Articles',
+    'blog'                  => 'Blog|Blogs',
     'checkout'              => 'Checkout',
     'contact'               => 'Contact',
     'continue_shopping'     => 'Continue shopping',

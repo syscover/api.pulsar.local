@@ -9,6 +9,14 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     //Route::get('/es/404',                                                                   ['as' => '404-es',                              function () {return view('errors.404');}]);
     //Route::get('/en/404',                                                                   ['as' => '404-en',                              function () {return view('errors.404');}]);
 
+    // CMS
+    // EN
+    Route::get('/en/blog',                                                                  ['as' => 'blog-en',                             'uses' => '\App\Http\Controllers\BlogFrontendController@getBlog']);
+    Route::get('/en/blog/{slug}',                                                           ['as' => 'article-en',                          'uses' => '\App\Http\Controllers\BlogFrontendController@getArticle']);
+
+    // ES
+    Route::get('/es/blog',                                                                  ['as' => 'blog-es',                             'uses' => '\App\Http\Controllers\BlogFrontendController@getBlog']);
+    Route::get('/es/blog/{slug}',                                                           ['as' => 'article-es',                          'uses' => '\App\Http\Controllers\BlogFrontendController@getArticle']);
 
     // CUSTOMER ACCOUNT
     // EN

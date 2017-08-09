@@ -5,8 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
-use Syscover\Core\GraphQL\Types\ObjectType;
-use Syscover\Core\GraphQL\Types\AnyType;
+use Syscover\Core\GraphQL\ScalarTypes\ObjectType;
+use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class AppServiceProvider extends ServiceProvider
 {

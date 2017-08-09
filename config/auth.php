@@ -126,14 +126,14 @@ return [
 
         'pulsarPasswordBroker' => [
             'provider'  => 'pulsarUser',
-            'table'     => 'password_resets',
+            'table'     => 'admin_password_resets',
             'expire'    => 60,
         ],
 
         'crmPasswordBroker' => [
             'provider'  => 'crmCustomer',
             'email'     => 'pulsar::emails.password',
-            'table'     => 'password_resets',
+            'table'     => 'admin_password_resets',
             'expire'    => 60,
         ]
     ],
