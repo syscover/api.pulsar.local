@@ -15,8 +15,8 @@ class BlogFrontendController extends Controller
         $articles = Article::builder()
             ->where('publish', '<', date('Y-m-d H-i-s')) // filter only publish article
             ->where('lang_id', user_lang()) // filter only publish article
-            ->get();
-            //->load('attachments');
+            ->get()
+            ->load('attachments');
 
         // set language for Carbon
         Carbon::setLocale(user_lang());
