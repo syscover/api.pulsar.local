@@ -18,7 +18,7 @@ class MarketFrontendController extends Controller
     {
         // Get all active products
         $response['products'] = Product::builder()
-            ->where('product_lang.lang_id', user_lang())
+            ->where('market_product_lang.lang_id', user_lang())
             ->where('market_product.active', true)
             ->where('market_product.parent_product_id', null) // discard children products
             ->orderBy('market_product.sort', 'asc')
@@ -42,9 +42,9 @@ class MarketFrontendController extends Controller
         $response = [];
 
         $response['product'] = Product::builder()
-            ->where('product_lang.lang_id', user_lang())
-            ->where('product_lang.slug', $parameters['slug'])
-            ->where('product.active', true)
+            ->where('market_product_lang.lang_id', user_lang())
+            ->where('market_product_lang.slug', $parameters['slug'])
+            ->where('market_product.active', true)
             ->first();
 
         // check that product exist
