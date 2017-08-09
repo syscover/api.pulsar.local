@@ -19,9 +19,9 @@ class MarketFrontendController extends Controller
         // Get all active products
         $response['products'] = Product::builder()
             ->where('product_lang.lang_id', user_lang())
-            ->where('product.active', true)
-            ->where('product.parent_product_id', null) // discard children products
-            ->orderBy('product.sort', 'asc')
+            ->where('market_product.active', true)
+            ->where('market_product.parent_product_id', null) // discard children products
+            ->orderBy('market_product.sort', 'asc')
             ->get()
             ->load('categories'); // lazy load categories
         

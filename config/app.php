@@ -189,8 +189,8 @@ return [
         App\Providers\NavtoolsServiceProvider::class,
         App\Providers\CoreServiceProvider::class,
         App\Providers\AdminServiceProvider::class,
-        //App\Providers\CrmServiceProvider::class,
-        //App\Providers\MarketServiceProvider::class,
+        App\Providers\CrmServiceProvider::class,
+        App\Providers\MarketServiceProvider::class,
         App\Providers\CmsServiceProvider::class,
         //App\Providers\ShoppingCartServiceProvider::class,
 

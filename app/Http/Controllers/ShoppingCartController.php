@@ -2,11 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
-use Syscover\Market\Libraries\CouponLibrary;
+//use Syscover\Market\Libraries\CouponLibrary;
 use Syscover\Market\Models\CartPriceRule;
 use Syscover\Market\Models\Product;
 use Syscover\Market\Models\TaxRule;
-use Syscover\Pulsar\Models\Attachment;
+
 use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException;
 use Syscover\ShoppingCart\PriceRule;
 use Syscover\ShoppingCart\TaxRule as TaxRuleShoppingCart;
