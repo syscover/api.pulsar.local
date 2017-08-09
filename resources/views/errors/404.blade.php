@@ -6,8 +6,7 @@
 @stop
 
 @section('content')
-    {{ user_lang() }}
     <div class="content">
-        <div class="title">404 Be right back.</div>
+        <h1>404 Be right back.</h1>
     </div>
 @stop
