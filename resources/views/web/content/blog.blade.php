@@ -13,12 +13,12 @@
         @foreach($articles as $article)
             <div class="card mb-3">
                 <img class="img-fluid"
-                     {!! set_srcset($article->attachments->first()) !!}
+                     {!! get_src_srcset($article->attachments->first()) !!}
                      alt="{{ $article->attachments->first()->name }}"
                      title="{{ $article->attachments->first()->name }}">
                 <div class="card-block">
                     <h4 class="card-title">{{ $article->title }}</h4>
-                    <p class="card-text">{{ $article->article }}</p>
+                    <p class="card-text">{!! $article->article !!}</p>
                     <p class="card-text">
                         <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
                     </p>
