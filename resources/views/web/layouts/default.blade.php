@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/froala/css/froala_style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/helpers.css') }}">
     @yield('head')
 </head>

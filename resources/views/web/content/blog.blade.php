@@ -18,7 +18,11 @@
                      title="{{ $article->attachments->first()->name }}">
                 <div class="card-block">
                     <h4 class="card-title">{{ $article->title }}</h4>
-                    <p class="card-text">{!! $article->article !!}</p>
+                    <div class="card-text">
+                        <div class="fr-view">
+                            {!! $article->article !!}
+                        </div>
+                    </div>
                     <p class="card-text">
                         <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
                     </p>
