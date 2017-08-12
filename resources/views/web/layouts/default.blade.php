@@ -23,41 +23,41 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ active_route(['home', 'home-' . user_lang()], 'active') }}">
-                    <a class="nav-link" href="{{ route('home-' . user_lang()) }}">{{ trans('web.home') }}</a>
+                    <a class="nav-link" href="{{ route('home-' . user_lang()) }}">{{ trans('common.home') }}</a>
                 </li>
                 <li class="nav-item {{ active_route(['blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
-                    <a class="nav-link" href="{{ route('blog-' . user_lang()) }}">{{ trans_choice('web.blog', 1) }}</a>
+                    <a class="nav-link" href="{{ route('blog-' . user_lang()) }}">{{ trans_choice('common.blog', 1) }}</a>
                 </li>
                 <li class="nav-item {{ active_route('productList-' . user_lang(), 'active') }}">
-                    <a class="nav-link" href="{{ route('productList-' . user_lang()) }}">{{ trans_choice('web.product', 2) }}</a>
+                    <a class="nav-link" href="{{ route('productList-' . user_lang()) }}">{{ trans_choice('common.product', 2) }}</a>
                 </li>
                 <li class="nav-item {{ active_route('getShoppingCart-' . user_lang(), 'active') }}">
-                    <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('web.shopping_cart') }}</a>
+                    <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('common.shopping_cart') }}</a>
                 </li>
                 <li class="nav-item dropdown {{ active_route(['account-' . user_lang(), 'getLogin-' . user_lang()], 'active') }}">
-                    <a class="nav-link dropdown-toggle pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('web.my_account') }}
+                    <a class="nav-link dropdown-toggle pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                        {{ trans('common.my_account') }}
                     </a>
                     @if(auth('crm')->check())
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('account-' . user_lang()) }}">{{ trans('web.my_account') }}</a>
+                            <a class="dropdown-item" href="{{ route('account-' . user_lang()) }}">{{ trans('common.my_account') }}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout-' . user_lang()) }}">{{ trans('web.logout') }}</a>
+                            <a class="dropdown-item" href="{{ route('logout-' . user_lang()) }}">{{ trans('common.logout') }}</a>
                         </div>
                     @endif
                     @if(auth('crm')->guest())
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('getLogin-' . user_lang()) }}">{{ trans('web.login') }}</a>
+                            <a class="dropdown-item" href="{{ route('getLogin-' . user_lang()) }}">{{ trans('common.login') }}</a>
                         </div>
                     @endif
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle pointer" id="languageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans_choice('web.language', 1) }}
+                        {{ trans_choice('common.language', 1) }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="languageMenu">
-                        <a class="dropdown-item" href="{{ get_lang_route('es') }}">{{ trans('web.spanish') }}</a>
-                        <a class="dropdown-item" href="{{ get_lang_route('en') }}">{{ trans('web.english') }}</a>
+                        <a class="dropdown-item" href="{{ get_lang_route('es') }}">{{ trans('common.spanish') }}</a>
+                        <a class="dropdown-item" href="{{ get_lang_route('en') }}">{{ trans('common.english') }}</a>
                     </div>
                 </li>
             </ul>

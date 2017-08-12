@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <h1 class="margin-vertical-10">{{ trans_choice('web.product', 2) }}</h1>
+    <h1 class="margin-vertical-10">{{ trans_choice('common.product', 2) }}</h1>
 
     <div class="card-columns">
 

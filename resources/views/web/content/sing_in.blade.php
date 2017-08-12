@@ -52,8 +52,8 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
-                    <label for="repassword">Repeat Password</label>
-                    <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Password" required>
+                    <label for="re_password">Repeat Password</label>
+                    <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Password" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Sing In</button>

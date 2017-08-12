@@ -86,8 +86,8 @@ class CustomerFrontendController extends Controller
         $validator = Validator::make($request->all(), [
             'name'      => 'required|max:255',
             'surname'   => 'required|max:255',
-            'email'     => 'required|max:255|email|unique:customer,email',
-            'password'  => 'required|between:4,15|same:repassword',
+            'email'     => 'required|max:255|email|unique:crm_customer,email',
+            'password'  => 'required|between:4,15|same:re_password',
         ]);
 
         // manage fails
@@ -110,7 +110,7 @@ class CustomerFrontendController extends Controller
         }
 
         // create new customer
-        $customer = CustomerService::createCustomer($request);
+        $customer = CustomerService::create($request->all());
 
         // auth the customer created
         Auth::guard('crm')->login($customer);
@@ -134,6 +134,12 @@ class CustomerFrontendController extends Controller
         }
     }
 
+    /**
+     * Update customer in CRM module and login customer updated
+     *
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function putSingIn(Request $request)
     {
         $rules   = [
@@ -172,11 +178,11 @@ class CustomerFrontendController extends Controller
         }
 
         // update customer
-        $customer = CustomerService::updateCustomer($request);
+        $customer = CustomerService::update($request->all());
 
         // update password
         if($request->has('password'))
-            CustomerService::updatePassword($request);
+            CustomerService::updatePassword($request->all());
 
         // auth the customer created
         Auth::guard('crm')->login($customer);

@@ -63,15 +63,15 @@
 @stop
 
 @section('content')
-    <h1>{{ trans('web.shopping_cart') }}</h1>
+    <h1>{{ trans('common.shopping_cart') }}</h1>
 
     <!-- heads -->
     <div class="row">
         <div class="col-md-3">
-            <h6>{{ trans_choice('web.product', 2) }}</h6>
+            <h6>{{ trans_choice('common.product', 2) }}</h6>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('web.price', 2) }}</h6>
+            <h6>{{ trans_choice('common.price', 2) }}</h6>
         </div>
         <div class="col-md-1">
             <h6>Qty</h6>
@@ -80,22 +80,22 @@
             <h6>Subtotal</h6>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('web.discount', 2) }}</h6>
+            <h6>{{ trans_choice('common.discount', 2) }}</h6>
         </div>
         <div class="col-md-1">
-            <h6>Sub + {{ trans_choice('web.discount', 2) }}</h6>
+            <h6>Sub + {{ trans_choice('common.discount', 2) }}</h6>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('web.tax', 2) }} %</h6>
+            <h6>{{ trans_choice('common.tax', 2) }} %</h6>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('web.tax', 2) }} €</h6>
+            <h6>{{ trans_choice('common.tax', 2) }} €</h6>
         </div>
         <div class="col-md-1">
             <h6>Total</h6>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans('web.delete') }}</h6>
+            <h6>{{ trans('common.delete') }}</h6>
         </div>
     </div>
     <!-- /heads -->
@@ -248,31 +248,40 @@
                     <h4>{{ CartProvider::instance()->getTotal() }} €</h4>
                 </div>
             </div>
+
+        </div>
+        <div class="col-md-6">
+
             <div class="row">
                 <form>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" name="couponCode" placeholder="{{ trans('web.coupon_code') }}">
+                    <div class="form-group">
+                        <input class="form-control" name="couponCode" placeholder="{{ trans('common.coupon_code') }}">
                     </div>
-                    <div class="col-md-5">
-                        <a class="btn btn-primary" id="couponCodeBt" href="#">{{ trans('web.apply') }}</a>
+                    <div class="form-group">
+                        <a class="btn btn-primary" id="couponCodeBt" href="#">{{ trans('common.apply') }}</a>
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
+
+    <br>
+
     <div class="row">
         <br>
         <div class="col-md-12">
-            <a class="btn btn-default" href="{{ route('productList-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
+            <a class="btn btn-primary" href="{{ route('productList-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
         </div>
     </div>
+
     @if($cartItems->count() > 0)
-    <div class="row">
-        <br>
-        <div class="col-md-12">
-            <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('web.checkout') }}</a>
+        <div class="row">
+            <br>
+            <div class="col-md-12">
+                <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('web.checkout') }}</a>
+            </div>
         </div>
-    </div>
     @endif
 
     <!-- modal coupon message -->

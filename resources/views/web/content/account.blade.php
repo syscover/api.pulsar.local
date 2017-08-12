@@ -14,7 +14,7 @@
             @if(session('successMessage'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span>&times;</span>
                     </button>
                     {!! session('successMessage')['message'] !!}
                 </div>
@@ -27,7 +27,7 @@
                 <input type="hidden" name="id" value="{{ $customer->id }}">
 
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Group</label>
                     <select class="form-control" name="group_id" required>
                         <option value="">Select a customer group</option>
                         @foreach($groups as $group)
@@ -36,11 +36,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">{{ trans_choice('common.name', 1) }}</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $customer->name }}" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <label for="surname">Surname</label>
+                    <label for="surname">{{ trans_choice('common.surname', 1) }}</label>
                     <input type="text" class="form-control" id="surname" name="surname" value="{{ $customer->surname }}" placeholder="Surname" required>
                 </div>
                 <div class="form-group">
