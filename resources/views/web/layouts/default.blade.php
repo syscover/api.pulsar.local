@@ -8,8 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/froala/css/froala_style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/helpers.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     @yield('head')
 </head>
 <body>
@@ -71,6 +73,7 @@
     <script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('vendor/tether/js/tether.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    @yield('scripts')
 
 </body>
 </html>

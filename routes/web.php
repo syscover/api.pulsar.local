@@ -34,18 +34,17 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     // SHOPPING CART
     // EN
     Route::get('/en/shopping/cart',                                                         ['as' => 'getShoppingCart-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@getShoppingCart']);
-    Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   ['as' => 'postShoppingCart-en',                 'uses' => '\App\Http\Controllers\ShoppingCartController@postShoppingCart']);
-    Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               ['as' => 'deleteShoppingCart-en',               'uses' => '\App\Http\Controllers\ShoppingCartController@deleteShoppingCart']);
-    Route::put('/en/shopping/cart/update',                                                  ['as' => 'putShoppingCart-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@putShoppingCart']);
+    Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   ['as' => 'addProduct-en',                       'uses' => '\App\Http\Controllers\ShoppingCartController@addProduct']);
+    Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               ['as' => 'deleteProduct-en',                    'uses' => '\App\Http\Controllers\ShoppingCartController@deleteProduct']);
+    Route::put('/en/shopping/cart/update',                                                  ['as' => 'updateShoppingCart-en',               'uses' => '\App\Http\Controllers\ShoppingCartController@updateShoppingCart']);
     Route::post('/en/shopping/cart/check/coupon/code',                                      ['as' => 'checkCouponCode-en',                  'uses' => '\App\Http\Controllers\ShoppingCartController@checkCouponCode']);
 
     // ES
     Route::get('/es/carro-compra',                                                          ['as' => 'getShoppingCart-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@getShoppingCart']);
-    Route::match(['get', 'post'], '/es/carro-compra/anadir-producto/{slug}',                ['as' => 'postShoppingCart-es',                 'uses' => '\App\Http\Controllers\ShoppingCartController@postShoppingCart']);
-    Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               ['as' => 'deleteShoppingCart-es',               'uses' => '\App\Http\Controllers\ShoppingCartController@deleteShoppingCart']);
-    Route::put('/es/carro-compra/actualizar',                                               ['as' => 'putShoppingCart-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@putShoppingCart']);
+    Route::match(['get', 'post'], '/es/carro-compra/anadir-producto/{slug}',                ['as' => 'addProduct-es',                       'uses' => '\App\Http\Controllers\ShoppingCartController@addProduct']);
+    Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               ['as' => 'deleteProduct-es',                    'uses' => '\App\Http\Controllers\ShoppingCartController@deleteProduct']);
+    Route::put('/es/carro-compra/actualizar',                                               ['as' => 'updateShoppingCart-es',               'uses' => '\App\Http\Controllers\ShoppingCartController@updateShoppingCart']);
     Route::post('/es/carro-compra/comprueba/codigo/cupon',                                  ['as' => 'checkCouponCode-es',                  'uses' => '\App\Http\Controllers\ShoppingCartController@checkCouponCode']);
-
 });
 
 Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function() {
@@ -60,6 +59,13 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::match(['get', 'post'], '/es/cuenta',                                             ['as' => 'account-es',                          'uses' => '\App\Http\Controllers\CustomerFrontendController@account']);
     Route::put('/es/cuenta/registro',                                                       ['as' => 'putSingIn-es',                        'uses' => '\App\Http\Controllers\CustomerFrontendController@putSingIn']);
     Route::match(['get', 'post'], '/es/cuenta/logout',                                      ['as' => 'logout-es',                           'uses' => '\App\Http\Controllers\CustomerFrontendController@logout']);
+
+    // CHERCKOUT
+    // ES
+    Route::get('/es/proceso/compra',                                                        ['as' => 'getCheckout01-es',                    'uses' => '\App\Http\Controllers\MarketFrontendController@getCheckout01']);
+
+    // EN
+    Route::get('/en/checkout',                                                              ['as' => 'getCheckout01-en',                    'uses' => '\App\Http\Controllers\MarketFrontendController@getCheckout01']);
 
 });
 

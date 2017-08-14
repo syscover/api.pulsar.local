@@ -35,12 +35,12 @@ class ShoppingCartController extends Controller
     }
 
     /**
-     * Función que añade un producto al carro de compra
+     * Add product to shopping cart
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postShoppingCart(Request $request)
+    public function addProduct(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
@@ -73,7 +73,7 @@ class ShoppingCartController extends Controller
         {
             $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
                 Lang::has($taxRule->translation) ? trans($taxRule->translation) : $taxRule->name,
-                $taxRule->taxRateZones->sum('tax_rate'),
+                $taxRule->tax_rate_zones->sum('tax_rate'),
                 $taxRule->priority,
                 $taxRule->sort
             );
@@ -115,7 +115,7 @@ class ShoppingCartController extends Controller
      * @param   Request     $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function putShoppingCart(Request $request)
+    public function updateShoppingCart(Request $request)
     {
         // check idf exist coupon code
         if($request->has('applyCouponCode'))
@@ -136,7 +136,7 @@ class ShoppingCartController extends Controller
         return redirect()->route('getShoppingCart-' . user_lang());
     }
 
-    public function deleteShoppingCart(Request $request)
+    public function deleteProduct(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();

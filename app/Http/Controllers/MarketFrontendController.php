@@ -65,4 +65,9 @@ class MarketFrontendController extends Controller
 
         return view('web.content.product', $response);
     }
+
+    public function getCheckout01(Request $request)
+    {
+        dd('getCheckou01');
+    }
 }

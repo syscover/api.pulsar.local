@@ -2,24 +2,23 @@
 
 @section('title', 'Shopping cart')
 
-@section('head')
+@section('scripts')
     <script>
-        $(document).ready(function() {
+        $(function() {
 
-            $(".increase, .decrease").on('click', function() {
-                var input = $(this).siblings('input[type=number]');
+            $('.increase, .decrease').on('click', function() {
+
+                var input = $(this).siblings('input[type=hidden]');
+
                 if ($(this).hasClass('increase'))
-                {
                     input.val(parseInt(input.val()) + 1);
-                }
                 else if($(this).hasClass('decrease') && input.val() > 0)
-                {
                     input.val(parseInt(input.val()) - 1);
-                }
+
                 $('#shoppingCartForm').submit();
             });
 
-            $("#couponCodeBt").on('click', function() {
+            $('#couponCodeBt').on('click', function() {
                 $.ajax({
                     dataType: 'json',
                     type: 'POST',
@@ -66,81 +65,81 @@
     <h1>{{ trans('common.shopping_cart') }}</h1>
 
     <!-- heads -->
-    <div class="row">
+    <div class="row header-cart">
         <div class="col-md-3">
-            <h6>{{ trans_choice('common.product', 2) }}</h6>
+            <p>{{ trans_choice('common.product', 2) }}</p>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('common.price', 2) }}</h6>
+            <p>{{ trans_choice('common.price', 2) }}</p>
         </div>
         <div class="col-md-1">
-            <h6>Qty</h6>
+            <p>Qty</p>
         </div>
         <div class="col-md-1">
-            <h6>Subtotal</h6>
+            <p>Subtotal</p>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('common.discount', 2) }}</h6>
+            <p>{{ trans_choice('common.discount', 2) }}</p>
         </div>
         <div class="col-md-1">
-            <h6>Sub + {{ trans_choice('common.discount', 2) }}</h6>
+            <p>Sub + {{ trans_choice('common.discount', 2) }}</p>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('common.tax', 2) }} %</h6>
+            <p>{{ trans_choice('common.tax', 2) }} %</p>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans_choice('common.tax', 2) }} €</h6>
+            <p>{{ trans_choice('common.tax', 2) }} €</p>
         </div>
         <div class="col-md-1">
-            <h6>Total</h6>
+            <p>Total</p>
         </div>
         <div class="col-md-1">
-            <h6>{{ trans('common.delete') }}</h6>
+            <p>{{ trans('common.delete') }}</p>
         </div>
     </div>
     <!-- /heads -->
 
-    <form id="shoppingCartForm" action="{{ route('putShoppingCart-' . user_lang()) }}" method="post">
+    <form id="shoppingCartForm" action="{{ route('updateShoppingCart-' . user_lang()) }}" method="post">
         @foreach($cartItems as $item)
-            <div class="row">
+            <div class="row row-cart">
                 <div class="col-md-1">
-                    <img src="https://c.tadst.com/gfx/750w/sunrise-sunset-sun-calculator.jpg?1" class="img-responsive">
+                    <img src="" class="img-responsive">
                 </div>
                 <div class="col-md-2">
-                    <h4>{{ $item->name }}</h4>
+                    <p>{{ $item->name }}</p>
                 </div>
                 <div class="col-md-1">
-                    <h5>{{ $item->getPrice() }} € / unit</h5>
+                    <p>{{ $item->getPrice() }} € / unit</p>
                 </div>
                 <div class="col-md-1">
-                    <h5>{{ $item->getQuantity() }}</h5>
-                    <input class="hidden" type="number" name="{{ $item->rowId }}" value="{{ $item->getQuantity() }}">
-                    <a href="#" class="increase"><i class="glyphicon glyphicon-plus"></i></a>
-                    <a href="#" class="decrease"><i class="glyphicon glyphicon-minus"></i></a>
+                    <p>{{ $item->getQuantity() }}</p>
+                    <input type="hidden" name="{{ $item->rowId }}" value="{{ $item->getQuantity() }}">
+                    <a href="#" class="increase"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    <a href="#" class="decrease"><i class="fa fa-minus" aria-hidden="true"></i></a>
                 </div>
                 <div class="col-md-1">
-                    <h4>{{ $item->getSubtotal() }} €</h4>
+                    <p>{{ $item->getSubtotal() }} €</p>
                 </div>
                 <div class="col-md-1">
-                    <h4>{{ $item->getDiscountAmount() }} €</h4>
+                    <p>{{ $item->getDiscountAmount() }} €</p>
                 </div>
                 <div class="col-md-1">
-                    <h4>{{ $item->getSubtotalWithDiscounts() }} €</h4>
+                    <p>{{ $item->getSubtotalWithDiscounts() }} €</p>
                 </div>
                 <div class="col-md-1">
                     @foreach($item->getTaxRates() as $taxRate)
-                        <h6>{{ $taxRate }} %</h6>
+                        <p>{{ $taxRate }} %</p>
                     @endforeach
                 </div>
                 <div class="col-md-1">
-                    <h4>{{ $item->getTaxAmount() }} €</h4>
+                    <p>{{ $item->getTaxAmount() }} €</p>
                 </div>
                 <div class="col-md-1">
-                    <h4>{{ $item->getTotal() }} €</h4>
+                    <p>{{ $item->getTotal() }} €</p>
                 </div>
                 <div class="col-md-1">
-                    <a href="{{ route('deleteShoppingCart-' . user_lang(), ['rowId' => $item->rowId]) }}">
-                        <i class="glyphicon glyphicon-remove"></i>
+                    <a href="{{ route('deleteProduct-' . user_lang(), ['rowId' => $item->rowId]) }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -156,19 +155,19 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Subtotal:</h4>
+                    <p>Subtotal:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getSubtotal() }} €</h4>
+                    <p>{{ CartProvider::instance()->getSubtotal() }} €</p>
                 </div>
             </div>
             @foreach(CartProvider::instance()->getTaxRules() as $taxRule)
                 <div class="row">
                     <div class="col-md-7">
-                        <h4>{{ $taxRule->name }} ({{ $taxRule->getTaxRate() }}%)</h4>
+                        <p>{{ $taxRule->name }} ({{ $taxRule->getTaxRate() }}%)</p>
                     </div>
                     <div class="col-md-5">
-                        <h4>{{ $taxRule->getTaxAmount() }} €</h4>
+                        <p>{{ $taxRule->getTaxAmount() }} €</p>
                     </div>
                 </div>
             @endforeach
@@ -177,35 +176,35 @@
                 <div class="row">
                     @if($priceRule->discountType == \Syscover\ShoppingCart\PriceRule::DISCOUNT_SUBTOTAL_PERCENTAGE || $priceRule->discountType == \Syscover\ShoppingCart\PriceRule::DISCOUNT_TOTAL_PERCENTAGE)
                     <div class="col-md-7">
-                        <h4>{{ $priceRule->name }} ({{ $priceRule->getDiscountPercentage() }}%)</h4>
+                        <p>{{ $priceRule->name }} ({{ $priceRule->getDiscountPercentage() }}%)</p>
                     </div>
                     @endif
                     @if($priceRule->discountType == \Syscover\ShoppingCart\PriceRule::DISCOUNT_SUBTOTAL_FIXED_AMOUNT || $priceRule->discountType == \Syscover\ShoppingCart\PriceRule::DISCOUNT_TOTAL_FIXED_AMOUNT)
                         <div class="col-md-7">
-                            <h4>{{ $priceRule->name }} ({{ $priceRule->getDiscountFixed() }} € )</h4>
+                            <p>{{ $priceRule->name }} ({{ $priceRule->getDiscountFixed() }} € )</p>
                         </div>
                     @endif
                     <div class="col-md-5">
-                        <h5>{{ $priceRule->getDiscountAmount() }}€</h5>
+                        <p>{{ $priceRule->getDiscountAmount() }}€</p>
                     </div>
                 </div>
             @endforeach
 
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Total Discount:</h4>
+                    <p>Total Discount:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getDiscountAmount() }} €</h4>
+                    <p{{ CartProvider::instance()->getDiscountAmount() }} €</h4>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Total Tax:</h4>
+                    <p>Total Tax:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getTaxAmount() }} €</h4>
+                    <p>{{ CartProvider::instance()->getTaxAmount() }} €</p>
                 </div>
             </div>
             {{--<div class="row">--}}
@@ -226,26 +225,26 @@
             {{--</div>--}}
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Total Without shipping:</h4>
+                    <p>Total Without shipping:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getCartItemsTotal() }} €</h4>
+                    <p>{{ CartProvider::instance()->getCartItemsTotal() }} €</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Total Without shipping and without discount:</h4>
+                    <p>Total Without shipping and without discount:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getCartItemsTotalWithoutDiscounts() }} €</h4>
+                    <p>{{ CartProvider::instance()->getCartItemsTotalWithoutDiscounts() }} €</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-7">
-                    <h4>Total:</h4>
+                    <p>Total:</p>
                 </div>
                 <div class="col-md-5">
-                    <h4>{{ CartProvider::instance()->getTotal() }} €</h4>
+                    <p>{{ CartProvider::instance()->getTotal() }} €</p>
                 </div>
             </div>
 
@@ -267,22 +266,20 @@
     </div>
 
     <br>
+    <br>
 
     <div class="row">
-        <br>
-        <div class="col-md-12">
+        <div class="col-md-3">
             <a class="btn btn-primary" href="{{ route('productList-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
         </div>
+        @if($cartItems->count() > 0)
+            <div class="col-md-offset-1 col-md-3">
+                <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('common.checkout') }}</a>
+            </div>
+        @endif
     </div>
 
-    @if($cartItems->count() > 0)
-        <div class="row">
-            <br>
-            <div class="col-md-12">
-                <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('web.checkout') }}</a>
-            </div>
-        </div>
-    @endif
+
 
     <!-- modal coupon message -->
     <div class="modal fade" id="couponMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
