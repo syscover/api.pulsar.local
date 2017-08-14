@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Syscover\Market\Models\Product;
-use Syscover\Market\Models\ProductsCategories;
+use Syscover\ShoppingCart\Facades\CartProvider;
 
 /**
  * Class MarketFrontendController
@@ -20,7 +20,7 @@ class MarketFrontendController extends Controller
         $response['products'] = Product::builder()
             ->where('market_product_lang.lang_id', user_lang())
             ->where('market_product.active', true)
-            ->where('market_product.parent_product_id', null) // discard children products
+            ->where('market_product.parent_id', null) // discard children products
             ->orderBy('market_product.sort', 'asc')
             ->get()
             ->load('categories'); // lazy load categories
@@ -68,6 +68,22 @@ class MarketFrontendController extends Controller
 
     public function getCheckout01(Request $request)
     {
-        dd('getCheckou01');
+        // check if cart has shipping
+        if(CartProvider::instance()->hasItemTransportable() === true)
+        {
+            $response['cartItems']  = CartProvider::instance()->getCartItems();
+            $response['customer']   = auth('crm')->user();
+
+            // todo, this amount has to be calculate with shipping rules
+            $shippungPricePerUnit = 5.00;
+
+            CartProvider::instance()->shippingAmount = CartProvider::instance()->transportableWeight * $shippungPricePerUnit;
+
+            return view('web.content.checkout_01', $response);
+        }
+        else
+        {
+            return redirect()->route('getCheckout02-' . user_lang());
+        }
     }
 }

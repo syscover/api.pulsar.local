@@ -78,7 +78,7 @@
                         Price: {{ $product->getPrice() }} €<br>
                         <small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>
                     </p>
-                    <a href="{{ route('product-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
+                    <a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
                     <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ trans('web.add_to_shopping_cart') }}</a>
                 </div>
                 <div class="card-footer">

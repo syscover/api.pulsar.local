@@ -30,8 +30,8 @@
                 <li class="nav-item {{ active_route(['blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
                     <a class="nav-link" href="{{ route('blog-' . user_lang()) }}">{{ trans_choice('common.blog', 1) }}</a>
                 </li>
-                <li class="nav-item {{ active_route('productList-' . user_lang(), 'active') }}">
-                    <a class="nav-link" href="{{ route('productList-' . user_lang()) }}">{{ trans_choice('common.product', 2) }}</a>
+                <li class="nav-item {{ active_route('getProductList-' . user_lang(), 'active') }}">
+                    <a class="nav-link" href="{{ route('getProductList-' . user_lang()) }}">{{ trans_choice('common.product', 2) }}</a>
                 </li>
                 <li class="nav-item {{ active_route('getShoppingCart-' . user_lang(), 'active') }}">
                     <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('common.shopping_cart') }}</a>

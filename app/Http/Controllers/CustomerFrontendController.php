@@ -140,7 +140,7 @@ class CustomerFrontendController extends Controller
      * @param Request $request
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateCustomer(Request $request)
+    public function putSingIn(Request $request)
     {
         $rules   = [
             'name'      => 'required|max:255',
@@ -223,7 +223,7 @@ class CustomerFrontendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function loginCustomer(Request $request)
+    public function postLogin(Request $request)
     {
         $this->validate($request, [
             'user' => 'required',

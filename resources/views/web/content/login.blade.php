@@ -16,7 +16,7 @@
                     Featured
                 </div>
                 <div class="card-block">
-                    <form method="post" action="{{ route('loginCustomer') }}">
+                    <form method="post" action="{{ route('postLogin') }}">
 
                         {{ csrf_field() }}
 

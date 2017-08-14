@@ -115,7 +115,7 @@ class ShoppingCartController extends Controller
      * @param   Request     $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateShoppingCart(Request $request)
+    public function updateProduct(Request $request)
     {
         // check idf exist coupon code
         if($request->has('applyCouponCode'))
