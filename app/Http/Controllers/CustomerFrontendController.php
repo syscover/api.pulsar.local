@@ -140,7 +140,7 @@ class CustomerFrontendController extends Controller
      * @param Request $request
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function putSingIn(Request $request)
+    public function updateCustomer(Request $request)
     {
         $rules   = [
             'name'      => 'required|max:255',
@@ -178,7 +178,7 @@ class CustomerFrontendController extends Controller
         }
 
         // update customer
-        $customer = CustomerService::update($request->all());
+        $customer = CustomerService::update($request->all(), $request->input('id'));
 
         // update password
         if($request->has('password'))
@@ -223,7 +223,7 @@ class CustomerFrontendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function postLogin(Request $request)
+    public function loginCustomer(Request $request)
     {
         $this->validate($request, [
             'user' => 'required',

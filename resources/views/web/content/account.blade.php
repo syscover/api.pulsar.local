@@ -20,7 +20,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('putSingIn-' . user_lang()) }}" method="post">
+            <form action="{{ route('updateCustomer-' . user_lang()) }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="active" value="1"> <!-- set customer created like active -->

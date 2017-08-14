@@ -16,7 +16,7 @@
                     Featured
                 </div>
                 <div class="card-block">
-                    <form method="post" action="{{ route('postLogin') }}">
+                    <form method="post" action="{{ route('loginCustomer') }}">
 
                         {{ csrf_field() }}
 
@@ -43,7 +43,7 @@
                         @endif
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-3">
-                                <button type="submit" class="btn btn-primary pointer">Login</button>
+                                <button class="btn btn-primary pointer">Login</button>
                             </div>
                             <div class="col-sm-3">
                                 <a href="{{ route('getSingIn-' . user_lang()) }}" class="btn btn-outline-primary">Sing In</a>
