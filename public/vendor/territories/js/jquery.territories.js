@@ -155,7 +155,7 @@
         getCountries: function()
         {
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: this.options.type == 'laravel'? '/api/v1/admin/country/' + this.options.lang : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
                 data: this.options.type == 'laravel'? {_token: this.options.token} : {lang : this.options.lang, action: 'getCountries'},
                 dataType: 'json',
@@ -171,10 +171,10 @@
                         for(var j in response.data)
                         {
                             // check if this country is highlight
-                            if(this.options.highlightCountrys[i] == response.data[j].id_002)
+                            if(this.options.highlightCountrys[i] == response.data[j].id)
                             {
                                 $("[name='" + this.options.countrySelect + "']")
-                                    .append($('<option></option>').val(response.data[j].id_002).html(response.data[j].name_002).data('prefix', response.data[j].prefix_002).data('at1', response.data[j].territorial_area_1_002).data('at2', response.data[j].territorial_area_2_002).data('at3', response.data[j].territorial_area_3_002));
+                                    .append($('<option></option>').val(response.data[j].id).html(response.data[j].name).data('prefix', response.data[j].prefix).data('at1', response.data[j].territorial_area_1).data('at2', response.data[j].territorial_area_2).data('at3', response.data[j].territorial_area_3));
                                 highlightCountry = true;
                             }
                         }
@@ -189,10 +189,10 @@
                     for(var i in response.data)
                     {
                         // check if this country is highlight
-                        if($.inArray(response.data[i].id_002, this.options.highlightCountrys) == -1)
+                        if($.inArray(response.data[i].id, this.options.highlightCountrys) == -1)
                         {
                             $("[name='" + this.options.countrySelect + "']")
-                                .append($('<option></option>').val(response.data[i].id_002).html(response.data[i].name_002).data('at1', response.data[i].territorial_area_1_002).data('at2', response.data[i].territorial_area_2_002).data('at3', response.data[i].territorial_area_3_002));
+                                .append($('<option></option>').val(response.data[i].id).html(response.data[i].name).data('at1', response.data[i].territorial_area_1).data('at2', response.data[i].territorial_area_2).data('at3', response.data[i].territorial_area_3));
                         }
                     }
 
@@ -248,7 +248,7 @@
 
                         for(var i in response.data)
                         {
-                            $("[name='" + this.options.tA1Select + "']").append(new Option(response.data[i].name_003, response.data[i].id_003));
+                            $("[name='" + this.options.tA1Select + "']").append(new Option(response.data[i].name, response.data[i].id));
                         }
 
                         // check if need set value from Territorial Area 1
@@ -314,7 +314,7 @@
                         $("[name='" + this.options.tA2Select + "']").append(new Option(this.options.trans.selectA + $("[name='" + this.options.countrySelect + "']").find('option:selected').data('at2'), this.options.nullValue));
                         for(var i in response.data)
                         {
-                            $("[name='" + this.options.tA2Select + "']").append(new Option(response.data[i].name_004, response.data[i].id_004));
+                            $("[name='" + this.options.tA2Select + "']").append(new Option(response.data[i].name, response.data[i].id));
                         }
 
                         // check if need set value from Territorial Area 2
@@ -378,7 +378,7 @@
                         $("[name='" + this.options.tA3Select + "']").append(new Option(this.options.trans.selectA + $("[name='" + this.options.countrySelect + "']").find('option:selected').data('at3'), this.options.nullValue));
                         for(var i in response.data)
                         {
-                            $("[name='" + this.options.tA3Select + "']").append(new Option(response.data[i].name_005, response.data[i].id_005));
+                            $("[name='" + this.options.tA3Select + "']").append(new Option(response.data[i].name, response.data[i].id));
                         }
 
                         // check if need set value from Territorial Area 3

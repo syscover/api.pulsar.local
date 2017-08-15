@@ -19,10 +19,10 @@
                 useSeparatorHighlight:      true,
                 textSeparatorHighlight:     '------------------',
 
-                countryValue:               '{{ old('country', isset($customer->country_id_301)? $customer->country_id_301 : null) }}',
-                territorialArea1Value:      '{{ old('territorialArea1', isset($customer->territorial_area_1_id_301)? $customer->territorial_area_1_id_301 : null) }}',
-                territorialArea2Value:      '{{ old('territorialArea2', isset($customer->territorial_area_2_id_301)? $customer->territorial_area_2_id_301 : null) }}',
-                territorialArea3Value:      '{{ old('territorialArea3', isset($customer->territorial_area_3_id_301)? $customer->territorial_area_3_id_301 : null) }}'
+                countryValue:               '{{ old('country', isset($customer->country_id)? $customer->country_id : null) }}',
+                territorialArea1Value:      '{{ old('territorialArea1', isset($customer->territorial_area_1_id)? $customer->territorial_area_1_id : null) }}',
+                territorialArea2Value:      '{{ old('territorialArea2', isset($customer->territorial_area_2_id)? $customer->territorial_area_2_id : null) }}',
+                territorialArea3Value:      '{{ old('territorialArea3', isset($customer->territorial_area_3_id)? $customer->territorial_area_3_id : null) }}'
             });
         })
     </script>
