@@ -7,7 +7,7 @@
     <script src="{{ asset('vendor/territories/js/jquery.territories.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        $(function() {
             $.territories({
                 id:                         '01',
                 type:                       'laravel',
