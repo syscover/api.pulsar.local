@@ -12,7 +12,6 @@
         options: {
             type:                       null,                                       // Set if the plugin is used on laravel or not, set value to "laravel" to config for pulsar
             urlPlugin:                  '.',
-            appName:                    'pulsar',
             token:                      null,
             lang:                       'es',
 
@@ -156,8 +155,9 @@
         {
             $.ajax({
                 type: "GET",
-                url: this.options.type == 'laravel'? '/api/v1/admin/country/' + this.options.lang : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
-                data: this.options.type == 'laravel'? {_token: this.options.token} : {lang : this.options.lang, action: 'getCountries'},
+                url: this.options.type == 'laravel'?
+                    `/api/v1/admin/country/${this.options.lang}` : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
+                data: {},
                 dataType: 'json',
                 context: this,
                 success: function(response) {
@@ -233,9 +233,25 @@
         getTerritorialArea1: function()
         {
             $.ajax({
-                type: "POST",
-                url: this.options.type == 'laravel'? '/' + this.options.appName + '/pulsar/territorialareas1/json/from/country/' + $("[name='" + this.options.countrySelect + "']").val() : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
-                data: this.options.type == 'laravel'? {_token: this.options.token} : {country : $("[name='" + this.options.countrySelect + "']").val(), action: 'getTerritorialArea1'},
+                type: "GET",
+                url: this.options.type == 'laravel'?
+                    '/api/v1/admin/territorial-area-1' : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
+                data: {
+                    sql: [
+                        {
+                            command: 'where',
+                            column: 'country_id',
+                            operator: '=',
+                            value: $("[name='" + this.options.countrySelect + "']").val()
+                        },
+                        {
+                            command: 'where',
+                            column: 'admin_country.lang_id',
+                            operator: '=',
+                            value: this.options.lang
+                        }
+                    ]
+                },
                 dataType: 'json',
                 context: this,
                 success: function(response) {
@@ -302,9 +318,25 @@
         getTerritorialArea2: function()
         {
             $.ajax({
-                type: "POST",
-                url: this.options.type == 'laravel'? '/' + this.options.appName + '/pulsar/territorialareas2/json/from/territorialarea1/' + $("[name='" + this.options.countrySelect + "']").val() + '/' + $("[name='" + this.options.tA1Select + "']").val() : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
-                data: this.options.type == 'laravel'? {_token: this.options.token} : {territorialArea1 : $("[name='" + this.options.tA1Select + "']").val(), action: 'getTerritorialArea2'},
+                type: "GET",
+                url: this.options.type == 'laravel'?
+                    '/api/v1/admin/territorial-area-2' : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
+                data: {
+                    sql: [
+                        {
+                            command: 'where',
+                            column: 'territorial_area_1_id',
+                            operator: '=',
+                            value: $("[name='" + this.options.tA1Select + "']").val()
+                        },
+                        {
+                            command: 'where',
+                            column: 'admin_country.lang_id',
+                            operator: '=',
+                            value: this.options.lang
+                        }
+                    ]
+                },
                 dataType: 'json',
                 context: this,
                 success: function(response) {
@@ -366,9 +398,25 @@
         getTerritorialArea3: function()
         {
             $.ajax({
-                type: "POST",
-                url: this.options.type == 'laravel'? '/' + this.options.appName + '/pulsar/territorialareas3/json/from/territorialarea2/' + $("[name='" + this.options.countrySelect + "']").val() + '/' + $("[name='" + this.options.tA2Select + "']").val() : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
-                data: this.options.type == 'laravel'? {_token: this.options.token} : {territorialArea2 : $("[name='" + this.options.tA2Select + "']").val(), action: 'getTerritorialArea3'},
+                type: "GET",
+                url: this.options.type == 'laravel'?
+                    '/api/v1/admin/territorial-area-3' : this.options.urlPlugin + '/getaddress/php/Controllers/Server.php',
+                data: {
+                    sql: [
+                        {
+                            command: 'where',
+                            column: 'territorial_area_2_id',
+                            operator: '=',
+                            value: $("[name='" + this.options.tA2Select + "']").val()
+                        },
+                        {
+                            command: 'where',
+                            column: 'admin_country.lang_id',
+                            operator: '=',
+                            value: this.options.lang
+                        }
+                    ]
+                },
                 dataType: 'json',
                 context: this,
                 success: function(response) {
