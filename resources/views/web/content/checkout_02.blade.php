@@ -30,7 +30,7 @@
 
 @section('content')
 
-    <h1 class="magin-vertical-20">Checkout (Step 2 - invoice)</h1>
+    <h1 class="margin-vertical-20">Checkout (Step 2 - invoice)</h1>
 
     <!-- head shopping cart-->
     @include('web.includes.head_shopping_cart')
