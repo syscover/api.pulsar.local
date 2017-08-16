@@ -3,12 +3,8 @@
 @section('title', 'Home')
 
 @section('head')
-@stop
+@endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12 col-md-8 offset-md-2">
-            <h1>home</h1>
-        </div>
-    </div>
-@stop
+    <h1 class="margin-vertical-20">{{ trans_choice('common.home', 1) }}</h1>
+@endsection

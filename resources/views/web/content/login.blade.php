@@ -3,34 +3,35 @@
 @section('title', 'Login')
 
 @section('head')
-@stop
+@endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12 col-md-6 offset-md-3">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 justify-content-center">
 
-            <h1 class="margin-vertical-10">Login</h1>
+            <h1 class="margin-vertical-20">Login</h1>
 
             <div class="card">
                 <div class="card-header">
                     Featured
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <form method="post" action="{{ route('postLogin') }}">
-
                         {{ csrf_field() }}
-
-                        <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input name="user" type="email" class="form-control" id="inputEmail" placeholder="Email">
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                Check me out
+                            </label>
                         </div>
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -41,18 +42,11 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-3">
-                                <button class="btn btn-primary pointer">Login</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <a href="{{ route('getSingIn-' . user_lang()) }}" class="btn btn-outline-primary">Sing In</a>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('getSingIn-' . user_lang()) }}" class="btn btn-outline-primary">Sing In</a>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-@stop
+@endsection

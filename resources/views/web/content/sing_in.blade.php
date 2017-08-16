@@ -3,7 +3,7 @@
 @section('title', 'Sing In')
 
 @section('head')
-@stop
+@endsection
 
 @section('content')
     <div class="row">
@@ -60,4 +60,4 @@
             </form>
         </div>
     </div>
-@stop
+@endsection

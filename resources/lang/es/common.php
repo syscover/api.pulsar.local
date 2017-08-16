@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'add_to_cart'           => 'Comprar',
     'apply'                 => 'Aplicar',
     'article'               => 'Artículo|Artículos',
     'blog'                  => 'Blog|Blogs',

@@ -83,10 +83,10 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
 
     // MARKET ROUTES
     // EN
-    Route::get('/en/product/list',                                                          ['as' => 'getProductList-en',                   'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
-    Route::get('/en/product/{category}/{slug}',                                             ['as' => 'getProduct-en',                       'uses' => '\App\Http\Controllers\MarketFrontendController@getProduct']);
+    Route::get('/en/product/list',                                                          '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-en');
+    Route::get('/en/product/{category}/{slug}',                                             '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-en');
 
     // ES
-    Route::get('/es/producto/listado',                                                      ['as' => 'getProductList-es',                   'uses' => '\App\Http\Controllers\MarketFrontendController@getProductsList']);
-    Route::get('/es/producto/{category}/{slug}',                                            ['as' => 'getProduct-es',                       'uses' => '\App\Http\Controllers\MarketFrontendController@getProduct']);
+    Route::get('/es/producto/listado',                                                      '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-es');
+    Route::get('/es/producto/{category}/{slug}',                                            '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-es');
 });

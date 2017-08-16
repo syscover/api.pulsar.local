@@ -3,16 +3,50 @@
 @section('title', 'Product')
 
 @section('head')
-@stop
+@endsection
 
 @section('content')
-    <h1>{{ $product->name }}</h1>
 
-    <p>{!! $product->description !!}</p>
+    <h1 class="margin-vertical-20">{{ $product->name }}</h1>
 
-    <p>Price: {{ $product->getPrice() }} €</p>
-    <p><small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small></p>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <!-- slider -->
+            <div id="carouselExampleIndicators0" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach($product->attachments as $attachment)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" {{ $loop->first? 'class="active"' : null }}></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    @foreach($product->attachments as $attachment)
+                        <div class="carousel-item {{ $loop->first? 'active' : null }}">
+                            <img class="d-block img-fluid" src="{{ $attachment->url }}" alt="{{ $attachment->name }}" title="{{ $attachment->name }}">
+                        </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators0" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators0" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!-- /slider -->
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <h3 class="margin-vertical-20">{{ $product->name }}</h3>
 
-    <br><br>
-    <a href="{{ route('addProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">Add to cart</a>
-@stop
+            <p>{!! $product->description !!}</p>
+
+            <p>Price: {{ $product->getPrice() }} €</p>
+            <p><small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small></p>
+
+            <br><br>
+            <a href="{{ route('addProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">{{ trans('common.add_to_cart') }}</a>
+            <a href="{{ route('getProducts-'. user_lang()) }}" class="btn btn-info">Volver</a>
+        </div>
+    </div>
+@endsection

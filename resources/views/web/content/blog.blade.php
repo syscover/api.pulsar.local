@@ -3,31 +3,31 @@
 @section('title', 'Blog')
 
 @section('head')
-@stop
+@endsection
 
 @section('content')
-    <h1 class="margin-vertical-10">{{ trans_choice('common.blog', 1) }}</h1>
-        <!--
-            Show articles
-        -->
-        @foreach($articles as $article)
-            <div class="card mb-3">
-                <img class="img-fluid"
-                     {!! get_src_srcset($article->attachments->first()) !!}
-                     alt="{{ $article->attachments->first()->name }}"
-                     title="{{ $article->attachments->first()->name }}">
-                <div class="card-block">
-                    <h4 class="card-title">{{ $article->title }}</h4>
-                    <div class="card-text">
-                        <div class="fr-view">
-                            {!! $article->article !!}
-                        </div>
+    <h1 class="margin-vertical-20">{{ trans_choice('common.blog', 1) }}</h1>
+    <!--
+        Show articles
+    -->
+    @foreach($articles as $article)
+        <div class="card mb-3">
+            <img class="card-img-top"
+                 {!! get_src_srcset($article->attachments->first()) !!}
+                 alt="{{ $article->attachments->first()->name }}"
+                 title="{{ $article->attachments->first()->name }}">
+            <div class="card-body">
+                <h4 class="card-title">{{ $article->title }}</h4>
+                <div class="card-text">
+                    <div class="fr-view">
+                        {!! $article->article !!}
                     </div>
-                    <p class="card-text">
-                        <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
-                    </p>
-                    <a href="{{ nt_route('article-' . user_lang(), ['slug' => $article->slug]) }}" class="btn btn-primary">Ver Artículo</a>
                 </div>
+                <p class="card-text margin-top-15">
+                    <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
+                </p>
+                <a href="{{ nt_route('article-' . user_lang(), ['slug' => $article->slug]) }}" class="btn btn-primary">Ver Artículo</a>
             </div>
-        @endforeach
-@stop
+        </div>
+    @endforeach
+@endsection

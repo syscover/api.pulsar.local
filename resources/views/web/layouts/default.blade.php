@@ -16,22 +16,22 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-inverse">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">Pulsar</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item {{ active_route(['home', 'home-' . user_lang()], 'active') }}">
                     <a class="nav-link" href="{{ route('home-' . user_lang()) }}">{{ trans('common.home') }}</a>
                 </li>
                 <li class="nav-item {{ active_route(['blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
                     <a class="nav-link" href="{{ route('blog-' . user_lang()) }}">{{ trans_choice('common.blog', 1) }}</a>
                 </li>
-                <li class="nav-item {{ active_route('getProductList-' . user_lang(), 'active') }}">
-                    <a class="nav-link" href="{{ route('getProductList-' . user_lang()) }}">{{ trans_choice('common.product', 2) }}</a>
+                <li class="nav-item {{ active_route('getProducts-' . user_lang(), 'active') }}">
+                    <a class="nav-link" href="{{ route('getProducts-' . user_lang()) }}">{{ trans_choice('common.product', 2) }}</a>
                 </li>
                 <li class="nav-item {{ active_route('getShoppingCart-' . user_lang(), 'active') }}">
                     <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('common.shopping_cart') }}</a>
@@ -71,7 +71,7 @@
     </div>
 
     <script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('vendor/tether/js/tether.min.js') }}"></script>
+    <script src="{{ asset('vendor/popper/umd/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     @yield('scripts')
 

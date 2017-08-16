@@ -1,18 +1,16 @@
 @extends('web.layouts.default')
 
-@section('title', 'Shopping cart')
+@section('title', 'Checkout (Step 1 - shipping)')
 
 @section('scripts')
     @parent
     <script src="{{ asset('vendor/territories/js/jquery.territories.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        $(function() {
             $.territories({
                 id:                         '01',
                 type:                       'laravel',
-                appName:                    'pulsar',
-                token:                      '{{ csrf_token() }}',
                 lang:                       '{{ config('app.locale') }}',
                 highlightCountrys:          ['ES','US'],
 
@@ -26,13 +24,11 @@
             });
         })
     </script>
-@stop
+@endsection
 
 @section('content')
 
-    <br>
-    <h2>Checkout (Step 1 - shipping)</h2>
-    <br>
+    <h1 class="magin-vertical-20">Checkout (Step 1 - shipping)</h1>
 
     <!-- head shopping cart-->
     @include('web.includes.head_shopping_cart')
@@ -67,25 +63,24 @@
 
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <select class="form-control" id="country" name="country" required>
+                    <select class="form-control" id="country" name="country_id" required>
                     </select>
                 </div>
                 <div class="form-group" id="territorialArea1Wrapper">
                     <label for="territorialArea1" id="territorialArea1Label"></label>
-                    <select class="form-control" id="territorialArea1" name="territorialArea1">
+                    <select class="form-control" id="territorialArea1" name="territorial_area_1_id">
                     </select>
                 </div>
                 <div class="form-group" id="territorialArea2Wrapper">
                     <label for="territorialArea2" id="territorialArea2Label"></label>
-                    <select class="form-control" id="territorialArea2" name="territorialArea2">
+                    <select class="form-control" id="territorialArea2" name="territorial_area_2_id">
                     </select>
                 </div>
                 <div class="form-group" id="territorialArea3Wrapper">
                     <label for="territorialArea3" id="territorialArea3Label"></label>
-                    <select class="form-control" id="territorialArea3" name="territorialArea3">
+                    <select class="form-control" id="territorialArea3" name="territorial_area_3_id">
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="cp">CP</label>
                     <input type="text" class="form-control" id="cp" name="cp" placeholder="CP" value="{{ empty($customer->cp)? null : $customer->cp }}" required>
@@ -93,6 +88,10 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ empty($customer->address)? null : $customer->address }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea type="text" class="form-control" id="comments" name="comments" placeholder="Comments"></textarea>
                 </div>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -103,9 +102,9 @@
                         </ul>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary">Nex step</button>
+                <button class="btn btn-primary">Nex step</button>
             </form>
         </div>
     </div>
     <br><br>
-@stop
+@endsection

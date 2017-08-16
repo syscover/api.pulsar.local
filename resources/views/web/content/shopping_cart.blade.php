@@ -3,6 +3,7 @@
 @section('title', 'Shopping cart')
 
 @section('scripts')
+    @parent
     <script>
         $(function() {
 
@@ -59,13 +60,11 @@
             });
         });
     </script>
-@stop
+@endsection
 
 @section('content')
 
-    <br>
-    <h2>{{ trans('common.shopping_cart') }}</h2>
-    <br>
+    <h1 class="margin-vertical-20">{{ trans('common.shopping_cart') }}</h1>
 
     <!-- head shopping cart-->
     @include('web.includes.head_shopping_cart', ['delete' => true])
@@ -108,7 +107,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <a class="btn btn-primary" href="{{ route('getProductList-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
+            <a class="btn btn-primary" href="{{ route('getProducts-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
         </div>
         @if($cartItems->count() > 0)
             <div class="col-md-offset-1 col-md-3">
@@ -135,4 +134,4 @@
         </div>
     </div>
     <!-- /modal coupon message -->
-@stop
+@endsection

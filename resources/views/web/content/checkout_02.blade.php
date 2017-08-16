@@ -1,4 +1,4 @@
-@extends('www.layouts.default')
+@extends('web.layouts.default')
 
 @section('title', 'Shopping cart')
 
@@ -26,79 +26,20 @@
             });
         })
     </script>
-@stop
+@endsection
 
 @section('content')
-    <h1>Checkout (Step 2 - invoice)</h1>
 
-    <!-- heads -->
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Product</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Price</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Qty</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Subtotal</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Descuento</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Sub + descuentos</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Tax %</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Tax €</h5>
-        </div>
-        <div class="col-md-1">
-            <h5>Total</h5>
-        </div>
-    </div>
-    <!-- /heads -->
+    <h1 class="magin-vertical-20">Checkout (Step 2 - invoice)</h1>
 
-    @foreach($cartItems as $item)
-        <div class="row">
-            <div class="col-md-1">
-                <img src="https://c.tadst.com/gfx/750w/sunrise-sunset-sun-calculator.jpg?1" class="img-responsive">
-            </div>
-            <div class="col-md-2">
-                <h4>{{ $item->name }}</h4>
-            </div>
-            <div class="col-md-1">
-                <h5>{{ $item->getPrice() }} € / unit</h5>
-            </div>
-            <div class="col-md-1">
-                <h5>{{ $item->getQuantity() }}</h5>
-            </div>
-            <div class="col-md-1">
-                <h4>{{ $item->getSubtotal() }} €</h4>
-            </div>
-            <div class="col-md-1">
-                <h4>{{ $item->getDiscountAmount() }} €</h4>
-            </div>
-            <div class="col-md-1">
-                <h4>{{ $item->getSubtotalWithDiscounts() }} €</h4>
-            </div>
-            <div class="col-md-1">
-                @foreach($item->getTaxRates() as $taxRate)
-                    <h6>{{ $taxRate }} %</h6>
-                @endforeach
-            </div>
-            <div class="col-md-1">
-                <h4>{{ $item->getTaxAmount() }} €</h4>
-            </div>
-            <div class="col-md-1">
-                <h4>{{ $item->getTotal() }} €</h4>
-            </div>
-        </div>
-    @endforeach
+    <!-- head shopping cart-->
+    @include('web.includes.head_shopping_cart')
+    <!-- /head shopping cart -->
+
+    <!-- body shopping cart -->
+    @include('web.includes.body_shopping_cart')
+    <!-- /body shopping cart -->
+
     <br><br><br><br>
     <div class="row">
         <div class="col-md-6">
@@ -283,4 +224,4 @@
             </form>
         </div>
     </div>
-@stop
+@endsection

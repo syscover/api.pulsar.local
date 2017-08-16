@@ -12,7 +12,6 @@
         options: {
             type:                       null,                                       // Set if the plugin is used on laravel or not, set value to "laravel" to config for pulsar
             urlPlugin:                  '.',
-            token:                      null,
             lang:                       'es',
 
             highlightCountrys:          ['ES'],                                     // Countrys that you want highlight
@@ -34,11 +33,11 @@
             tA3LabelPrefix:             '',
             tA3LabelSuffix:             '',
 
-            countrySelect:              'country',                                  // name Select country
+            countrySelect:              'country_id',                               // name Select country
             prefixInput:                'prefix',                                   // name Select conutry
-            tA1Select:                  'territorialArea1',                         // name Select territorial area 1
-            tA2Select:                  'territorialArea2',                         // name Select territorial area 2
-            tA3Select:                  'territorialArea3',                         // name Select territorial area 3
+            tA1Select:                  'territorial_area_1_id',                    // name Select territorial area 1
+            tA2Select:                  'territorial_area_2_id',                    // name Select territorial area 2
+            tA3Select:                  'territorial_area_3_id',                    // name Select territorial area 3
 
             nullValue:                  '',                                         // The best option is ''
             countryValue:               null,

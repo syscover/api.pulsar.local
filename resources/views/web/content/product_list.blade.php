@@ -8,10 +8,10 @@
             font-weight: bold;
         }
     </style>
-@stop
+@endsection
 
 @section('content')
-    <h1 class="margin-vertical-10">{{ trans_choice('common.product', 2) }}</h1>
+    <h1 class="margin-vertical-20">{{ trans_choice('common.product', 2) }}</h1>
 
     <div class="card-columns">
 
@@ -43,9 +43,9 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
                 <!-- /slider -->
-                <div class="card-block">
+
+                <div class="card-body">
                     <h4 class="card-title">{{ $product->name }}</h4>
                     <p class="card-text">{!! $product->description !!}</p>
 
@@ -79,7 +79,7 @@
                         <small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>
                     </p>
                     <a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
-                    <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ trans('web.add_to_shopping_cart') }}</a>
+                    <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ trans('common.add_to_cart') }}</a>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Camiseta</small>
@@ -87,4 +87,4 @@
             </div>
         @endforeach
     </div>
-@stop
+@endsection
