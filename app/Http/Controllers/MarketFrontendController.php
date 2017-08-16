@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Syscover\Market\Models\PaymentMethod;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\Admin\Models\Country;
 use Syscover\Admin\Models\TerritorialArea1;
@@ -94,17 +95,14 @@ class MarketFrontendController extends Controller
 
     public function postCheckout01(Request $request)
     {
-        $response['cartItems']  = CartProvider::instance()->getCartItems();
-        $response['customer']   = auth('crm')->user();
-
         // store shipping data on shopping cart
         CartProvider::instance()->setShippingData([
             'name'                  => $request->input('name'),
             'surname'               => $request->input('surname'),
-            'country_id'            => $request->input('country_id'),
-            'territorial_area_1_id' => $request->input('territorial_area_1_id'),
-            'territorial_area_2_id' => $request->input('territorial_area_2_id'),
-            'territorial_area_3_id' => $request->input('territorial_area_3_id'),
+            'country'               => $request->has('country_id')? Country::builder()->where('id', $request->input('country_id'))->where('lang_id', user_lang()) : null,
+            'territorial_area_1'    => $request->has('territorial_area_1_id')? TerritorialArea1::builder()->where('id', $request->input('territorial_area_1_id'))->where('country.lang_id', user_lang()) : null,
+            'territorial_area_2'    => $request->has('territorial_area_2_id')? TerritorialArea2::builder()->where('id', $request->input('territorial_area_2_id'))->where('country.lang_id', user_lang()) : null,
+            'territorial_area_3'    => $request->has('territorial_area_3_id')? TerritorialArea3::builder()->where('id', $request->input('territorial_area_3_id'))->where('country.lang_id', user_lang()) : null,
             'cp'                    => $request->input('cp'),
             'address'               => $request->input('address'),
             'comments'              => $request->input('comments'),
@@ -113,29 +111,52 @@ class MarketFrontendController extends Controller
         return redirect()->route('getCheckout02-' . user_lang());
     }
 
-    /**
-     * To set billing data
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
+    // Set billing data
     public function getCheckout02()
     {
         $response['cartItems']          = CartProvider::instance()->getCartItems();
         $response['customer']           = auth('crm')->user();
         $response['shippingData']       = CartProvider::instance()->getShippingData();
 
-        $response['shippingCountry']    = Country::builder()
-            ->where('lang_id', user_lang())
-            ->where('id', $response['shippingData']['country_id'])
-            ->first();
-
-        if($response['shippingData']['territorial_area_1_id'] != null)
-            $response['shippingTA1']    = TerritorialArea1::builder()->find($response['shippingData']['territorial_area_1_id']);
-        if($response['shippingData']['territorial_area_2_id'] != null)
-            $response['shippingTA2']    = TerritorialArea2::builder()->find($response['shippingData']['territorial_area_2_id']);
-        if($response['shippingData']['territorial_area_3_id'] != null)
-            $response['shippingTA3']    = TerritorialArea3::builder()->find($response['shippingData']['territorial_area_3_id']);
-
         return view('web.content.checkout_02', $response);
+    }
+
+    public function postCheckout02(Request $request)
+    {
+        CartProvider::instance()->setInvoice([
+            'company'               => $request->input('company'),
+            'tin'                   => $request->input('tin'),
+            'name'                  => $request->input('name'),
+            'surname'               => $request->input('surname'),
+            'country'               => $request->has('country_id')? Country::builder()->where('id', $request->input('country_id'))->where('lang_id', user_lang()) : null,
+            'territorial_area_1'    => $request->has('territorial_area_1_id')? TerritorialArea1::builder()->where('id', $request->input('territorial_area_1_id'))->where('country.lang_id', user_lang()) : null,
+            'territorial_area_2'    => $request->has('territorial_area_2_id')? TerritorialArea2::builder()->where('id', $request->input('territorial_area_2_id'))->where('country.lang_id', user_lang()) : null,
+            'territorial_area_3'    => $request->has('territorial_area_3_id')? TerritorialArea3::builder()->where('id', $request->input('territorial_area_3_id'))->where('country.lang_id', user_lang()) : null,
+            'cp'                    => $request->input('cp'),
+            'address'               => $request->input('address'),
+        ]);
+
+        return redirect()->route('getCheckout03-' . user_lang());
+    }
+
+    /**
+     * To set payment method
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getCheckout03()
+    {
+        $response['cartItems']          = CartProvider::instance()->getCartItems();
+        $response['customer']           = auth('crm')->user();
+        $response['shippingData']       = CartProvider::instance()->getShippingData();
+        $response['invoice']            = CartProvider::instance()->getInvoice();
+
+        $response['paymentMethods']     = PaymentMethod::builder()
+            ->where('lang_id', user_lang())
+            ->where('active', true)
+            ->orderBy('sort', 'asc')
+            ->get();
+
+        return view('web.content.checkout_03', $response);
     }
 }

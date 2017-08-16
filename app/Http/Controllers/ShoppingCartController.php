@@ -49,7 +49,8 @@ class ShoppingCartController extends Controller
             ->where('lang_id', user_lang())
             ->where('slug', $parameters['slug'])
             ->where('active', true)
-            ->first();
+            ->first()
+            ->load('attachments');
 
         // create a property on product to save image for shopping cart list
         //$product->shoppingCartImage = $attachment;

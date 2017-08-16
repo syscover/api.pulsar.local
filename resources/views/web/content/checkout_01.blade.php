@@ -49,7 +49,9 @@
 
 
         <div class="col-md-5 ml-auto">
+
             <h3>Shipping: {{ CartProvider::instance()->getShippingAmount() }} €</h3>
+
             <form action="{{ route('postCheckout01-' . user_lang()) }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">

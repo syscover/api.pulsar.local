@@ -1,7 +1,7 @@
 @foreach($cartItems as $item)
     <div class="row row-cart">
         <div class="col-md-1">
-            <img src="" class="img-responsive">
+            <img {!! get_src_srcset_alt_title($item->options->product->attachments->first()) !!} class="img-fluid">
         </div>
         <div class="col-md-2">
             <p>{{ $item->name }}</p>
