@@ -11,10 +11,7 @@
         Show article
     -->
     <div class="card mb-3">
-        <img class="card-img-top"
-             {!! get_src_srcset($article->attachments->first()) !!}
-             alt="{{ $article->attachments->first()->name }}"
-             title="{{ $article->attachments->first()->name }}">
+        <img class="card-img-top" {!! get_src_srcset_alt_title($article->attachments->first()) !!}>
         <div class="card-body">
             <h4 class="card-title">{{ $article->title }}</h4>
             <h6 class="card-title">{{ $article->author->name }}</h6>
