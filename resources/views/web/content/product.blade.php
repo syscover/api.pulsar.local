@@ -21,7 +21,7 @@
                 <div class="carousel-inner" role="listbox">
                     @foreach($product->attachments as $attachment)
                         <div class="carousel-item {{ $loop->first? 'active' : null }}">
-                            <img class="d-block img-fluid" src="{{ $attachment->url }}" alt="{{ $attachment->name }}" title="{{ $attachment->name }}">
+                            <img class="d-block img-fluid" {!! get_src_srcset_alt_title($attachment) !!}>
                         </div>
                     @endforeach
                 </div>

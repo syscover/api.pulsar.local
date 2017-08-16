@@ -20,7 +20,7 @@
                 <h4 class="card-title">{{ $article->title }}</h4>
                 <div class="card-text">
                     <div class="fr-view">
-                        {!! $article->article !!}
+                        {!! $article->excerpt !!}
                     </div>
                 </div>
                 <p class="card-text margin-top-15">
