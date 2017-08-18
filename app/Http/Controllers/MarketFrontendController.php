@@ -30,7 +30,7 @@ class MarketFrontendController extends Controller
             ->where('market_product.parent_id', null) // discard children products
             ->orderBy('market_product.sort', 'asc')
             ->get()
-            ->load('categories'); // lazy load categories
+            ->load('categories', 'attachments'); // lazy load categories and attachments
         
         return view('web.content.product_list', $response);
     }

@@ -22,10 +22,11 @@
 
 
 # -- Web --------------------------------------------
-/public/storage/
 /public/pulsar/
 /public/packages/
 
+# -- Symlink ----------------------------------------
+/public/storage
 
 # -- Pulsar -----------------------------------------
 /config/pulsar.core.php
