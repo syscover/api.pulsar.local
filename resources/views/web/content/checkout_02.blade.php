@@ -48,59 +48,14 @@
             <!-- /amounts -->
         </div>
         <div class="col-md-5 ml-auto">
-            <!-- check if cart has shipping -->
-            @if(CartProvider::instance()->hasItemTransportable())
-                <h3 class="margin-vertical-20">Shipping data</h3>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Name</th>
-                            <td>{{ $shippingData->get('name') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Surname</th>
-                            <td>{{ $shippingData->get('surname') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Country</th>
-                            <td>{{ $shippingData->get('country')->name }}</td>
-                        </tr>
-                        @empty(! $shippingData->has('territorial_area_1'))
-                        <tr>
-                            <th scope="row">{{ $shippingData->get('country')->territorial_area_1 }}</th>
-                            <td> {{ $shippingData->get('territorial_area_1')->name }}</td>
-                        </tr>
-                        @endempty
-                        @empty(! $shippingData->has('territorial_area_2'))
-                            <tr>
-                                <th scope="row">{{ $shippingData->get('country')->territorial_area_2 }}</th>
-                                <td> {{ $shippingData->get('territorial_area_2')->name }}</td>
-                            </tr>
-                        @endempty
-
-                        <tr>
-                            <th scope="row">CP</th>
-                            <td>{{ $shippingData['cp'] }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Address</th>
-                            <td>{{ $shippingData['address'] }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Comments</th>
-                            <td>{{ $shippingData['comments'] }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Price</th>
-                            <td>{{ CartProvider::instance()->getShippingAmount() }} €</td>
-                        </tr>
-                    </tbody>
-                </table>
-            @endif
+            <!-- shipping -->
+            @include('web.includes.shipping')
+            <!-- /shipping -->
             <hr>
             <h3 class="margin-vertical-20">Invoice</h3>
             <form action="{{ route('postCheckout02-' . user_lang()) }}" method="post">
                 {{ csrf_field() }}
+                <input type="hidden" name="has_invoice" value="1">
                 <div class="form-group">
                     <label for="company">Compay</label>
                     <input type="text" class="form-control" id="company" name="company" placeholder="Company" value="{{ empty($customer->company)? null : $customer->company }}">
@@ -144,8 +99,16 @@
                     <input type="text" class="form-control" id="cp" name="cp" placeholder="CP" value="{{ empty($customer->cp)? null : $customer->cp }}" required>
                 </div>
                 <div class="form-group">
+                    <label for="locality">Locality</label>
+                    <input type="text" class="form-control" id="locality" name="locality" placeholder="Locality" value="{{ empty($customer->locality)? null : $customer->locality }}" required>
+                </div>
+                <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ empty($customer->address)? null : $customer->address }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea type="text" class="form-control" id="comments" name="comments" placeholder="Comments"></textarea>
                 </div>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">

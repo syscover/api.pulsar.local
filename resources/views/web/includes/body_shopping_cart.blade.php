@@ -37,10 +37,12 @@
         <div class="col-md-1">
             <p>{{ $item->getTotal() }} €</p>
         </div>
-        <div class="col-md-1">
-            <a href="{{ route('deleteProduct-' . user_lang(), ['rowId' => $item->rowId]) }}">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </a>
-        </div>
+        @if(isset($delete) && $delete)
+            <div class="col-md-1">
+                <a href="{{ route('deleteProduct-' . user_lang(), ['rowId' => $item->rowId]) }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        @endif
     </div>
 @endforeach

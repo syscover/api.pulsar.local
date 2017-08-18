@@ -1,3 +1,4 @@
+<h3 class="margin-vertical-20">Amounts</h3>
 <table class="table">
     <tbody>
     <tr>

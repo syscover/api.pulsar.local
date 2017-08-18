@@ -54,7 +54,6 @@
                         @foreach($product->fieldGroup->fields as $field)
 
                             @if($field->values->where('lang_id', user_lang())->count() > 0)
-
                                 <!-- custom fields with select values -->
                                     <select class="custom-select">
                                         <option>{{ $field->labels[user_lang()] }}</option>
@@ -64,13 +63,12 @@
                                             </option>
                                         @endforeach
                                     </select>
-
                             @else
                                 <!-- custom fields with value without select -->
                                     {{ $field->labels[user_lang()] }} {{ $product->data['properties'][$field->name] }}
-                                @endif
+                            @endif
 
-                            @endforeach
+                        @endforeach
                         </p>
                     @endif
 

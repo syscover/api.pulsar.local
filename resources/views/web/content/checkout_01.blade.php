@@ -54,6 +54,7 @@
 
             <form action="{{ route('postCheckout01-' . user_lang()) }}" method="post">
                 {{ csrf_field() }}
+                <input type="hidden" name="has_shipping" value="1">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input class="form-control" id="name" name="name" placeholder="Name" value="{{ empty($customer->name)? null : $customer->name }}" required>
@@ -86,6 +87,10 @@
                 <div class="form-group">
                     <label for="cp">CP</label>
                     <input type="text" class="form-control" id="cp" name="cp" placeholder="CP" value="{{ empty($customer->cp)? null : $customer->cp }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="locality">Locality</label>
+                    <input type="text" class="form-control" id="locality" name="locality" placeholder="Locality" value="{{ empty($customer->locality)? null : $customer->locality }}" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>

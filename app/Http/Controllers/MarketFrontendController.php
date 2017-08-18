@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Syscover\Market\Models\PaymentMethod;
+use Syscover\Market\Services\OrderRowService;
+use Syscover\Market\Services\OrderService;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\Admin\Models\Country;
 use Syscover\Admin\Models\TerritorialArea1;
@@ -96,14 +98,19 @@ class MarketFrontendController extends Controller
     public function postCheckout01(Request $request)
     {
         // store shipping data on shopping cart
-        CartProvider::instance()->setShippingData([
+        CartProvider::instance()->setShipping([
             'name'                  => $request->input('name'),
             'surname'               => $request->input('surname'),
+            'country_id'            => $request->input('country_id'),
             'country'               => $request->has('country_id')? Country::where('id', $request->input('country_id'))->where('lang_id', user_lang())->first() : null,
+            'territorial_area_1_id' => $request->input('territorial_area_1_id'),
             'territorial_area_1'    => $request->has('territorial_area_1_id')? TerritorialArea1::where('id', $request->input('territorial_area_1_id'))->first() : null,
+            'territorial_area_2_id' => $request->input('territorial_area_2_id'),
             'territorial_area_2'    => $request->has('territorial_area_2_id')? TerritorialArea2::where('id', $request->input('territorial_area_2_id'))->first() : null,
+            'territorial_area_3_id' => $request->input('territorial_area_3_id'),
             'territorial_area_3'    => $request->has('territorial_area_3_id')? TerritorialArea3::where('id', $request->input('territorial_area_3_id'))->first() : null,
             'cp'                    => $request->input('cp'),
+            'locality'              => $request->input('locality'),
             'address'               => $request->input('address'),
             'comments'              => $request->input('comments'),
         ]);
@@ -116,7 +123,7 @@ class MarketFrontendController extends Controller
     {
         $response['cartItems']          = CartProvider::instance()->getCartItems();
         $response['customer']           = auth('crm')->user();
-        $response['shippingData']       = CartProvider::instance()->getShippingData();
+        $response['shippingData']       = CartProvider::instance()->getShipping();
 
         return view('web.content.checkout_02', $response);
     }
@@ -124,16 +131,23 @@ class MarketFrontendController extends Controller
     public function postCheckout02(Request $request)
     {
         CartProvider::instance()->setInvoice([
+            'has_invoice'           => $request->has('has_invoice'),
             'company'               => $request->input('company'),
             'tin'                   => $request->input('tin'),
             'name'                  => $request->input('name'),
             'surname'               => $request->input('surname'),
+            'country_id'            => $request->input('country_id'),
             'country'               => $request->has('country_id')? Country::where('id', $request->input('country_id'))->where('lang_id', user_lang())->first() : null,
+            'territorial_area_1_id' => $request->input('territorial_area_1_id'),
             'territorial_area_1'    => $request->has('territorial_area_1_id')? TerritorialArea1::where('id', $request->input('territorial_area_1_id'))->first() : null,
+            'territorial_area_2_id' => $request->input('territorial_area_2_id'),
             'territorial_area_2'    => $request->has('territorial_area_2_id')? TerritorialArea2::where('id', $request->input('territorial_area_2_id'))->first() : null,
+            'territorial_area_3_id' => $request->input('territorial_area_3_id'),
             'territorial_area_3'    => $request->has('territorial_area_3_id')? TerritorialArea3::where('id', $request->input('territorial_area_3_id'))->first() : null,
             'cp'                    => $request->input('cp'),
+            'locality'              => $request->input('locality'),
             'address'               => $request->input('address'),
+            'comments'              => $request->input('comments'),
         ]);
 
         return redirect()->route('getCheckout03-' . user_lang());
@@ -148,7 +162,7 @@ class MarketFrontendController extends Controller
     {
         $response['cartItems']          = CartProvider::instance()->getCartItems();
         $response['customer']           = auth('crm')->user();
-        $response['shippingData']       = CartProvider::instance()->getShippingData();
+        $response['shippingData']       = CartProvider::instance()->getShipping();
         $response['invoice']            = CartProvider::instance()->getInvoice();
 
         $response['paymentMethods']     = PaymentMethod::builder()
@@ -158,5 +172,39 @@ class MarketFrontendController extends Controller
             ->get();
 
         return view('web.content.checkout_03', $response);
+    }
+
+    public function postCheckout03(Request $request)
+    {
+        // check that there are items in shopping cart
+        if(CartProvider::instance()->getCartItems()->count() == 0)
+        {
+            return redirect()
+                ->route('getCheckout03-' . user_lang())
+                ->withErrors(['Error, shopping cart is empty']);
+
+        }
+
+        // check if there isn't a customer loged
+        if(auth('crm')->guest())
+        {
+            return redirect()
+                ->route('getCheckout03-' . user_lang())
+                ->withErrors(['Error, there isn\'t any customer loged']);
+
+        }
+
+        // get customer from session
+        $customer = auth('crm')->user();
+
+        $order = OrderService::create(CartProvider::instance(), $customer, $request->ip());
+        $orderRows = OrderRowService::create($order->id, CartProvider::instance());
+
+        // TODO, set cart price rules
+
+        // destroy shopping cart
+        CartProvider::instance()->destroy();
+
+        dd($orderRows);
     }
 }

@@ -73,7 +73,7 @@
     <form id="shoppingCartForm" action="{{ route('updateProduct-' . user_lang()) }}" method="post">
 
         <!-- body shopping cart -->
-        @include('web.includes.body_shopping_cart', ['quantity' => true])
+        @include('web.includes.body_shopping_cart', ['quantity' => true, 'delete' => true])
         <!-- /body shopping cart -->
 
         {{ csrf_field() }}
