@@ -149,7 +149,7 @@ class CustomerFrontendController extends Controller
             'password'  => 'required|between:4,15|same:repassword',
         ];
 
-        if($request->input('email') == auth('crm')->user()->email)
+        if($request->input('email') === auth('crm')->user()->email)
             $rules['email'] = 'required|max:255|email';
 
         if(! $request->has('password'))

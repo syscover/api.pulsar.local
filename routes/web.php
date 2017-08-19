@@ -20,14 +20,15 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     // EN
     Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-en');
     Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-en');
-    Route::post('/en/account/sing-in',                                                      '\App\Http\Controllers\CustomerFrontendController@postSingIn')->name('postSingIn-en');
 
     // ES
     Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-es');
     Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-es');
-    Route::post('/es/cuenta/registro',                                                      '\App\Http\Controllers\CustomerFrontendController@postSingIn')->name('postSingIn-es');
 
+    //
     Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('postLogin');
+    Route::post('/account/sing-in',                                                         '\App\Http\Controllers\CustomerFrontendController@postSingIn')->name('postSingIn');
+
 
     // SHOPPING CART
     // EN
@@ -50,13 +51,15 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     // CUSTOMER ACCOUNT
     // EN
     Route::match(['get', 'post'], '/en/account',                                            '\App\Http\Controllers\CustomerFrontendController@account')->name('account-en');
-    Route::put('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn-en');
     Route::match(['get', 'post'], '/en/account/logout',                                     '\App\Http\Controllers\CustomerFrontendController@logout')->name('logout-en');
 
     // ES
     Route::match(['get', 'post'], '/es/cuenta',                                             '\App\Http\Controllers\CustomerFrontendController@account')->name('account-es');
-    Route::put('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn-es');
     Route::match(['get', 'post'], '/es/cuenta/logout',                                      '\App\Http\Controllers\CustomerFrontendController@logout')->name('logout-es');
+
+    //
+    Route::put('/account/sing-in',                                                          '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn');
+
 
     // CHERCKOUT
     // EN
