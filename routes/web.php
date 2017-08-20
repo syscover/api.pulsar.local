@@ -44,6 +44,8 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('deleteProduct-es');
     Route::put('/es/carro-compra/actualizar',                                               '\App\Http\Controllers\ShoppingCartController@updateProduct')->name('updateProduct-es');
     Route::post('/es/carro-compra/comprueba/codigo/cupon',                                  '\App\Http\Controllers\ShoppingCartController@checkCouponCode')->name('checkCouponCode-es');
+
+    //
 });
 
 Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function() {
