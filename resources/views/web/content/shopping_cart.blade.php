@@ -71,14 +71,14 @@
     <!-- /head shopping cart -->
 
     <form id="shoppingCartForm" action="{{ route('updateProduct-' . user_lang()) }}" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="applyCouponCode">
 
         <!-- body shopping cart -->
         @include('web.includes.body_shopping_cart', ['quantity' => true, 'delete' => true])
         <!-- /body shopping cart -->
 
-        {{ csrf_field() }}
-        <input type="hidden" name="_method" value="PUT">
-        <input type="hidden" name="applyCouponCode">
     </form>
 
     <br><br><br><br>

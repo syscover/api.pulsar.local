@@ -63,7 +63,7 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::put('/account/sing-in',                                                          '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn');
 
 
-    // CHERCKOUT
+    // CHECKOUT
     // EN
     Route::get('/en/checkout/shipping',                                                     '\App\Http\Controllers\MarketFrontendController@getCheckout01')->name('getCheckout01-en');
     Route::post('/en/checkout/shipping',                                                    '\App\Http\Controllers\MarketFrontendController@postCheckout01')->name('postCheckout01-en');

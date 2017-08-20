@@ -64,10 +64,9 @@ class MarketFrontendController extends Controller
         // get atachments to product
         /*response['attachments'] = Attachment::builder()
             ->where('lang_id', user_lang())
-            ->where('resource_id', 'market-product')
             ->where('object_id', $response['product']->id)
             ->where('family_id', config('www.attachmentsFamily.productSheet'))
-            ->orderBy('sorting', 'asc')
+            ->orderBy('sort', 'asc')
             ->get();*/
 
         return view('web.content.product', $response);
