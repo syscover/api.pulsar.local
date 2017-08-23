@@ -43,7 +43,6 @@
 /storage/exports/
 /resources/views/vendor/
 
-composer.dev.lock
 
 # -- Laravel -----------------------------------------
 Homestead.yaml
