@@ -15,6 +15,7 @@ return [
     'forget_password'       => '¿Olvidó su contraseña?',
     'home'                  => 'Inicio',
     'iva'                   => 'IVA',
+    'qty'                   => 'unds',
     'language'              => 'Idioma|Idiomas',
     'login'                 => 'Acceder',
     'logout'                => 'Cerrar sesión',

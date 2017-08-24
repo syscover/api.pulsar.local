@@ -2,9 +2,6 @@
 
 @section('title', 'Login')
 
-@section('head')
-@endsection
-
 @section('content')
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-6 justify-content-center">
@@ -28,10 +25,7 @@
                             <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         </div>
                         <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                Check me out
-                            </label>
+                            <a href="{{ nt_route('getPasswordReset-' . user_lang()) }}">Olvidó su contraseña</a>
                         </div>
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">

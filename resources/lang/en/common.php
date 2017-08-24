@@ -15,6 +15,7 @@ return [
     'forget_password'       => 'Forget your password?',
     'home'                  => 'Home',
     'iva'                   => 'IVA',
+    'qty'                   => 'qty',
     'language'              => 'Language|Languages',
     'login'                 => 'Login',
     'logout'                => 'Logout',

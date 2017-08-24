@@ -46,8 +46,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout-' . user_lang()) }}">{{ trans('common.logout') }}</a>
                         </div>
-                    @endif
-                    @if(auth('crm')->guest())
+                    @else
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('getLogin-' . user_lang()) }}">{{ trans('common.login') }}</a>
                         </div>

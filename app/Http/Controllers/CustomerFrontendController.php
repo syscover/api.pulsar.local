@@ -315,4 +315,9 @@ class CustomerFrontendController extends Controller
 
         return view('web.content.account', $response);
     }
+
+    public function getPasswordReset(Request $request)
+    {
+        return view('web.content.passwords.email');
+    }
 }
