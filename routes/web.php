@@ -33,6 +33,7 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('postLogin');
     Route::post('/account/sing-in',                                                         '\App\Http\Controllers\CustomerFrontendController@postSingIn')->name('postSingIn');
     Route::post('/account/password/email',                                                  '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::post('/account/password/reset',                                                  '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.reset');
 
 
     // SHOPPING CART
@@ -106,4 +107,4 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
 //$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 //$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
+//$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
