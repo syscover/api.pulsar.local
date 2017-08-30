@@ -19,9 +19,9 @@
             useSeparatorHighlight:      false,
             textSeparatorHighlight:     '*********',
 
-            tA1Wrapper:					'territorialArea1Wrapper',                  // ID Wrapper territorial area 1
-            tA2Wrapper:					'territorialArea2Wrapper',	                // ID Wrapper territorial area 2
-            tA3Wrapper:					'territorialArea3Wrapper',		            // ID Wrapper territorial area 3
+            tA1Wrapper:					'territorialArea1Wrapper',                  // Wrapper selector territorial area 1
+            tA2Wrapper:					'territorialArea2Wrapper',	                // Wrapper selector territorial area 2
+            tA3Wrapper:					'territorialArea3Wrapper',		            // Wrapper selector territorial area 3
 
             tA1Label:                   'territorialArea1Label',                    // label Select territorial area 1
             tA1LabelPrefix:             '',

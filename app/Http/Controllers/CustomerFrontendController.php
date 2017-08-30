@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 // CRM
 use Syscover\Crm\Models\Group;
+use Syscover\Crm\Services\AddressService;
 use Syscover\Crm\Services\CustomerService;
 
 
@@ -204,6 +205,17 @@ class CustomerFrontendController extends Controller
 
             return redirect()->route('account-' . user_lang());
         }
+    }
+
+    /**
+     * Create customer address
+     *
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function postAddress(Request $request)
+    {
+        AddressService::create($request->all());
     }
 
     /**
