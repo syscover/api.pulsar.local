@@ -1,3 +1,4 @@
+
 /*
  *	Territories v1.2 - 2017-08-30
  *	By José Carlos Rodríguez Palacín
@@ -15,7 +16,7 @@
             lang:                       'es',
 
             highlightCountrys:          ['ES'],                                     // Countrys that you want highlight
-
+            placeholderDisabled:        false,                                      // Disabled empty option
             useSeparatorHighlight:      false,
             textSeparatorHighlight:     '*********',
 
@@ -67,47 +68,51 @@
 
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
-            var zones = null;
+                var zones = null;
 
-            // set country prefix in input prefix
-            if($($event.target).find('option:selected').data('prefix'))
-                wrapper.find("[name='" + this.options.prefixInput + "']")
-                    .val(wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('prefix'));
+                // set country prefix in input prefix
+                if($($event.target).find('option:selected').data('prefix'))
+                    wrapper.find("[name='" + this.options.prefixInput + "']")
+                        .val(wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('prefix'));
 
-            if($($event.target).find('option:selected').data('zones'))
-                zones = $($event.target).find('option:selected').data('zones');
+                if($($event.target).find('option:selected').data('zones'))
+                    zones = $($event.target).find('option:selected').data('zones');
 
 
 
-            // when finish first fadeout we load name of label, like that we are sure that the effect fadeOut is run
-            wrapper.find(this.options.tA1Wrapper).fadeOut(400, () => {
+                // when finish first fadeout we load name of label, like that we are sure that the effect fadeOut is run
+                wrapper.find(this.options.tA1Wrapper).fadeOut(400, () => {
 
-                if(wrapper.find("[name='" + this.options.countrySelect + "']").val() !== this.options.nullValue) {
+                    //if placeholderDisabled is true, the default value is null
+                    if(
+                        (! this.options.placeholderDisabled && wrapper.find("[name='" + this.options.countrySelect + "']").val() !== this.options.nullValue) ||
+                        (this.options.placeholderDisabled && wrapper.find("[name='" + this.options.countrySelect + "']").val() !== null)
+                    ) {
 
-            // check that territorial area label contain words
-            if((zones === null || zones.indexOf('territorial_areas_1') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1'))
-                wrapper.find(this.options.tA1Label).html(this.options.tA1LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1') + this.options.tA1LabelSuffix);
-            if((zones === null || zones.indexOf('territorial_areas_2') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2'))
-                $(this.options.tA2Label).html(this.options.tA2LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2') + this.options.tA2LabelSuffix);
-            if((zones === null || zones.indexOf('territorial_areas_3') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3'))
-                $(this.options.tA3Label).html(this.options.tA3LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3') + this.options.tA3LabelSuffix);
+                        // check that territorial area label contain words
+                        if((zones === null || zones.indexOf('territorial_areas_1') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1'))
+                            wrapper.find(this.options.tA1Label).html(this.options.tA1LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1') + this.options.tA1LabelSuffix);
+                        if((zones === null || zones.indexOf('territorial_areas_2') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2'))
+                            $(this.options.tA2Label).html(this.options.tA2LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2') + this.options.tA2LabelSuffix);
+                        if((zones === null || zones.indexOf('territorial_areas_3') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3'))
+                            $(this.options.tA3Label).html(this.options.tA3LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3') + this.options.tA3LabelSuffix);
 
-            // call method depend of zones
-            if(zones === null || zones.indexOf('territorial_areas_1') > -1)
-                this.getTerritorialArea1(wrapper);
-            else if(zones !== null && zones.indexOf('territorial_areas_2') > -1)
-                this.getTerritorialArea2(wrapper, zones);
-            else if(zones !== null && zones.indexOf('territorial_areas_3') > -1)
-                this.getTerritorialArea3(wrapper, zones);
-        }
+                        // call method depend of zones
+                        if(zones === null || zones.indexOf('territorial_areas_1') > -1)
+                            this.getTerritorialArea1(wrapper);
+                        else if(zones !== null && zones.indexOf('territorial_areas_2') > -1)
+                            this.getTerritorialArea2(wrapper, zones);
+                        else if(zones !== null && zones.indexOf('territorial_areas_3') > -1)
+                            this.getTerritorialArea3(wrapper, zones);
+                    }
 
-        });
+                });
 
-            // hide ta2 y ta3
-            wrapper.find(this.options.tA2Wrapper).fadeOut(400);
-            wrapper.find(this.options.tA3Wrapper).fadeOut(400);
+                // hide ta2 y ta3
+                wrapper.find(this.options.tA2Wrapper).fadeOut(400);
+                wrapper.find(this.options.tA3Wrapper).fadeOut(400);
 
-        });
+            });
 
             // when change territorial area 1 select
             $("[name='" + this.options.tA1Select + "']").change(($event) => {
@@ -115,16 +120,19 @@
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
 
-            if(wrapper.find("[name='" + this.options.tA1Select + "']").val() !== this.options.nullValue)
-            {
-                this.getTerritorialArea2(wrapper);
-            }
-            else
-            {
-                wrapper.find(this.options.tA2Wrapper).fadeOut();
-                wrapper.find(this.options.tA3Wrapper).fadeOut();
-            }
-        });
+                if(
+                    (! this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA1Select + "']").val() !== this.options.nullValue) ||
+                    (this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA1Select + "']").val() !== null)
+                )
+                {
+                    this.getTerritorialArea2(wrapper);
+                }
+                else
+                {
+                    wrapper.find(this.options.tA2Wrapper).fadeOut();
+                    wrapper.find(this.options.tA3Wrapper).fadeOut();
+                }
+            });
 
             // when change territorial area 2 select
             $("[name='" + this.options.tA2Select + "']").change(($event) => {
@@ -132,15 +140,19 @@
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
 
-            if(wrapper.find("[name='" + this.options.tA2Select + "']").val() !== this.options.nullValue)
-            {
-                this.getTerritorialArea3(wrapper);
-            }
-            else
-            {
-                wrapper.find(this.options.tA3Wrapper).fadeOut();
-            }
-        });
+                if(
+                    (! this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA2Select + "']").val() !== this.options.nullValue) ||
+                    (this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA2Select + "']").val() !== null)
+                )
+
+                {
+                    this.getTerritorialArea3(wrapper);
+                }
+                else
+                {
+                    wrapper.find(this.options.tA3Wrapper).fadeOut();
+                }
+            });
 
             this.getCountries();
 
@@ -184,103 +196,109 @@
                 dataType: 'json',
                 success: (response) => {
 
-                // These operations are applied on all forms
-                $("[name='" + this.options.countrySelect + "'] option").remove();
-            $("[name='" + this.options.countrySelect + "']").append(new Option(this.options.trans.selectCountry, this.options.nullValue));
+                    // These operations are applied on all forms
+                    $("[name='" + this.options.countrySelect + "'] option").remove();
+                    $("[name='" + this.options.countrySelect + "']").append(
+                        $('<option></option>')
+                            .val(this.options.nullValue)
+                            .html(this.options.trans.selectCountry)
+                            .prop('disabled', this.options.placeholderDisabled)
+                    );
 
-            var highlightCountry = false;
+                    var highlightCountry = false;
 
-            for(var i in this.options.highlightCountrys)
-            {
-                for(var j in response.data)
-                {
-                    // check if this country is highlight
-                    if(this.options.highlightCountrys[i] == response.data[j].id)
+                    for(var i in this.options.highlightCountrys)
+                    {
+                        for(var j in response.data)
+                        {
+                            // check if this country is highlight
+                            if(this.options.highlightCountrys[i] == response.data[j].id)
+                            {
+                                $("[name='" + this.options.countrySelect + "']")
+                                    .append(
+                                        $('<option></option>')
+                                            .val(response.data[j].id)
+                                            .html(response.data[j].name)
+                                            .data('zones', response.data[j].zones)
+                                            .data('prefix', response.data[j].prefix)
+                                            .data('at1', response.data[j].territorial_area_1)
+                                            .data('at2', response.data[j].territorial_area_2)
+                                            .data('at3', response.data[j].territorial_area_3)
+                                    );
+                                highlightCountry = true;
+                            }
+                        }
+                    }
+
+                    if(highlightCountry && this.options.useSeparatorHighlight)
                     {
                         $("[name='" + this.options.countrySelect + "']")
-                            .append(
-                                $('<option></option>')
-                                    .val(response.data[j].id).html(response.data[j].name)
-                                    .data('zones', response.data[j].zones)
-                                    .data('prefix', response.data[j].prefix)
-                                    .data('at1', response.data[j].territorial_area_1)
-                                    .data('at2', response.data[j].territorial_area_2)
-                                    .data('at3', response.data[j].territorial_area_3)
-                            );
-                        highlightCountry = true;
+                            .append($('<option disabled></option>').html(this.options.textSeparatorHighlight));
+                    }
+
+                    for(var country of response.data)
+                    {
+                        // check if this country is highlight
+                        if($.inArray(response.data[i].id, this.options.highlightCountrys) == -1)
+                        {
+                            $("[name='" + this.options.countrySelect + "']")
+                                .append(
+                                    $('<option></option>')
+                                        .val(country.id)
+                                        .html(country.name)
+                                        .data('at1', country.territorial_area_1)
+                                        .data('at2', country.territorial_area_2)
+                                        .data('at3', country.territorial_area_3)
+                                );
+                        }
+                    }
+
+
+                    $("[name='" + this.options.countrySelect + "']").each((index, item) => {
+                        // get form or wrapper
+                        var wrapper = $(item).closest(this.options.wrapper);
+                        // get value of country if it has
+                        var countryValue = wrapper.find("[name='" + this.options.countryValue + "']").val();
+
+                        if(countryValue !== null && countryValue !== '')
+                        {
+                            wrapper.find("[name='" + this.options.countrySelect + "']")
+                                .val(countryValue)
+                                .trigger("change");
+
+                            // reset value to avoid trigger events, when change country
+                            wrapper.find("[name='" + this.options.countryValue + "']").val('');
+                        }
+                        else
+                        {
+                            wrapper.find("[name='" + this.options.countrySelect + "']")
+                                .val(this.options.nullValue)
+                                .trigger("change");
+                        }
+                    });
+
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: true,
+                            message: 'Countries loaded'
+                        };
+
+                        this.callback(response);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: false,
+                            message: textStatus
+                        };
+
+                        this.callback(response);
                     }
                 }
-            }
-
-            if(highlightCountry && this.options.useSeparatorHighlight)
-            {
-                $("[name='" + this.options.countrySelect + "']")
-                    .append($('<option disabled></option>').html(this.options.textSeparatorHighlight));
-            }
-
-            for(var country of response.data)
-            {
-                // check if this country is highlight
-                if($.inArray(response.data[i].id, this.options.highlightCountrys) == -1)
-                {
-                    $("[name='" + this.options.countrySelect + "']")
-                        .append(
-                            $('<option></option>')
-                                .val(country.id)
-                                .html(country.name)
-                                .data('at1', country.territorial_area_1)
-                                .data('at2', country.territorial_area_2)
-                                .data('at3', country.territorial_area_3)
-                        );
-                }
-            }
-
-
-            $("[name='" + this.options.countrySelect + "']").each((index, item) => {
-                // get form or wrapper
-                var wrapper = $(item).closest(this.options.wrapper);
-            // get value of country if it has
-            var countryValue = wrapper.find("[name='" + this.options.countryValue + "']").val();
-
-            if(countryValue !== null && countryValue !== '')
-            {
-                wrapper.find("[name='" + this.options.countrySelect + "']")
-                    .val(countryValue)
-                    .trigger("change");
-
-                // reset value to avoid trigger events, when change country
-                wrapper.find("[name='" + this.options.countryValue + "']").val('');
-            }
-            else
-            {
-                wrapper.find("[name='" + this.options.countrySelect + "']")
-                    .val(this.options.nullValue)
-                    .trigger("change");
-            }
-        });
-
-            if(this.callback != null)
-            {
-                var response = {
-                    success: true,
-                    message: 'Countries loaded'
-                };
-
-                this.callback(response);
-            }
-        },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(this.callback != null)
-                {
-                    var response = {
-                        success: false,
-                        message: textStatus
-                    };
-
-                    this.callback(response);
-                }
-            }
-        });
+            });
         },
 
         getTerritorialArea1: function (wrapper) {
@@ -307,74 +325,75 @@
                 dataType: 'json',
                 success: (response) => {
 
-                wrapper.find("[name='" + this.options.tA1Select + "'] option").remove();
+                    wrapper.find("[name='" + this.options.tA1Select + "'] option").remove();
 
-            if(response.data.length > 0) {
-                wrapper.find("[name='" + this.options.tA1Select + "']")
-                    .append(
-                        $('<option></option>')
-                            .val(this.options.nullValue)
-                            .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1'))
-                    );
+                    if(response.data.length > 0) {
+                        wrapper.find("[name='" + this.options.tA1Select + "']")
+                            .append(
+                                $('<option></option>')
+                                    .val(this.options.nullValue)
+                                    .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1'))
+                                    .prop('disabled', this.options.placeholderDisabled)
+                            );
 
-                for(var territorialArea1 of response.data) {
-                    wrapper.find("[name='" + this.options.tA1Select + "']")
-                        .append(new Option(territorialArea1.name, territorialArea1.id));
+                        for(var territorialArea1 of response.data) {
+                            wrapper.find("[name='" + this.options.tA1Select + "']")
+                                .append(new Option(territorialArea1.name, territorialArea1.id));
+                        }
+
+                        // get value of territorialArea1 if it has
+                        var territorialArea1Value = wrapper.find("[name='" + this.options.territorialArea1Value + "']").val();
+
+                        // check if need set value from Territorial Area 1
+                        if(territorialArea1Value !== null && territorialArea1Value !== '')
+                        {
+                            wrapper.find("[name='" + this.options.tA1Select + "']")
+                                .val(territorialArea1Value)
+                                .trigger("change");
+                            wrapper.find("[name='" + this.options.territorialArea1Value + "']").val('');
+                        }
+                        else
+                        {
+                            // reset value territorialArea 1
+                            wrapper.find("[name='" + this.options.tA1Select + "']")
+                                .val(this.options.nullValue)
+                                .trigger("change");
+                        }
+
+                        wrapper.find(this.options.tA1Wrapper).fadeIn();
+                    }
+                    else
+                    {
+                        wrapper.find(this.options.tA1Wrapper).fadeOut();
+                        this.deleteTerritorialArea1(wrapper);
+                        wrapper.find(this.options.tA2Wrapper).fadeOut();
+                        this.deleteTerritorialArea2(wrapper);
+                        wrapper.find(this.options.tA3Wrapper).fadeOut();
+                        this.deleteTerritorialArea3(wrapper);
+                    }
+
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: true,
+                            message: 'TerritorialArea1 loaded'
+                        };
+
+                        this.callback(response);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: false,
+                            message: textStatus
+                        };
+
+                        this.callback(response);
+                    }
                 }
-
-                // get value of territorialArea1 if it has
-                var territorialArea1Value = wrapper.find("[name='" + this.options.territorialArea1Value + "']").val();
-
-                // check if need set value from Territorial Area 1
-                if(territorialArea1Value !== null && territorialArea1Value !== '')
-                {
-                    wrapper.find("[name='" + this.options.tA1Select + "']")
-                        .val(territorialArea1Value)
-                        .trigger("change");
-                    wrapper.find("[name='" + this.options.territorialArea1Value + "']").val('');
-                }
-                else
-                {
-                    // reset value territorialArea 1
-                    wrapper.find("[name='" + this.options.tA1Select + "']")
-                        .val(this.options.nullValue)
-                        .trigger("change");
-                }
-
-                wrapper.find(this.options.tA1Wrapper).fadeIn();
-            }
-            else
-            {
-                wrapper.find(this.options.tA1Wrapper).fadeOut();
-                this.deleteTerritorialArea1(wrapper);
-                wrapper.find(this.options.tA2Wrapper).fadeOut();
-                this.deleteTerritorialArea2(wrapper);
-                wrapper.find(this.options.tA3Wrapper).fadeOut();
-                this.deleteTerritorialArea3(wrapper);
-            }
-
-            if(this.callback != null)
-            {
-                var response = {
-                    success: true,
-                    message: 'TerritorialArea1 loaded'
-                };
-
-                this.callback(response);
-            }
-        },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(this.callback != null)
-                {
-                    var response = {
-                        success: false,
-                        message: textStatus
-                    };
-
-                    this.callback(response);
-                }
-            }
-        });
+            });
         },
 
         getTerritorialArea2: function(wrapper, zones) {
@@ -425,75 +444,77 @@
                 dataType: 'json',
                 success: (response) => {
 
-                wrapper.find("[name='" + this.options.tA2Select + "'] option").remove();
+                    wrapper.find("[name='" + this.options.tA2Select + "'] option").remove();
 
-            if(response.data.length > 0)
-            {
-                wrapper.find("[name='" + this.options.tA2Select + "']")
-                    .append(
-                        $('<option></option>')
-                            .val(this.options.nullValue)
-                            .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2'))
-                    );
+                    if(response.data.length > 0)
+                    {
+                        wrapper.find("[name='" + this.options.tA2Select + "']")
+                            .append(
+                                $('<option></option>')
+                                    .val(this.options.nullValue)
+                                    .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at2'))
+                                    .prop('disabled', this.options.placeholderDisabled)
+                            );
 
-                for(var territorialArea2 of response.data)
-                {
-                    wrapper.find("[name='" + this.options.tA2Select + "']").append(new Option(territorialArea2.name, territorialArea2.id));
+                        for(var territorialArea2 of response.data)
+                        {
+                            wrapper.find("[name='" + this.options.tA2Select + "']")
+                                .append(new Option(territorialArea2.name, territorialArea2.id));
+                        }
+
+                        // get value of territorialArea2 if it has
+                        var territorialArea2Value = wrapper.find("[name='" + this.options.territorialArea2Value + "']").val();
+
+                        // check if need set value from Territorial Area 2
+                        if(territorialArea2Value !== null && territorialArea2Value !== '')
+                        {
+                            wrapper.find("[name='" + this.options.tA2Select + "']")
+                                .val(territorialArea2Value)
+                                .trigger("change");
+
+                            // reset value to avoid load
+                            wrapper.find("[name='" + this.options.territorialArea2Value + "']").val('');
+                        }
+                        else
+                        {
+                            // reset value territorialArea 2
+                            wrapper.find("[name='" + this.options.tA2Select + "']")
+                                .val(this.options.nullValue)
+                                .trigger("change");
+                        }
+
+                        wrapper.find(this.options.tA2Wrapper).fadeIn();
+                    }
+                    else
+                    {
+                        wrapper.find(this.options.tA2Wrapper).fadeOut();
+                        this.deleteTerritorialArea2(wrapper);
+                        wrapper.find(this.options.tA3Wrapper).fadeOut();
+                        this.deleteTerritorialArea3(wrapper);
+                    }
+
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: true,
+                            message: 'TerritorialArea2 loaded'
+                        };
+
+                        this.callback(response);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: false,
+                            message: textStatus
+                        };
+
+                        this.callback(response);
+                    }
                 }
-
-                // get value of territorialArea2 if it has
-                var territorialArea2Value = wrapper.find("[name='" + this.options.territorialArea2Value + "']").val();
-
-                // check if need set value from Territorial Area 2
-                if(territorialArea2Value !== null && territorialArea2Value !== '')
-                {
-                    wrapper.find("[name='" + this.options.tA2Select + "']")
-                        .val(territorialArea2Value)
-                        .trigger("change");
-
-                    // reset value to avoid load
-                    wrapper.find("[name='" + this.options.territorialArea2Value + "']").val('');
-                }
-                else
-                {
-                    // reset value territorialArea 2
-                    wrapper.find("[name='" + this.options.tA2Select + "']")
-                        .val(this.options.nullValue)
-                        .trigger("change");
-                }
-
-                wrapper.find(this.options.tA2Wrapper).fadeIn();
-            }
-            else
-            {
-                wrapper.find(this.options.tA2Wrapper).fadeOut();
-                this.deleteTerritorialArea2(wrapper);
-                wrapper.find(this.options.tA3Wrapper).fadeOut();
-                this.deleteTerritorialArea3(wrapper);
-            }
-
-            if(this.callback != null)
-            {
-                var response = {
-                    success: true,
-                    message: 'TerritorialArea2 loaded'
-                };
-
-                this.callback(response);
-            }
-        },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(this.callback != null)
-                {
-                    var response = {
-                        success: false,
-                        message: textStatus
-                    };
-
-                    this.callback(response);
-                }
-            }
-        });
+            });
         },
 
         getTerritorialArea3: function(wrapper, zones)
@@ -564,72 +585,73 @@
                 dataType: 'json',
                 success: (response) => {
 
-                wrapper.find("[name='" + this.options.tA3Select + "'] option").remove();
+                    wrapper.find("[name='" + this.options.tA3Select + "'] option").remove();
 
-            if(response.data.length > 0)
-            {
-                wrapper.find("[name='" + this.options.tA3Select + "']")
-                    .append(
-                        $('<option></option>')
-                            .val(this.options.nullValue)
-                            .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3'))
-                    );
+                    if(response.data.length > 0)
+                    {
+                        wrapper.find("[name='" + this.options.tA3Select + "']")
+                            .append(
+                                $('<option></option>')
+                                    .val(this.options.nullValue)
+                                    .html(this.options.trans.selectA + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at3'))
+                                    .prop('disabled', this.options.placeholderDisabled)
+                            );
 
-                for(var territorialArea3 of response.data)
-                {
-                    $("[name='" + this.options.tA3Select + "']").append(new Option(territorialArea3.name, territorialArea3.id));
+                        for(var territorialArea3 of response.data)
+                        {
+                            $("[name='" + this.options.tA3Select + "']").append(new Option(territorialArea3.name, territorialArea3.id));
+                        }
+
+                        // get value of territorialArea3 if it has
+                        var territorialArea3Value = wrapper.find("[name='" + this.options.territorialArea3Value + "']").val();
+
+                        // check if need set value from Territorial Area 3
+                        if(territorialArea3Value !== null && territorialArea3Value !== '')
+                        {
+                            wrapper.find("[name='" + this.options.tA3Select + "']")
+                                .val(this.options.territorialArea3Value)
+                                .trigger("change");
+                            // reset value to avoid load
+                            wrapper.find("[name='" + this.options.territorialArea3Value + "']").val('');
+                        }
+                        else
+                        {
+                            // reset value territorialArea 3
+                            wrapper.find("[name='" + this.options.tA3Select + "']")
+                                .val(this.options.nullValue)
+                                .trigger("change");
+                        }
+
+                        wrapper.find(this.options.tA3Wrapper).fadeIn();
+                    }
+                    else
+                    {
+                        wrapper.find(this.options.tA3Wrapper).fadeOut();
+                        this.deleteTerritorialArea3(wrapper);
+                    }
+
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: true,
+                            message: 'TerritorialArea3 loaded'
+                        };
+
+                        this.callback(response);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(this.callback != null)
+                    {
+                        var response = {
+                            success: false,
+                            message: textStatus
+                        };
+
+                        this.callback(response);
+                    }
                 }
-
-                // get value of territorialArea3 if it has
-                var territorialArea3Value = wrapper.find("[name='" + this.options.territorialArea3Value + "']").val();
-
-                // check if need set value from Territorial Area 3
-                if(territorialArea3Value !== null && territorialArea3Value !== '')
-                {
-                    wrapper.find("[name='" + this.options.tA3Select + "']")
-                        .val(this.options.territorialArea3Value)
-                        .trigger("change");
-                    // reset value to avoid load
-                    wrapper.find("[name='" + this.options.territorialArea3Value + "']").val('');
-                }
-                else
-                {
-                    // reset value territorialArea 3
-                    wrapper.find("[name='" + this.options.tA3Select + "']")
-                        .val(this.options.nullValue)
-                        .trigger("change");
-                }
-
-                wrapper.find(this.options.tA3Wrapper).fadeIn();
-            }
-            else
-            {
-                wrapper.find(this.options.tA3Wrapper).fadeOut();
-                this.deleteTerritorialArea3(wrapper);
-            }
-
-            if(this.callback != null)
-            {
-                var response = {
-                    success: true,
-                    message: 'TerritorialArea3 loaded'
-                };
-
-                this.callback(response);
-            }
-        },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(this.callback != null)
-                {
-                    var response = {
-                        success: false,
-                        message: textStatus
-                    };
-
-                    this.callback(response);
-                }
-            }
-        });
+            });
         },
 
         deleteTerritorialArea1: function(wrapper)
@@ -668,4 +690,5 @@
             $.data(document, 'territories', Object.create(Territories).init(options, callback));
         }
     };
+
 }( jQuery ));
