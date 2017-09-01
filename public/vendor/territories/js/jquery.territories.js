@@ -1,4 +1,3 @@
-
 /*
  *	Territories v1.2 - 2017-08-30
  *	By José Carlos Rodríguez Palacín
@@ -11,6 +10,7 @@
 (function () {
     var Territories = {
         options: {
+            id:                         null,                                       // application id
             wrapper:                    'form',                                     // element that cover territorials inputs
             urlPlugin:                  '.',
             lang:                       'es',
@@ -25,13 +25,13 @@
             tA3Wrapper:					'.territorial-area-3-wrapper',		        // Wrapper selector territorial area 3
 
             tA1Label:                   '.territorial-area-1-label',                // label Select territorial area 1
-            tA1LabelPrefix:             '',
-            tA1LabelSuffix:             '',
             tA2Label:                   '.territorial-area-2-label',                // label Select territorial area 2
-            tA2LabelPrefix:             '',
-            tA2LabelSuffix:             '',
             tA3Label:                   '.territorial-area-3-label',                // label Select territorial area 3
+            tA1LabelPrefix:             '',
+            tA2LabelPrefix:             '',
             tA3LabelPrefix:             '',
+            tA1LabelSuffix:             '',
+            tA2LabelSuffix:             '',
             tA3LabelSuffix:             '',
 
             countrySelect:              'country_id',                               // select name country
@@ -64,8 +64,7 @@
 
             // set events on elements
             // when change country select
-            $("[name='" + this.options.countrySelect + "']").change(($event) => {
-
+            $(`[name=${this.options.countrySelect}]`).change(($event) => {
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
                 var zones = null;
@@ -78,9 +77,8 @@
                 if($($event.target).find('option:selected').data('zones'))
                     zones = $($event.target).find('option:selected').data('zones');
 
-
-
-                // when finish first fadeout we load name of label, like that we are sure that the effect fadeOut is run
+                // when finish first fadeout we load name of label,
+                // like that we are sure that the effect fadeOut is run
                 wrapper.find(this.options.tA1Wrapper).fadeOut(400, () => {
 
                     //if placeholderDisabled is true, the default value is null
@@ -88,7 +86,6 @@
                         (! this.options.placeholderDisabled && wrapper.find("[name='" + this.options.countrySelect + "']").val() !== this.options.nullValue) ||
                         (this.options.placeholderDisabled && wrapper.find("[name='" + this.options.countrySelect + "']").val() !== null)
                     ) {
-
                         // check that territorial area label contain words
                         if((zones === null || zones.indexOf('territorial_areas_1') > -1) && wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1'))
                             wrapper.find(this.options.tA1Label).html(this.options.tA1LabelPrefix + wrapper.find("[name='" + this.options.countrySelect + "'] option:selected").data('at1') + this.options.tA1LabelSuffix);
@@ -115,7 +112,7 @@
             });
 
             // when change territorial area 1 select
-            $("[name='" + this.options.tA1Select + "']").change(($event) => {
+            $(`[name=${this.options.tA1Select}]`).change(($event) => {
 
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
@@ -135,8 +132,7 @@
             });
 
             // when change territorial area 2 select
-            $("[name='" + this.options.tA2Select + "']").change(($event) => {
-
+            $(`[name=${this.options.tA2Select}]`).change(($event) => {
                 // get form or wrapper
                 var wrapper = $($event.target).closest(this.options.wrapper);
 
@@ -144,7 +140,6 @@
                     (! this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA2Select + "']").val() !== this.options.nullValue) ||
                     (this.options.placeholderDisabled && wrapper.find("[name='" + this.options.tA2Select + "']").val() !== null)
                 )
-
                 {
                     this.getTerritorialArea3(wrapper);
                 }
@@ -158,19 +153,13 @@
 
             // check if must to show any area territorial select
             if($("[name='" + this.options.countrySelect + "']").val() != 'null' && $("[name='" + this.options.tA1Select + "'] option").length > 1)
-            {
                 $(this.options.tA1Wrapper).show();
-            }
 
             if($("[name='" + this.options.tA1Select + "']").attr('value') != 'null' && $("[name='" + this.options.tA2Select + "'] option").length > 1)
-            {
                 $(this.options.tA2Wrapper).show();
-            }
 
             if($("[name='" + this.options.tA2Select + "']").attr('value') != 'null' && $("[name='" + this.options.tA3Select + "'] option").length > 1)
-            {
                 $(this.options.tA3Wrapper).show();
-            }
 
             this.callback = callback;
 
@@ -253,7 +242,6 @@
                         }
                     }
 
-
                     $("[name='" + this.options.countrySelect + "']").each((index, item) => {
                         // get form or wrapper
                         var wrapper = $(item).closest(this.options.wrapper);
@@ -276,6 +264,9 @@
                                 .trigger("change");
                         }
                     });
+
+                    // trigger event
+                    $(this).trigger('territories:afterLoadCountries', response);
 
                     if(this.callback != null)
                     {
@@ -372,6 +363,9 @@
                         this.deleteTerritorialArea3(wrapper);
                     }
 
+                    // trigger event
+                    $(this).trigger('territories:afterLoadTerritorialAreas1', response);
+
                     if(this.callback != null)
                     {
                         var response = {
@@ -397,6 +391,7 @@
         },
 
         getTerritorialArea2: function(wrapper, zones) {
+
             var requestData = null;
             if(zones && zones.indexOf('territorial_areas_1') === -1)
             {
@@ -492,6 +487,9 @@
                         wrapper.find(this.options.tA3Wrapper).fadeOut();
                         this.deleteTerritorialArea3(wrapper);
                     }
+
+                    // trigger event
+                    $(this).trigger('territories:afterLoadTerritorialAreas2', response);
 
                     if(this.callback != null)
                     {
@@ -630,6 +628,9 @@
                         this.deleteTerritorialArea3(wrapper);
                     }
 
+                    // trigger event
+                    $(this).trigger('territories:afterLoadTerritorialAreas3', response);
+
                     if(this.callback != null)
                     {
                         var response = {
@@ -686,8 +687,22 @@
      * Start the plugin
      */
     $.territories = (options, callback) => {
-        if (! $.data(document, 'territories')) {
-            $.data(document, 'territories', Object.create(Territories).init(options, callback));
+        var object;
+        if(options.id === null) {
+            if (! $.data(document, 'territories')) {
+                object = $.data(document, 'territories', Object.create(Territories).init(options, callback));
+                return $(object);
+            } else {
+                return $($.data(document, 'territories'));
+            }
+        } else {
+            if (! $.data(document, 'territories' + options.id)) {
+                object = $.data(document, 'territories' + options.id, Object.create(Territories).init(options, callback));
+                return $(object);
+            } else {
+
+                return $($.data(document, 'territories' + options.id));
+            }
         }
     };
 
