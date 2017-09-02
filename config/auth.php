@@ -117,13 +117,7 @@ return [
     */
 
     'passwords' => [
-
-//        'users' => [
-//            'provider' => 'users',
-//            'table' => 'password_resets',
-//            'expire' => 60,
-//        ],
-
+        
         'pulsarPasswordBroker' => [
             'provider'  => 'pulsarUser',
             'table'     => 'admin_password_resets',

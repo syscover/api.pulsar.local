@@ -1,4 +1,4 @@
-# -- Developer --------------------------------------------
+# -- Provider dev --------------------------------------------
 /workbench
 /app/Providers/AdminServiceProvider.php
 /app/Providers/CoreServiceProvider.php
@@ -20,15 +20,7 @@
 /app/Providers/HotelManagerServiceProvider.php
 /app/Providers/VinipadServiceProvider.php
 
-
-# -- Web --------------------------------------------
-/public/pulsar/
-/public/packages/
-
-# -- Symlink ----------------------------------------
-/public/storage
-
-# -- Pulsar -----------------------------------------
+# -- Config -----------------------------------------------------
 /config/pulsar.core.php
 /config/pulsar.admin.php
 /config/pulsar.market.php
@@ -38,21 +30,30 @@
 /config/pulsar.shopping-cart.php
 /config/jwt.php
 /config/graphql.php
+
+# -- Test -----------------------------------------------------
 /tests/Feature/AdminTest.php
 
-/storage/exports/
-/resources/views/vendor/
+# -- Public --------------------------------------------
+/public/pulsar/
+/public/packages/
 
+# -- Symlink ----------------------------------------
+/public/storage
 
-# -- Laravel -----------------------------------------
-Homestead.yaml
+# -- Laravel --------------------------------------------
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
 Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
 .env
-!/database/
-/database/migrations/*
-!/database/migrations/
-/database/seeds/*
-!/database/seeds/
 
 # -- Composer -----------------------------------------
 composer.phar
