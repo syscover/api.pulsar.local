@@ -167,22 +167,9 @@ return [
         /*
          * Package Service Providers...
          */
+         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+         Folklore\GraphQL\ServiceProvider::class,
 
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
-        /*
-         * Thirdparty Service Providers...
-         */
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Folklore\GraphQL\ServiceProvider::class,
-         
         /*
          * Pulsar Application Service Providers...
          */
@@ -194,6 +181,15 @@ return [
         App\Providers\CmsServiceProvider::class,
         App\Providers\ShoppingCartServiceProvider::class,
 
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        
     ],
 
     /*
