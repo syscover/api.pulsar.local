@@ -57,8 +57,8 @@
                         {{ trans_choice('common.language', 1) }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="languageMenu">
-                        <a class="dropdown-item" href="{{ get_lang_route('es') }}">{{ trans('common.spanish') }}</a>
-                        <a class="dropdown-item" href="{{ get_lang_route('en') }}">{{ trans('common.english') }}</a>
+                        <a class="dropdown-item @if(user_lang() == 'es') active @endif" href="{{ get_lang_route('es') }}">{{ trans('common.spanish') }}</a>
+                        <a class="dropdown-item @if(user_lang() == 'en') active @endif" href="{{ get_lang_route('en') }}">{{ trans('common.english') }}</a>
                     </div>
                 </li>
             </ul>

@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Syscover\Core\GraphQL\ScalarTypes\ObjectType;
 use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
@@ -19,12 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         //
-        DB::listen(function ($query) {
-            // $query->sql
-            // $query->bindings
-            // $query->time
-            Log::info($query->sql);
-        });
+//        \Illuminate\Support\Facades\DB::listen(function ($query) {
+//            \Illuminate\Support\Facades\Log::info($query->sql);
+//        });
     }
 
     /**
@@ -34,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
         $this->app->singleton(ObjectType::class, function ($app) {
             return new ObjectType();
         });
@@ -43,4 +37,5 @@ class AppServiceProvider extends ServiceProvider
             return new AnyType();
         });
     }
+
 }
