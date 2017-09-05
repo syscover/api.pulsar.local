@@ -24,8 +24,17 @@
             <h3>Payment</h3>
             <form action="{{ route('postCheckout03-' . user_lang()) }}" method="post">
                 {{ csrf_field() }}
-                <input type="hidden" name="responseType" value="redirect"> <!-- flag to instance response type, json or redirect -->
-                <input type="hidden" name="newCustomer" value="error"> <!-- flag to instance that we do if customer does not exist, create or error -->
+
+                <!-- 1. Pending payment -->
+                <!-- 2. Payment Confirmed -->
+                <input type="hidden" name="status_id" value="1" />
+
+
+                <div class="form-group">
+                    <label for="comments">Order comments</label>
+                    <textarea class="form-control" id="comments" rows="3" name="comments"></textarea>
+                </div>
+
                 @foreach($paymentMethods as $paymentMethod)
                     <div class="form-check">
                         <label class="form-check-label">
