@@ -5,7 +5,6 @@
 @section('scripts')
     @parent
     <script src="{{ asset('vendor/territories/js/jquery.territories.js') }}"></script>
-
     <script>
         $(function() {
             $.territories({
@@ -62,6 +61,7 @@
                     <input class="form-control" id="surname" name="surname" placeholder="Surname" value="{{ empty($customer->surname)? null : $customer->surname }}" required>
                 </div>
 
+                <!-- territories -->
                 <div class="form-group">
                     <label for="country">Country</label>
                     <select class="form-control" id="country" name="country_id" required>
@@ -82,6 +82,8 @@
                     <select class="form-control" id="territorial_area_3_id" name="territorial_area_3_id">
                     </select>
                 </div>
+                <!-- /territories -->
+
                 <div class="form-group">
                     <label for="cp">CP</label>
                     <input type="text" class="form-control" id="cp" name="cp" placeholder="CP" value="{{ empty($customer->cp)? null : $customer->cp }}" required>

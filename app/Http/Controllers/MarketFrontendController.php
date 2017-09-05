@@ -187,6 +187,8 @@ class MarketFrontendController extends Controller
         // get customer from session
         $customer = auth('crm')->user();
 
+        
+
         $order = OrderService::create(CartProvider::instance(), $customer, $request->ip());
         $orderRows = OrderRowService::create($order->id, CartProvider::instance());
 

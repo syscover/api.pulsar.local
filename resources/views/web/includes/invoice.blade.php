@@ -22,13 +22,13 @@
             <th scope="row">Country</th>
             <td>{{ $invoice->get('country')->name }}</td>
         </tr>
-        @empty(! $invoice->has('territorial_area_1'))
+        @empty(! $invoice->get('territorial_area_1'))
             <tr>
                 <th scope="row">{{ $invoice->get('country')->territorial_area_1 }}</th>
                 <td> {{ $invoice->get('territorial_area_1')->name }}</td>
             </tr>
         @endempty
-        @empty(! $invoice->has('territorial_area_2'))
+        @empty(! $invoice->get('territorial_area_2'))
             <tr>
                 <th scope="row">{{ $invoice->get('country')->territorial_area_2 }}</th>
                 <td> {{ $invoice->get('territorial_area_2')->name }}</td>
