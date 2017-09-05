@@ -14,13 +14,13 @@
             <th scope="row">Country</th>
             <td>{{ $shippingData->get('country')->name }}</td>
         </tr>
-        @empty(! $shippingData->has('territorial_area_1'))
+        @empty(! $shippingData->get('territorial_area_1'))
             <tr>
                 <th scope="row">{{ $shippingData->get('country')->territorial_area_1 }}</th>
                 <td> {{ $shippingData->get('territorial_area_1')->name }}</td>
             </tr>
         @endempty
-        @empty(! $shippingData->has('territorial_area_2'))
+        @empty(! $shippingData->get('territorial_area_2'))
             <tr>
                 <th scope="row">{{ $shippingData->get('country')->territorial_area_2 }}</th>
                 <td> {{ $shippingData->get('territorial_area_2')->name }}</td>

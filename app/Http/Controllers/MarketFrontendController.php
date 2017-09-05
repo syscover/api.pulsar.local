@@ -60,15 +60,6 @@ class MarketFrontendController extends Controller
 
         $response['product']->load('categories'); // lazy load categories;
 
-
-        // get atachments to product
-        /*response['attachments'] = Attachment::builder()
-            ->where('lang_id', user_lang())
-            ->where('object_id', $response['product']->id)
-            ->where('family_id', config('www.attachmentsFamily.productSheet'))
-            ->orderBy('sort', 'asc')
-            ->get();*/
-
         return view('web.content.product', $response);
     }
 
