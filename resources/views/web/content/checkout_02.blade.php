@@ -137,7 +137,7 @@
                         </ul>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary">Nex step</button>
+                <button type="submit" class="btn btn-primary pointer">Nex step</button>
             </form>
         </div>
     </div>

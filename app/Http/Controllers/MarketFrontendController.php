@@ -187,9 +187,9 @@ class MarketFrontendController extends Controller
 
         }
 
-        //****************
+        //********************************
         //* get data for create order
-        //****************
+        //********************************
         $data       = $request->all();
         $customer   = auth('crm')->user();
         $cart       = CartProvider::instance();
@@ -214,9 +214,49 @@ class MarketFrontendController extends Controller
             RedsysService::createPayment($order);
         }
         // PayPal Payment
-        elseif($request->input('paymentMethod') === '2')
+        elseif($request->input('payment_method_id') === '2')
         {
             PayPalService::createPayment($order);
         }
+    }
+
+    public function marketRedsysSuccessful(Request $request)
+    {
+        $order = RedsysService::successful($request);
+
+        dd('marketRedsysSuccessful');
+        dd($order);
+        dd($request->all());
+
+        return redirect()
+            ->route('home-' . user_lang());
+    }
+
+    public function marketRedsysError(Request $request)
+    {
+        $order = RedsysService::error($request);
+
+        dd('marketRedsysError');
+        dd($order);
+        dd($request->all());
+
+        return redirect()
+            ->route('home-' . user_lang());
+    }
+
+    public function marketPayPalSuccessful(Request $request)
+    {
+        //$order = PayPalService::successful($request);
+        dd('marketPayPalSuccessful');
+        dd($order);
+        dd($request->all());
+    }
+
+    public function marketPayPalError(Request $request)
+    {
+        $order = PayPalService::error($request);
+        dd('marketPayPalError');
+        dd($order);
+        dd($request->all());
     }
 }

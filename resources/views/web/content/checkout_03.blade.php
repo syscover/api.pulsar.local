@@ -52,7 +52,7 @@
                         </ul>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary">Pay</button>
+                <button type="submit" class="btn btn-primary pointer">Pay</button>
             </form>
         </div>
         <div class="col-md-6">

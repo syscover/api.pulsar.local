@@ -69,7 +69,7 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::put('/account/sing-in',                                                          '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn');
 
 
-    // CHECKOUT
+    // MARKET
     // EN
     Route::get('/en/checkout/shipping',                                                     '\App\Http\Controllers\MarketFrontendController@getCheckout01')->name('getCheckout01-en');
     Route::post('/en/checkout/shipping',                                                    '\App\Http\Controllers\MarketFrontendController@postCheckout01')->name('postCheckout01-en');
@@ -85,6 +85,12 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::post('/es/realizar/pedido/factura',                                              '\App\Http\Controllers\MarketFrontendController@postCheckout02')->name('postCheckout02-es');
     Route::get('/es/realizar/pedido/pago',                                                  '\App\Http\Controllers\MarketFrontendController@getCheckout03')->name('getCheckout03-es');
     Route::post('/es/realizar/pedido/pago',                                                 '\App\Http\Controllers\MarketFrontendController@postCheckout03')->name('postCheckout03-es');
+
+    //
+    Route::get('/market/redsys/successful',                                                 '\App\Http\Controllers\MarketFrontendController@marketRedsysSuccessful')->name('marketRedsysSuccessful');
+    Route::get('/market/redsys/error',                                                      '\App\Http\Controllers\MarketFrontendController@marketRedsysError')->name('marketRedsysError');
+    Route::post('/market/paypal/successful',                                                '\App\Http\Controllers\MarketFrontendController@marketPayPalSuccessful')->name('marketPayPalSuccessful');
+    Route::get('/market/paypal/error',                                                      '\App\Http\Controllers\MarketFrontendController@marketPayPalError')->name('marketPayPalError');
 
 });
 
