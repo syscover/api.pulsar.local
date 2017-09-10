@@ -1,9 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Syscover\Market\Models\Order;
 use Syscover\Market\Models\PaymentMethod;
 use Syscover\Market\Services\OrderRowService;
 use Syscover\Market\Services\OrderService;
+use Syscover\Market\Services\PaymentMethodService;
 use Syscover\Market\Services\PayPalService;
 use Syscover\Market\Services\RedsysService;
 use Syscover\ShoppingCart\Facades\CartProvider;
@@ -63,6 +65,22 @@ class MarketFrontendController extends Controller
         $response['product']->load('categories'); // lazy load categories;
 
         return view('web.content.product', $response);
+    }
+
+    public function order(Request $request)
+    {
+        // get parameters from url route
+        $parameters = $request->route()->parameters();
+
+        $response = [];
+
+        $response['order'] = Order::builder()->find($parameters['id']);
+
+        // check that product exist
+        if($response['product'] == null)
+            return view('errors.common', ['message' => 'Error! Product not exist']);
+
+        return view('web.content.order', $response);
     }
 
     // Set shipping data
@@ -208,16 +226,8 @@ class MarketFrontendController extends Controller
         // destroy shopping cart
         CartProvider::instance()->destroy();
 
-        // Redsys Payment (debit and credit cart)
-        if($request->input('payment_method_id') === '1')
-        {
-            RedsysService::createPayment($order);
-        }
-        // PayPal Payment
-        elseif($request->input('payment_method_id') === '2')
-        {
-            PayPalService::createPayment($order);
-        }
+        // launch request to payment method for launch payment
+        PaymentMethodService::managePaymentMethod($request, $order);
     }
 
     public function marketRedsysSuccessful(Request $request)
