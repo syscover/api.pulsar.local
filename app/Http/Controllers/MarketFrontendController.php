@@ -77,7 +77,7 @@ class MarketFrontendController extends Controller
         $response['order'] = Order::builder()->find($parameters['id']);
 
         // check that product exist
-        if($response['product'] == null)
+        if($response['order'] == null)
             return view('errors.common', ['message' => 'Error! Product not exist']);
 
         return view('web.content.order', $response);
