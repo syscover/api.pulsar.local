@@ -81,7 +81,8 @@ class ShoppingCartController extends Controller
         }
 
         // when get price from product, internally calculate subtotal and total.
-        // we don't want save this object on shopping cart, if login user with different prices and add same product, will be different because the product will have different prices
+        // we don't want save this object on shopping cart, if login user with different prices and add same product,
+        // will be different because the product will have different prices
         $optionsProduct = $product;
 
         try
