@@ -21,13 +21,13 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-en');
     Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-en');
     Route::get('/en/account/password',                                                      '\App\Http\Controllers\CustomerFrontendController@getPasswordReset')->name('getPasswordReset-en');
-    Route::get('/en/account/password/reset/{token}',                                        '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset-en');
+    Route::get('/en/account/password/reset/{token}',                                        '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('showResetForm-en');
 
     // ES
     Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-es');
     Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-es');
     Route::get('/es/cuenta/password',                                                       '\App\Http\Controllers\CustomerFrontendController@getPasswordReset')->name('getPasswordReset-es');
-    Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset-es');
+    Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('showResetForm-es');
 
     //
     Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('postLogin');
@@ -112,5 +112,4 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
 // Password Reset Routes...
 //$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');

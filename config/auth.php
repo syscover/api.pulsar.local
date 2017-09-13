@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard'     => 'pulsar',
-        'passwords' => 'pulsarPasswordBroker',
+        'guard'     => 'admin',
+        'passwords' => 'adminPasswordBroker',
     ],
 
     /*
@@ -51,14 +51,9 @@ return [
             'provider'  => 'crmCustomer',
         ],
 
-        'pulsar' => [
+        'admin' => [
             'driver'    => 'session',
-            'provider'  => 'pulsarUser',
-        ],
-
-        'crm' => [
-            'driver'    => 'session',
-            'provider'  => 'crmCustomer',
+            'provider'  => 'adminUser',
         ],
     ],
 
@@ -90,7 +85,7 @@ return [
             'provider' => 'users',
         ],
 
-        'pulsarUser' => [
+        'adminUser' => [
             'driver'    => 'eloquent',
             'model'     => Syscover\Admin\Models\User::class,
         ],
@@ -118,8 +113,8 @@ return [
 
     'passwords' => [
         
-        'pulsarPasswordBroker' => [
-            'provider'  => 'pulsarUser',
+        'adminPasswordBroker' => [
+            'provider'  => 'adminUser',
             'table'     => 'admin_password_resets',
             'expire'    => 60,
         ],
