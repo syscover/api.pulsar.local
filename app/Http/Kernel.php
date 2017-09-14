@@ -70,7 +70,7 @@ class Kernel extends HttpKernel
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
         'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
         'pulsar.tax.rule'       => \Syscover\Market\Middleware\TaxRule::class,
-        'pulsar.core.graphQL'   => \Syscover\Core\Middleware\GraphQL::class,
+        'pulsar.core.graphql'   => \Syscover\Core\Middleware\GraphQL::class,
 
         // JWT
         'jwt.auth'              => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
