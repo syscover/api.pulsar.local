@@ -21,13 +21,13 @@
 /app/Providers/VinipadServiceProvider.php
 
 # -- Config -----------------------------------------------------
-/config/pulsar.core.php
-/config/pulsar.admin.php
-/config/pulsar.market.php
-/config/pulsar.navtools.php
-/config/pulsar.crm.php
-/config/pulsar.cms.php
-/config/pulsar.shopping-cart.php
+/config/pulsar-core.php
+/config/pulsar-admin.php
+/config/pulsar-market.php
+/config/pulsar-crm.php
+/config/pulsar-cms.php
+/config/pulsar-shopping_cart.php
+/config/pulsar-navtools.php
 /config/jwt.php
 /config/graphql.php
 
@@ -52,16 +52,12 @@ Homestead.json
 !/database/seeds/
 /node_modules
 /public/hot
-/public/storage
 /storage/*.key
 /vendor
 /.idea
 /.vagrant
-Homestead.json
-Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
 
 # -- Composer -----------------------------------------
 composer.phar
