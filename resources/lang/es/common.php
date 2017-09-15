@@ -7,6 +7,7 @@ return [
     'blog'                                  => 'Blog|Blogs',
     'checkout'                              => 'Hacer pedido',
     'contact'                               => 'Contacto',
+    'contact_form'                          => 'Formulario de contacto',
     'coupon_code'                           => 'Código de cupón',
     'customs'                               => 'Aduanas',
     'delete'                                => 'Borrar',

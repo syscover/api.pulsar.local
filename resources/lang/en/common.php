@@ -7,6 +7,7 @@ return [
     'blog'                                  => 'Blog|Blogs',
     'checkout'                              => 'Checkout',
     'contact'                               => 'Contact',
+    'contact_form'                          => 'Contact form',
     'coupon_code'                           => 'Coupon code',
     'customs'                               => 'Customs TAX',
     'delete'                                => 'Delete',
