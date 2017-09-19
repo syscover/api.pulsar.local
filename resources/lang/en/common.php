@@ -2,6 +2,7 @@
 
 return [
     'add_to_cart'                           => 'Buy',
+    'all_rights_reserved'                   => 'All rights reserved',
     'apply'                                 => 'Apply',
     'article'                               => 'Article|Articles',
     'blog'                                  => 'Blog|Blogs',
@@ -22,6 +23,7 @@ return [
     'logout'                                => 'Logout',
     'my_account'                            => 'My Account',
     'name'                                  => 'Name|Names',
+    'order'                                 => 'Order|Orders',
     'paypal_item_list_description'          => 'Products',
     'paypal_shipping_description'           => 'Shipping',
     'price'                                 => 'Price|Prices',
