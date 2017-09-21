@@ -46,14 +46,14 @@ return [
             'provider' => 'users',
         ],
 
-        'crm' => [
-            'driver'    => 'session',
-            'provider'  => 'crmCustomer',
-        ],
-
         'admin' => [
             'driver'    => 'session',
             'provider'  => 'adminUser',
+        ],
+
+        'crm' => [
+            'driver'    => 'session',
+            'provider'  => 'crmCustomer',
         ],
     ],
 
