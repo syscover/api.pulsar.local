@@ -180,6 +180,7 @@ return [
         App\Providers\MarketServiceProvider::class,
         App\Providers\CmsServiceProvider::class,
         App\Providers\ShoppingCartServiceProvider::class,
+        App\Providers\UpsServiceProvider::class,
 
         /*
          * Application Service Providers...
