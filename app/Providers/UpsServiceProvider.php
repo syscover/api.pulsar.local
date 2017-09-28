@@ -1,7 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Syscover\Crm\GraphQL\CrmGraphQLServiceProvider;
+use Syscover\Ups\Rate;
 
 class UpsServiceProvider extends ServiceProvider
 {
@@ -20,7 +20,7 @@ class UpsServiceProvider extends ServiceProvider
 
         // register config files
         $this->publishes([
-            $this->app->basePath() . '/workbench/syscover/pulsar-crm/src/config/pulsar-crm.php' => config_path('pulsar-ups.php'),
+            $this->app->basePath() . '/workbench/syscover/pulsar-ups/src/config/pulsar-ups.php' => config_path('pulsar-ups.php'),
         ]);
     }
 
@@ -31,5 +31,22 @@ class UpsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+        $this->registerRate();
 	}
+
+    /**
+     * Register the Rate class.
+     *
+     * @return void
+     */
+    protected function registerRate()
+    {
+        $this->app->singleton('ups.rate', function () {
+            return new Rate(
+                config('pulsar-ups.user'),
+                config('pulsar-ups.password'),
+                config('pulsar-ups.access_key')
+            );
+        });
+    }
 }

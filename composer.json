@@ -21,7 +21,7 @@
         "phpunit/phpunit": "~6.0",
         "ssheduardo/redsys-laravel": "~1.2",
         "paypal/rest-api-sdk-php": "*",
-        "ptondereau/laravel-ups-api": "^1.0"
+        "guzzlehttp/guzzle": "~6.0"
     },
     "autoload": {
         "classmap": [
