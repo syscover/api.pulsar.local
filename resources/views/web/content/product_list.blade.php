@@ -65,7 +65,7 @@
                                     </select>
                             @else
                                 <!-- custom fields with value without select -->
-                                    {{ $field->labels[user_lang()] }} {{ $product->data['properties'][$field->name] }}
+                                    {{ $field->labels[user_lang()] }} {{ $product->data['customFields'][$field->name] }}
                             @endif
 
                         @endforeach
