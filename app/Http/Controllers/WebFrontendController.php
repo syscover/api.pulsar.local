@@ -1,7 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Syscover\Market\Models\Order;
-
 /**
  * Class WebFrontendController
  * @package App\Http\Controllers
