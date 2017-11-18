@@ -1,8 +1,11 @@
+.container {
+    margin-top: 56px;
+}
+
 .header-cart p{
     font-size: 12px;
     font-weight: bold;
     text-overflow: ellipsis;
-
 }
 
 .row-cart p{

@@ -9,11 +9,11 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     // CMS - BLOG
     // EN
     Route::get('/en/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-en');
-    Route::get('/en/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getArticle')->name('article-en');
+    Route::get('/en/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-en');
 
     // ES
     Route::get('/es/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-es');
-    Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getArticle')->name('article-es');
+    Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-es');
 
 
     // CUSTOMER ACCOUNT

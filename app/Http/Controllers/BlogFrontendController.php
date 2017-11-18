@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Syscover\Cms\Models\Article;
+use Syscover\Cms\Models\Category;
 
 /**
  * Class BlogFrontendController
@@ -24,8 +25,13 @@ class BlogFrontendController extends Controller
         return view('web.content.blog', ['articles' => $articles]);
     }
 
-    public function getArticle($slug)
+    public function getPost($slug)
     {
+        $ct = Article::builder()->get()->load('categories');
+        //dd($ct);
+
+
+
         $article = Article::builder()
             ->where('publish', '<', date('Y-m-d H-i-s')) // filter only publish article
             ->where('lang_id', user_lang())
@@ -38,6 +44,6 @@ class BlogFrontendController extends Controller
         // set language for Carbon
         Carbon::setLocale(user_lang());
 
-        return view('web.content.article', ['article' => $article]);
+        return view('web.content.post', ['article' => $article]);
     }
 }

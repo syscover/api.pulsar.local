@@ -11,5 +11,15 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.styles([
+    'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    'node_modules/font-awesome/css/font-awesome.min.css',
+    'node_modules/froala-editor/css/froala_style.min.css',
+    'public/css/helpers.css',
+    'public/css/styles.css'
+], 'public/css/app.css')
+    .scripts([
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/tether/dist/js/tether.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    ], 'public/js/app.js');
