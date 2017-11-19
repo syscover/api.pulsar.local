@@ -27,11 +27,6 @@ class BlogFrontendController extends Controller
 
     public function getPost($slug)
     {
-        $ct = Article::builder()->get()->load('categories');
-        //dd($ct);
-
-
-
         $article = Article::builder()
             ->where('publish', '<', date('Y-m-d H-i-s')) // filter only publish article
             ->where('lang_id', user_lang())
