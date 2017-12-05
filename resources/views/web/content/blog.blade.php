@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <h1 class="margin-vertical-20">{{ trans_choice('common.blog', 1) }}</h1>
+    <h1 class="margin-vertical-20">{{ trans_choice('core::common.blog', 1) }}</h1>
     @foreach($articles as $article)
         <div class="card mb-3">
             <img class="card-img-top" {!! get_src_srcset_alt_title($article->attachments->first()) !!}>

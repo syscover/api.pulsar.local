@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Syscover\Ups\Entities\Service;
+use Syscover\Ups\Facades\Rate;
+
 /**
  * Class WebFrontendController
  * @package App\Http\Controllers
@@ -15,5 +18,45 @@ class WebFrontendController extends Controller
     public function forms()
     {
         return view('web.content.forms');
+    }
+
+    public function ups()
+    {
+
+//        $response = RateService::getRate(
+//            'ES',
+//            '28020',
+//            'US',
+//            '10010',
+//            '0.5'
+//        );
+
+        return Rate::addUpsSecurity()
+            ->addRequest()
+            ->addShipper(
+                'ES',
+                '28020'
+            )
+            ->addShipFrom(
+                'ES',
+                '28020'
+            )
+            ->addShipTo(
+                'US',
+                '10010'
+            )
+            ->addService(
+               Service::S_STANDARD
+            )
+            ->addPackage()
+            ->addPackageWeight(
+                '0.5'
+            )
+            ->addShipmentRatingOptions()->send();
+
+
+
+
+        return $response;
     }
 }

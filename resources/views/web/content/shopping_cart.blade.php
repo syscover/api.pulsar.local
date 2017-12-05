@@ -64,7 +64,7 @@
 
 @section('content')
 
-    <h1 class="margin-vertical-20">{{ trans('common.shopping_cart') }}</h1>
+    <h1 class="margin-vertical-20">{{ trans('core::common.shopping_cart') }}</h1>
 
     <!-- head shopping cart-->
     @include('web.includes.head_shopping_cart', ['delete' => true])
@@ -93,10 +93,10 @@
         <div class="col-md-5 ml-auto">
             <form>
                 <div class="form-group">
-                    <input class="form-control" name="couponCode" placeholder="{{ trans('common.coupon_code') }}">
+                    <input class="form-control" name="couponCode" placeholder="{{ trans('core::common.coupon_code') }}">
                 </div>
                 <div class="form-group">
-                    <a class="btn btn-primary" id="couponCodeBt" href="#">{{ trans('common.apply') }}</a>
+                    <a class="btn btn-primary" id="couponCodeBt" href="#">{{ trans('core::common.apply') }}</a>
                 </div>
             </form>
         </div>
@@ -111,7 +111,7 @@
         </div>
         @if($cartItems->count() > 0)
             <div class="col-md-offset-1 col-md-3">
-                <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('common.checkout') }}</a>
+                <a class="btn btn-primary" href="{{ route('getCheckout01-' . user_lang()) }}">{{ trans('core::common.checkout') }}</a>
             </div>
         @endif
     </div>

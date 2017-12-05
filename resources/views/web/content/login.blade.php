@@ -3,16 +3,14 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-6 justify-content-center">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center d-flex align-items-center">
 
-            <h1 class="margin-vertical-20">Login</h1>
-
-            <div class="card">
+            <div class="card margin-top-100">
                 <div class="card-header">
-                    Featured
+                    Login
                 </div>
-                <div class="card-body">
+                <div class="card-body padding-30">
                     <form method="post" action="{{ route('postLogin') }}">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -41,6 +39,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

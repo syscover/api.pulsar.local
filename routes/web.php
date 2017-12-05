@@ -104,10 +104,12 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
     Route::get('/en/product/{category}/{slug}',                                             '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-en');
 
     // ES
-    Route::get('/es/products',                                                              '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-es');
+    Route::get('/es/productos',                                                             '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-es');
     Route::get('/es/producto/{category}/{slug}',                                            '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-es');
 });
 
+// URL TESTING
+Route::get('/es/ups',                                                                       '\App\Http\Controllers\WebFrontendController@ups')->name('ups');
 
 // Password Reset Routes...
 //$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');

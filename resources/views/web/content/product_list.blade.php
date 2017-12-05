@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <h1 class="margin-vertical-20">{{ trans_choice('common.product', 2) }}</h1>
+    <h1 class="margin-vertical-20">{{ trans_choice('core::common.product', 2) }}</h1>
 
     <div class="card-columns">
 
@@ -43,7 +43,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <!-- /slider -->
+                <!-- ./slider -->
 
                 <div class="card-body">
                     <h4 class="card-title">{{ $product->name }}</h4>
@@ -55,17 +55,17 @@
 
                             @if($field->values->where('lang_id', user_lang())->count() > 0)
                                 <!-- custom fields with select values -->
-                                    <select class="custom-select">
-                                        <option>{{ $field->labels[user_lang()] }}</option>
-                                        @foreach($field->values->where('lang_id', user_lang()) as $value)
-                                            <option value="{{ $value->id }}">
-                                                {{ $value->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <select class="custom-select">
+                                    <option>{{ $field->labels[user_lang()] }}</option>
+                                    @foreach($field->values->where('lang_id', user_lang()) as $value)
+                                        <option value="{{ $value->id }}">
+                                            {{ $value->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             @else
                                 <!-- custom fields with value without select -->
-                                    {{ $field->labels[user_lang()] }} {{ $product->data['customFields'][$field->name] }}
+                                {{ $field->labels[user_lang()] }} {{ $product->data['customFields'][$field->name] }}
                             @endif
 
                         @endforeach
@@ -77,11 +77,15 @@
                         <small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>
                     </p>
                     <a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
-                    <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ trans('common.add_to_cart') }}</a>
+                    <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ trans('core::common.add_to_cart') }}</a>
                 </div>
+                <!-- ./card-body -->
+
                 <div class="card-footer">
                     <small class="text-muted">Camiseta</small>
                 </div>
+                <!-- ./card-footer -->
+
             </div>
         @endforeach
     </div>

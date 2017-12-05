@@ -21,7 +21,11 @@ class CoreServiceProvider extends ServiceProvider
         // register config files
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-core/src/config/pulsar-core.php' => config_path('pulsar-core.php'),
+            $this->app->basePath() . '/workbench/syscover/pulsar-core/src/public'                 => public_path('/vendor/pulsar-core')
         ]);
+
+        // register translations
+        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/lang', 'core');
 
         // register GraphQL types and schema
         CoreGraphQLServiceProvider::bootGraphQLTypes();
@@ -33,7 +37,5 @@ class CoreServiceProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
-	public function register()
-	{
-	}
+	public function register() { }
 }

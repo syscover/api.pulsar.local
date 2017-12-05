@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <h1 class="margin-vertical-20">{{ trans_choice('common.blog', 1) }}</h1>
+    <h1 class="margin-vertical-20">{{ trans_choice('core::common.blog', 1) }}</h1>
     <!--
         Show article
     -->

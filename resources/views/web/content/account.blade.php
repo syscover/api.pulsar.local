@@ -33,11 +33,11 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="name">{{ trans_choice('common.name', 1) }}</label>
+            <label for="name">{{ trans_choice('core::common.name', 1) }}</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $customer->name }}" placeholder="Name" required>
         </div>
         <div class="form-group">
-            <label for="surname">{{ trans_choice('common.surname', 1) }}</label>
+            <label for="surname">{{ trans_choice('core::common.surname', 1) }}</label>
             <input type="text" class="form-control" id="surname" name="surname" value="{{ $customer->surname }}" placeholder="Surname" required>
         </div>
         <div class="form-group">

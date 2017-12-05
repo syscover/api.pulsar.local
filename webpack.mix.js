@@ -11,15 +11,22 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.styles([
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'node_modules/font-awesome/css/font-awesome.min.css',
-    'node_modules/froala-editor/css/froala_style.min.css',
-    'public/css/helpers.css',
-    'public/css/styles.css'
-], 'public/css/app.css')
-    .scripts([
+mix
+    .styles([
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/font-awesome/css/font-awesome.min.css',
+        'node_modules/froala-editor/css/froala_style.min.css',
+        'workbench/syscover/pulsar-core/src/public/css/helpers/margin.css',
+        'workbench/syscover/pulsar-core/src/public/css/helpers/padding.css',
+        'workbench/syscover/pulsar-core/src/public/css/helpers/helpers.css',
+        'public/css/styles.css'
+    ], 'public/css/app.css')
+    .babel([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/tether/dist/js/tether.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    ], 'public/js/app.js');
+        'workbench/syscover/pulsar-core/src/public/vendor/territories/js/jquery.territories.js'
+    ], 'public/js/app.js')
+    .options({
+        processCssUrls: true
+    })
+    .version();
