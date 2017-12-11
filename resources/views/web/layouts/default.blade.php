@@ -67,7 +67,6 @@
     @yield('content')
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.js"></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 </body>

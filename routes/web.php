@@ -15,6 +15,9 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::get('/es/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-es');
     Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-es');
 
+    // ES
+    Route::get('/es/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-es');
+
 
     // CUSTOMER ACCOUNT
     // EN

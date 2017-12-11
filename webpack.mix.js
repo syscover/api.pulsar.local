@@ -23,6 +23,7 @@ mix
     ], 'public/css/app.css')
     .babel([
         'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/popper.js/dist/umd/popper.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'workbench/syscover/pulsar-core/src/public/vendor/territories/js/jquery.territories.js'
     ], 'public/js/app.js')
