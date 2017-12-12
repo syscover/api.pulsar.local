@@ -24,6 +24,9 @@ class ReviewServiceProvider extends ServiceProvider
         // register translations
         $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/lang', 'review');
 
+        // register views
+        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/views', 'review');
+
         // register seeds
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-review/src/database/seeds/' => base_path('/database/seeds')

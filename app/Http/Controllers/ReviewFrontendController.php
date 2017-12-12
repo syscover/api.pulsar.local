@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Syscover\Market\Models\Product;
 use Syscover\Review\Models\Poll;
 use Syscover\Review\Models\Review;
@@ -52,5 +53,17 @@ class ReviewFrontendController extends Controller
         }
 
         return redirect()->route('getProducts-' . user_lang());
+    }
+
+    public function showReview(Request $request)
+    {
+        // get parameters from url route
+        $parameters = $request->route()->parameters();
+
+        $response['review'] = Review::find(Crypt::decryptString($parameters['slug']));
+
+        if(! $response['review']) abort(404);
+
+        return view('web.content.review', $response);
     }
 }

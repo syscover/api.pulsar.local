@@ -15,9 +15,15 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::get('/es/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-es');
     Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-es');
 
+
+    // REVIEWS
+    // EN
+    Route::get('/en/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-en');
+    Route::get('/en/review/show/{slug}',                                                    '\App\Http\Controllers\ReviewFrontendController@showReview')->name('show.review-en');
+
     // ES
     Route::get('/es/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-es');
-
+    Route::get('/es/review/show/{slug}',                                                    '\App\Http\Controllers\ReviewFrontendController@showReview')->name('show.review-es');
 
     // CUSTOMER ACCOUNT
     // EN

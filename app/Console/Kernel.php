@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        \Syscover\Admin\Commands\Cron::class,
     ];
 
     /**
