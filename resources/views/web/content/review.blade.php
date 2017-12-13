@@ -8,12 +8,13 @@
 @section('content')
     <h1 class="margin-vertical-20">Review</h1>
 
-    <form action="">
+    <form action="{{ route('pulsar.review.store.responses') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="review" value="{{ $review->id }}">
+        <input type="hidden" name="route" value="home">
 
         <ul>
-            @foreach($review->poll->questions->where('lang_id', user_lang()) as $question)
+            @foreach($review->poll->questions->where('lang_id', user_lang())->sortBy('sort') as $question)
                 <li>
                     {{ $question->name }}<br>
                     {{ $question->description }}<br>

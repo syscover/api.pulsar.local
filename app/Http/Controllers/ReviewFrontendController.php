@@ -38,11 +38,12 @@ class ReviewFrontendController extends Controller
                 'poll_id'           => $pollId,
                 'object_id'         => $product->id,
                 'object_type'       => Product::class,
+                'object_name'       => $product->name,
                 'customer_id'       => $customer->id,
                 'customer_name'     => $customer->name,
                 'customer_email'    => $customer->email,
+                'customer_verified' => true,
                 'email_subject'     => 'EMAL REVIEW',
-                'verified'          => true,
                 'mailing'           => $now->addDays($poll->mailing_days)->toDateTimeString(),
                 'expiration'        => $now->addDays($poll->expiration_days)->toDateTimeString(),
             ]);
@@ -61,6 +62,7 @@ class ReviewFrontendController extends Controller
         $parameters = $request->route()->parameters();
 
         $response['review'] = Review::find(Crypt::decryptString($parameters['slug']));
+        //$response['review'] = Review::where('id', Crypt::decryptString($parameters['slug']))->where('completed', false)->first();
 
         if(! $response['review']) abort(404);
 

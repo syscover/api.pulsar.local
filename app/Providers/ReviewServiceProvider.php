@@ -17,6 +17,7 @@ class ReviewServiceProvider extends ServiceProvider
 
         // register routes
         $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/routes/api.php');
+        $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/routes/web.php');
 
         // register migrations
         $this->loadMigrationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/database/migrations');
