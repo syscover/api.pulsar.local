@@ -3,9 +3,11 @@
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Notification;
 use Syscover\Market\Models\Product;
 use Syscover\Review\Models\Poll;
 use Syscover\Review\Models\Review;
+use Syscover\Review\Notifications\Review as ReviewNotification;
 
 /**
  * Class ReviewFrontendController
@@ -33,7 +35,7 @@ class ReviewFrontendController extends Controller
             $customer   = auth('crm')->user();
             $now        = new Carbon(config('app.timezone'));
 
-            Review::create([
+            $review = Review::create([
                 'date'              => $now->toDateTimeString(),
                 'poll_id'           => $pollId,
                 'object_id'         => $product->id,
@@ -47,6 +49,9 @@ class ReviewFrontendController extends Controller
                 'mailing'           => $now->addDays($poll->mailing_days)->toDateTimeString(),
                 'expiration'        => $now->addDays($poll->expiration_days)->toDateTimeString(),
             ]);
+
+            Notification::route('mail', 'cpalacin@digitalh2.com')
+                ->notify(new ReviewNotification($review));
         }
         else
         {

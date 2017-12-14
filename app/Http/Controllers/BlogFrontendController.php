@@ -22,7 +22,7 @@ class BlogFrontendController extends Controller
         // set language for Carbon
         Carbon::setLocale(user_lang());
 
-        return view('web.content.blog', ['articles' => $articles]);
+        return view('web.content.blog.blog', ['articles' => $articles]);
     }
 
     public function getPost($slug)
@@ -39,6 +39,6 @@ class BlogFrontendController extends Controller
         // set language for Carbon
         Carbon::setLocale(user_lang());
 
-        return view('web.content.post', ['article' => $article]);
+        return view('web.content.blog.post', ['article' => $article]);
     }
 }
