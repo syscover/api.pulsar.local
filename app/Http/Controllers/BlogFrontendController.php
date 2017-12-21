@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Syscover\Cms\Models\Article;
 use Syscover\Cms\Models\Category;
+use Syscover\Review\Models\Review;
 
 /**
  * Class BlogFrontendController
