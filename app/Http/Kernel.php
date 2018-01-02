@@ -59,21 +59,16 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth'                  => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic'            => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'              => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'                   => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest'                 => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'              => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        // pulsar providers
+        // pulsar middlewares
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
         'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
         'pulsar.tax.rule'       => \Syscover\Market\Middleware\TaxRule::class,
-        'pulsar.core.graphql'   => \Syscover\Core\Middleware\GraphQL::class,
-
-        // JWT
-        'jwt.auth'              => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh'           => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];
 }

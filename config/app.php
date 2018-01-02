@@ -167,8 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-         Folklore\GraphQL\ServiceProvider::class,
+        Folklore\GraphQL\ServiceProvider::class,
 
         /*
          * Pulsar Application Service Providers...
@@ -241,8 +240,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'GraphQL' => Folklore\GraphQL\Support\Facades\GraphQL::class,
     ],
 
