@@ -8,7 +8,7 @@
 @section('content')
     <h1 class="margin-vertical-20">Review</h1>
 
-    <form action="{{ route('pulsar.review.store.responses') }}" method="post">
+    <form action="{{ route('pulsar.review.responses.store') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="review" value="{{ $review->id }}">
         <input type="hidden" name="route" value="home">

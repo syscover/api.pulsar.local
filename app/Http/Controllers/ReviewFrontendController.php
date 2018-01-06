@@ -57,12 +57,12 @@ class ReviewFrontendController extends Controller
         return redirect()->route('getProducts-' . user_lang());
     }
 
-    public function showReview(Request $request)
+    public function fillReview(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
 
-        $response['review'] = Review::where('id', Crypt::decryptString($parameters['slug']))->where('completed', false)->first();
+        $response['review'] = Review::where('id', decrypt($parameters['slug']))->where('completed', false)->first();
 
         if(! $response['review']) abort(404);
 
