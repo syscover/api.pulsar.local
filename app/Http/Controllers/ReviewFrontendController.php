@@ -2,10 +2,10 @@
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Syscover\Market\Models\Product;
 use Syscover\Review\Models\Poll;
 use Syscover\Review\Models\Review;
+use Syscover\Review\Services\ReviewService;
 
 /**
  * Class ReviewFrontendController
@@ -32,9 +32,10 @@ class ReviewFrontendController extends Controller
             $customer   = auth('crm')->user();
             $now        = new Carbon(config('app.timezone'));
 
-            Review::create([
+
+            $review = ReviewService::create([
                 'date'              => $now->toDateTimeString(),
-                'poll_id'           => $pollId,
+                'poll_id'           => $poll->id,
                 'object_id'         => $product->id,
                 'object_type'       => Product::class,
                 'object_name'       => $product->name,
@@ -48,6 +49,12 @@ class ReviewFrontendController extends Controller
                 'mailing'           => $now->addDays($poll->mailing_days)->toDateTimeString(),
                 'expiration'        => $now->addDays($poll->expiration_days)->toDateTimeString(),
             ]);
+
+            // set poll url in review
+            $review->poll_url = $poll->poll_route ?
+                route($poll->poll_route, ['code' => encrypt($review->id)]) :
+                route('review.fill.poll', ['code' => encrypt($review->id)]); // default route
+            $review->save();
         }
         else
         {
@@ -57,12 +64,12 @@ class ReviewFrontendController extends Controller
         return redirect()->route('getProducts-' . user_lang());
     }
 
-    public function fillReview(Request $request)
+    public function poll(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
 
-        $response['review'] = Review::where('id', decrypt($parameters['slug']))->where('completed', false)->first();
+        $response['review'] = Review::where('id', decrypt($parameters['code']))->where('completed', false)->first();
 
         if(! $response['review']) abort(404);
 
