@@ -20,7 +20,7 @@
                 <p class="card-text margin-top-15">
                     <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
                 </p>
-                <a href="{{ nt_route('post-' . user_lang(), ['slug' => $article->slug]) }}" class="btn btn-primary">Ver Artículo</a>
+                <a href="{{ nt_route('web.post-' . user_lang(), ['slug' => $article->slug]) }}" class="btn btn-primary">Ver Artículo</a>
             </div>
         </div>
     @endforeach

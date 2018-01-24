@@ -238,8 +238,8 @@ class CustomerFrontendController extends Controller
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            'user' => 'required',
-            'password' => 'required',
+            'user'      => 'required',
+            'password'  => 'required',
         ]);
 
         // set $credentials
@@ -251,16 +251,20 @@ class CustomerFrontendController extends Controller
         if (auth('crm')->attempt($credentials, $request->has('remember'))) {
 
             // check if customer is active
-            if (! auth('crm')->user()->active) {
+            if (! auth('crm')->user()->active)
+            {
                 auth('crm')->logout();
 
                 // error user inactive
-                if ($request->input('responseType') == 'json') {
+                if ($request->input('responseType') == 'json')
+                {
                     return response()->json([
                         'status' => 'error',
                         'message' => 'User inactive'
                     ], 401);
-                } else {
+                }
+                else
+                {
                     return redirect()
                         ->route($this->loginPath . user_lang())
                         ->withErrors([
@@ -271,12 +275,15 @@ class CustomerFrontendController extends Controller
             }
 
             // authentication successful!
-            if ($request->input('responseType') == 'json') {
+            if ($request->input('responseType') == 'json')
+            {
                 return response()->json([
-                    'status' => 'success',
-                    'customer' => auth('crm')->user()
+                    'status'    => 'success',
+                    'customer'  => auth('crm')->user()
                 ], 200);
-            } else {
+            }
+            else
+            {
                 return redirect()
                     ->intended(route($this->redirectTo . user_lang()));
             }
@@ -286,8 +293,8 @@ class CustomerFrontendController extends Controller
         if($request->input('responseType') == 'json')
         {
             return response()->json([
-                'status' => 'error',
-                'message' => 'User or password incorrect'
+                'status'    => 'error',
+                'message'   => 'User or password incorrect'
             ], 401);
         }
         else

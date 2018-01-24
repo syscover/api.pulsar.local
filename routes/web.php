@@ -2,18 +2,18 @@
 
 Route::group(['middleware' => ['pulsar.navtools']], function () {
 
-    Route::get('/',                                                                         '\App\Http\Controllers\WebFrontendController@home')->name('home');
-    Route::get('/es',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('home-es');
-    Route::get('/en',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('home-en');
+    Route::get('/',                                                                         '\App\Http\Controllers\WebFrontendController@home')->name('web.home');
+    Route::get('/es',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('web.home-es');
+    Route::get('/en',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('web.home-en');
 
     // CMS - BLOG
     // EN
-    Route::get('/en/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-en');
-    Route::get('/en/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-en');
+    Route::get('/en/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('web.blog-en');
+    Route::get('/en/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('web.post-en');
 
     // ES
-    Route::get('/es/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('blog-es');
-    Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('post-es');
+    Route::get('/es/blog',                                                                  '\App\Http\Controllers\BlogFrontendController@getBlog')->name('web.blog-es');
+    Route::get('/es/blog/{slug}',                                                           '\App\Http\Controllers\BlogFrontendController@getPost')->name('web.post-es');
 
 
     // REVIEWS

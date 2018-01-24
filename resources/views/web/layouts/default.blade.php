@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>@yield('title', 'Titulo de la página')</title>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,11 +19,11 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item {{ active_route(['home', 'home-' . user_lang()], 'active') }}">
-                <a class="nav-link" href="{{ route('home-' . user_lang()) }}">{{ trans('core::common.home') }}</a>
+            <li class="nav-item {{ active_route(['web.home', 'web.home-' . user_lang()], 'active') }}">
+                <a class="nav-link" href="{{ route('web.home-' . user_lang()) }}">{{ trans('core::common.home') }}</a>
             </li>
-            <li class="nav-item {{ active_route(['blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
-                <a class="nav-link" href="{{ route('blog-' . user_lang()) }}">{{ trans_choice('core::common.blog', 1) }}</a>
+            <li class="nav-item {{ active_route(['web.blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
+                <a class="nav-link" href="{{ route('web.blog-' . user_lang()) }}">{{ trans_choice('core::common.blog', 1) }}</a>
             </li>
             <li class="nav-item {{ active_route('getProducts-' . user_lang(), 'active') }}">
                 <a class="nav-link" href="{{ route('getProducts-' . user_lang()) }}">{{ trans_choice('core::common.product', 2) }}</a>

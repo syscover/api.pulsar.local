@@ -11,7 +11,9 @@
         Show article
     -->
     <div class="card mb-3">
-        <img class="card-img-top" {!! get_src_srcset_alt_title($article->attachments->first()) !!}>
+        @if($article->attachments->count() > 0)
+            <img class="card-img-top" {!! get_src_srcset_alt_title($article->attachments->first()) !!}>
+        @endif
         <div class="card-block">
             <h4 class="card-title">{{ $article->title }}</h4>
             <h6 class="card-title">{{ $article->author->name }}</h6>
@@ -23,7 +25,7 @@
             <p class="card-text margin-top-15">
                 <small class="text-muted">Última actualización {{ \Carbon\Carbon::createFromTimeStamp(strtotime($article->date))->diffForHumans() }}</small>
             </p>
-            <a href="{{ route('blog-' . user_lang()) }}" class="btn btn-primary">Volver</a>
+            <a href="{{ route('web.blog-' . user_lang()) }}" class="btn btn-primary">Volver</a>
         </div>
     </div>
 @endsection
