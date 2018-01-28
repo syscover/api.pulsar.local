@@ -107,7 +107,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <a class="btn btn-primary" href="{{ route('getProducts-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
+            <a class="btn btn-primary" href="{{ route('web.products-' . user_lang()) }}">{{ trans('web.continue_shopping') }}</a>
         </div>
         @if($cartItems->count() > 0)
             <div class="col-md-offset-1 col-md-3">

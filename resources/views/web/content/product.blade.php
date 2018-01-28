@@ -46,7 +46,7 @@
 
             <br><br>
             <a href="{{ route('addProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary">{{ trans('core::common.add_to_cart') }}</a>
-            <a href="{{ route('getProducts-'. user_lang()) }}" class="btn btn-info">Volver</a>
+            <a href="{{ route('web.products-'. user_lang()) }}" class="btn btn-info">Volver</a>
         </div>
     </div>
 @endsection

@@ -25,7 +25,7 @@ class MarketFrontendController extends Controller
     /**
      * Function to show product list
      */
-    public function getProducts()
+    public function products()
     {
         // Get all active products
         $response['products'] = Product::builder()

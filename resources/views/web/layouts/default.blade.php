@@ -25,8 +25,8 @@
             <li class="nav-item {{ active_route(['web.blog-' . user_lang(), 'article-' . user_lang()], 'active') }}">
                 <a class="nav-link" href="{{ route('web.blog-' . user_lang()) }}">{{ trans_choice('core::common.blog', 1) }}</a>
             </li>
-            <li class="nav-item {{ active_route('getProducts-' . user_lang(), 'active') }}">
-                <a class="nav-link" href="{{ route('getProducts-' . user_lang()) }}">{{ trans_choice('core::common.product', 2) }}</a>
+            <li class="nav-item {{ active_route('web.products-' . user_lang(), 'active') }}">
+                <a class="nav-link" href="{{ route('web.products-' . user_lang()) }}">{{ trans_choice('core::common.product', 2) }}</a>
             </li>
             <li class="nav-item {{ active_route('getShoppingCart-' . user_lang(), 'active') }}">
                 <a class="nav-link" href="{{ route('getShoppingCart-' . user_lang()) }}">{{ trans('core::common.shopping_cart') }}</a>

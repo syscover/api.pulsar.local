@@ -23,6 +23,10 @@ class WebFrontendController extends Controller
     public function ups()
     {
 
+        $islandia = 'IS';
+        $islandiaZip = '104';
+
+
 //        $response = RateService::getRate(
 //            'ES',
 //            '28020',
@@ -42,8 +46,8 @@ class WebFrontendController extends Controller
                 '28020'
             )
             ->addShipTo(
-                'US',
-                '10010'
+                $islandia,
+                $islandiaZip
             )
             ->addService(
                Service::S_STANDARD
@@ -52,7 +56,8 @@ class WebFrontendController extends Controller
             ->addPackageWeight(
                 '0.5'
             )
-            ->addShipmentRatingOptions()->send();
+            ->addShipmentRatingOptions()
+            ->send();
 
 
 

@@ -109,11 +109,11 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function 
 
     // MARKET ROUTES
     // EN
-    Route::get('/en/products',                                                              '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-en');
+    Route::get('/en/products',                                                              '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-en');
     Route::get('/en/product/{category}/{slug}',                                             '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-en');
 
     // ES
-    Route::get('/es/productos',                                                             '\App\Http\Controllers\MarketFrontendController@getProducts')->name('getProducts-es');
+    Route::get('/es/productos',                                                             '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-es');
     Route::get('/es/producto/{category}/{slug}',                                            '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-es');
 });
 

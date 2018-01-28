@@ -61,7 +61,7 @@ class ReviewFrontendController extends Controller
             dd('to try you must loged');
         }
 
-        return redirect()->route('getProducts-' . user_lang());
+        return redirect()->route('web.products-' . user_lang());
     }
 
     public function poll(Request $request)
