@@ -11,7 +11,7 @@
     <form action="{{ route('pulsar.review.responses.store') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="review" value="{{ $review->id }}">
-        <input type="hidden" name="url" value="{{ route('home') }}">
+        <input type="hidden" name="url" value="{{ route('web.home') }}">
 
         <ul>
             @foreach($review->poll->questions->where('lang_id', user_lang())->sortBy('sort') as $question)

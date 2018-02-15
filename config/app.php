@@ -167,7 +167,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Folklore\GraphQL\ServiceProvider::class,
 
         /*
          * Pulsar Application Service Providers...
@@ -239,8 +238,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
-        'GraphQL' => Folklore\GraphQL\Support\Facades\GraphQL::class,
+        'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class
     ],
 
 ];

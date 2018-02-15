@@ -23,8 +23,32 @@ class WebFrontendController extends Controller
     public function ups()
     {
 
+        $espana = 'ES';
+        $espanaZip = '28055';
+
         $islandia = 'IS';
         $islandiaZip = '104';
+
+        $argentina = 'AR';
+        $argentinaZip = '1640';
+
+        $brasil = 'BR';
+        $brasilZip = '28650-000';
+
+        $chile = 'CL';
+        $chileZip = '7591538';
+
+        $colombia = 'CO';
+        $colombiaZip = '110231';
+
+        $nuevaZelanda = 'NZ';
+        $nuevaZelandaZip = '0620';
+
+        $australia = 'AU';
+        $australiaZip = '3008';
+
+        $japon = 'JP';
+        $japonZip = '100-0401';
 
 
 //        $response = RateService::getRate(
@@ -46,8 +70,8 @@ class WebFrontendController extends Controller
                 '28020'
             )
             ->addShipTo(
-                $islandia,
-                $islandiaZip
+                $espana,
+                $espanaZip
             )
             ->addService(
                Service::S_STANDARD
@@ -58,10 +82,5 @@ class WebFrontendController extends Controller
             )
             ->addShipmentRatingOptions()
             ->send();
-
-
-
-
-        return $response;
     }
 }
