@@ -26,7 +26,7 @@ class ShoppingCartController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getShoppingCart(Request $request)
+    public function shoppingCart(Request $request)
     {
         // get cart items from shoppingCart
         $response['cartItems'] = CartProvider::instance()->getCartItems();
