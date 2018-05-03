@@ -53,7 +53,8 @@ class ReviewFrontendController extends Controller
             // set poll url in review
             $review->poll_url = $poll->poll_route ?
                 route($poll->poll_route, ['code' => encrypt($review->id)]) :
-                route('review.fill.poll', ['code' => encrypt($review->id)]); // default route
+                route('review.fill_poll', ['code' => encrypt($review->id)]); // default route
+
             $review->save();
         }
         else

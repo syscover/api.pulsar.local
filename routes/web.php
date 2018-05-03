@@ -19,11 +19,11 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     // REVIEWS
     // EN
     Route::get('/en/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-en');
-    Route::get('/en/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@poll')->name('review.fill.poll');
+    Route::get('/en/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@poll')->name('review.fill_poll');
 
     // ES
     Route::get('/es/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-es');
-    Route::get('/es/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@poll')->name('review.fill.poll');
+    Route::get('/es/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@poll')->name('review.fill_poll');
 
     // CUSTOMER ACCOUNT
     // EN

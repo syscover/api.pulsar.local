@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Syscover\Ups\Rate;
+use Syscover\Ups\Tracking;
 
 class UpsServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,7 @@ class UpsServiceProvider extends ServiceProvider
 	public function register()
 	{
         $this->registerRate();
+        $this->registerTracking();
 	}
 
     /**
@@ -43,6 +45,17 @@ class UpsServiceProvider extends ServiceProvider
     {
         $this->app->singleton('ups.rate', function () {
             return new Rate(
+                config('pulsar-ups.user'),
+                config('pulsar-ups.password'),
+                config('pulsar-ups.access_key')
+            );
+        });
+    }
+
+    protected function registerTracking()
+    {
+        $this->app->singleton('ups.tracking', function () {
+            return new Tracking(
                 config('pulsar-ups.user'),
                 config('pulsar-ups.password'),
                 config('pulsar-ups.access_key')

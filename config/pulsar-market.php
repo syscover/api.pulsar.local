@@ -60,8 +60,11 @@ return [
     'taxShippingPrices'             => env('MARKET_TAX_SHIPPING_PRICES', 1),           // Shipping prices type
     'taxShippingDisplayPrices'      => env('MARKET_TAX_SHIPPING_DISPLAY_PRICES', 1),   // How to display shipping prices
 
-
-
+    //******************************************************************************************************************
+    //***   Stripe settings
+    //******************************************************************************************************************
+    // STRIPE MODE, test | live
+    'stripeMode'                    => env('MARKET_STRIPE_MODE', 'test'),
 
 
 

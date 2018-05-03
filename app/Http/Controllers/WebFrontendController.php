@@ -1,7 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use Syscover\Admin\Models\FieldGroup;
+use Syscover\Cms\Models\Article;
+use Syscover\Cms\Models\Category;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
+use Syscover\Ups\Facades\Tracking;
 
 /**
  * Class WebFrontendController
