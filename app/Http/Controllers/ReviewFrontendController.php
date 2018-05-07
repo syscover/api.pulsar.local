@@ -44,7 +44,7 @@ class ReviewFrontendController extends Controller
                 'customer_name'     => $customer->name,
                 'customer_email'    => $customer->email,
                 'customer_verified' => true,
-                'email_template'    => $poll->email_template,
+                'email_template'    => $poll->review_email_template,
                 'email_subject'     => 'Review of: ' . $product->name,
                 'mailing'           => $now->addDays($poll->mailing_days)->toDateTimeString(),
                 'expiration'        => $now->addDays($poll->expiration_days)->toDateTimeString(),
