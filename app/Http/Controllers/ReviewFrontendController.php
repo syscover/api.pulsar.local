@@ -51,9 +51,8 @@ class ReviewFrontendController extends Controller
             ]);
 
             // set poll url in review
-            $review->review_url = $poll->review_route ?
-                route($poll->poll_route, ['code' => encrypt($review->id)]) :
-                route('review.fill_poll', ['code' => encrypt($review->id)]); // default route
+            // can to use $poll->review_route from database
+            $review->review_url = route('review.fill_review', ['code' => encrypt($review->id)]);
 
             $review->save();
         }
@@ -65,7 +64,7 @@ class ReviewFrontendController extends Controller
         return redirect()->route('web.products-' . user_lang());
     }
 
-    public function poll(Request $request)
+    public function review(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
