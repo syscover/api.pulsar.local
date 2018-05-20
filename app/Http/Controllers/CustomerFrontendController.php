@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 // CRM
-use Syscover\Crm\Models\Group;
+use Syscover\Crm\Models\CustomerGroup;
 use Syscover\Crm\Services\AddressService;
 use Syscover\Crm\Services\CustomerService;
 
@@ -70,7 +70,7 @@ class CustomerFrontendController extends Controller
     public function getSingIn()
     {
         // get customer groups
-        $response['groups'] = Group::builder()->get();
+        $response['groups'] = CustomerGroup::builder()->get();
 
         return view('web.content.sing_in', $response);
     }
@@ -329,7 +329,7 @@ class CustomerFrontendController extends Controller
      */
     public function account(Request $request)
     {
-        $response['groups']     = Group::builder()->get();
+        $response['groups']     = CustomerGroup::builder()->get();
         $response['customer']   = auth('crm')->user();
 
         return view('web.content.account', $response);
