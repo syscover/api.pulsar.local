@@ -19,6 +19,11 @@
             Show products and values from custom fields in select
         -->
         @foreach($products as $product)
+
+            <!-- prueba para evitar sobreescribir el trais CustomizableValues en el modelo Producto ya que tiene public function __get($name) -->
+            {{ $product->size }}
+
+
             <div class="card">
                 <!-- slider -->
                 <div id="carouselExampleIndicators{{ $loop->index }}" class="carousel slide" data-ride="carousel">
@@ -49,23 +54,25 @@
                     <h4 class="card-title">{{ $product->name }}</h4>
                     <p class="card-text">{!! $product->description !!}</p>
 
-                    @if($product->fieldGroup !== null)
+                    @if($product->field_group !== null)
                         <p class="card-text">
-                        @foreach($product->fieldGroup->fields as $field)
+                        @foreach($product->field_group->fields as $field)
 
                             @if($field->values->where('lang_id', user_lang())->count() > 0)
                                 <!-- custom fields with select values -->
                                 <select class="custom-select">
-                                    <option>{{ $field->labels[user_lang()] }}</option>
+                                    <option>{{ $field->labels->where('id', user_lang())->first()['value'] }}</option>
+
                                     @foreach($field->values->where('lang_id', user_lang()) as $value)
                                         <option value="{{ $value->id }}">
                                             {{ $value->name }}
                                         </option>
                                     @endforeach
+
                                 </select>
                             @else
                                 <!-- custom fields with value without select -->
-                                {{ $field->labels[user_lang()] }} {{ $product->data['customFields'][$field->name] }}
+                                {{ $field->labels[user_lang()] }} {{ $product->data['custom_fields'][$field->name] }}
                             @endif
 
                         @endforeach
@@ -74,15 +81,15 @@
 
                     <p class="card-text">
                         Price: {{ $product->getPrice() }} €<br>
-                        <small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>
+                        {{--<small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>--}}
                     </p>
-                    <div>
-                        <a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
-                        <a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ __('core::common.add_to_cart') }}</a>
-                    </div>
-                    <div class="margin-top-10">
-                        <a href="{{ route('review-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-primary col-4">{{ trans_choice('core::common.review', 1) }}</a>
-                    </div>
+                    {{--<div>--}}
+                        {{--<a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>--}}
+                        {{--<a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ __('core::common.add_to_cart') }}</a>--}}
+                    {{--</div>--}}
+                    {{--<div class="margin-top-10">--}}
+                        {{--<a href="{{ route('review-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-primary col-4">{{ trans_choice('core::common.review', 1) }}</a>--}}
+                    {{--</div>--}}
 
 
                 </div>
