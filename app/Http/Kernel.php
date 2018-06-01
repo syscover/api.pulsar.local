@@ -35,6 +35,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            \Syscover\Market\Middleware\TaxRule::class
         ],
 
         'api' => [
@@ -68,7 +70,6 @@ class Kernel extends HttpKernel
 
         // pulsar middlewares
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
-        'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class,
-        'pulsar.tax.rule'       => \Syscover\Market\Middleware\TaxRule::class,
+        'pulsar.crm.auth'       => \Syscover\Crm\Middleware\CrmAuthenticate::class
     ];
 }

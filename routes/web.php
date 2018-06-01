@@ -105,7 +105,7 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
 
 // Route with pulsar.tax.rule, this instance taxCountry and taxCustomerClass from data customer loged,
 // necessary to show tax products according to the customer.
-Route::group(['middleware' => ['pulsar.navtools', 'pulsar.tax.rule']], function () {
+Route::group(['middleware' => ['pulsar.navtools']], function () {
 
     // MARKET ROUTES
     // EN
