@@ -18,7 +18,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.3",
+    "bootstrap": "^4.1.1",
     "font-awesome": "^4.7.0",
     "froala-editor": "^2.7.3",
     "jquery": "^3.2.1",
