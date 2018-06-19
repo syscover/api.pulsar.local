@@ -121,7 +121,6 @@ return [
 
         'crmPasswordBroker' => [
             'provider'  => 'crmCustomer',
-            'email'     => 'pulsar::emails.password',
             'table'     => 'admin_password_resets',
             'expire'    => 60,
         ]

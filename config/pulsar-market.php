@@ -5,35 +5,35 @@ return [
     //******************************************************************************************************************
     //***   orders
     //******************************************************************************************************************
-    'orderIdSuffix'                 => env('MARKET_ORDER_ID_SUFFIX', ''),
+    'order_id_suffix' => env('MARKET_ORDER_ID_SUFFIX', ''),
 
     //******************************************************************************************************************
     //***   Type of product
     //******************************************************************************************************************
-    'productTypes'                  => [
-        (object)['id' => 1,      'name' => 'market::pulsar.downloadable'],
-        (object)['id' => 2,      'name' => 'market::pulsar.transportable'],
-        (object)['id' => 3,      'name' => 'market::pulsar.transportable_downloadable'],
-        (object)['id' => 4,      'name' => 'market::pulsar.service'],
+    'product_types' => [
+        (object)['id' => 1, 'name' => 'market::pulsar.downloadable'],
+        (object)['id' => 2, 'name' => 'market::pulsar.transportable'],
+        (object)['id' => 3, 'name' => 'market::pulsar.transportable_downloadable'],
+        (object)['id' => 4, 'name' => 'market::pulsar.service'],
     ],
 
     //******************************************************************************************************************
     //***   Type prices of product
     //******************************************************************************************************************
-    'priceTypes'                    => [
-        (object)['id' => 1,      'name' => 'market::pulsar.single_price'],
-        (object)['id' => 2,      'name' => 'market::pulsar.undefined_price']
+    'price_types' => [
+        (object)['id' => 1, 'name' => 'market::pulsar.single_price'],
+        (object)['id' => 2, 'name' => 'market::pulsar.undefined_price']
     ],
 
     //******************************************************************************************************************
     //***   Discount types
     //******************************************************************************************************************
-    'discountTypes'                => [
-        (object)['id' => 1,      'name' => 'market::pulsar.without_discount'],
-        (object)['id' => 2,      'name' => 'market::pulsar.discount_percentage_subtotal'],
-        (object)['id' => 3,      'name' => 'market::pulsar.discount_fixed_amount_subtotal'],
-        (object)['id' => 4,      'name' => 'market::pulsar.discount_percentage_total'],
-        (object)['id' => 5,      'name' => 'market::pulsar.discount_fixed_amount_total'],
+    'discount_types' => [
+        (object)['id' => 1, 'name' => 'market::pulsar.without_discount'],
+        (object)['id' => 2, 'name' => 'market::pulsar.discount_percentage_subtotal'],
+        (object)['id' => 3, 'name' => 'market::pulsar.discount_fixed_amount_subtotal'],
+        (object)['id' => 4, 'name' => 'market::pulsar.discount_percentage_total'],
+        (object)['id' => 5, 'name' => 'market::pulsar.discount_fixed_amount_total'],
     ],
 
     //******************************************************************************************************************
@@ -45,20 +45,34 @@ return [
     'default_class_customer_tax'    => env('MARKET_DEFAULT_CLASS_CUSTOMER_TAX', 1),    // default customer tax class to calculate tax
 
     // Type prices for products
-    'productPricesValues'           => [
-        (object)['id' => 1,      'name' => 'market::pulsar.excluding_tax'],
-        (object)['id' => 2,      'name' => 'market::pulsar.including_tax']
+    'product_prices_values' => [
+        (object)['id' => 1, 'name' => 'market::pulsar.excluding_tax'],
+        (object)['id' => 2, 'name' => 'market::pulsar.including_tax']
     ],
-    'productTaxPrices'              => env('MARKET_PRODUCT_TAX_PRICES', 1),            // Product prices type
-    'productTaxDisplayPrices'       => env('MARKET_PRODUCT_TAX_DISPLAY_PRICES', 1),    // How to display product prices
+    'product_tax_prices'            => env('MARKET_PRODUCT_TAX_PRICES', 1),            // Product prices type
+    'product_tax_display_prices'    => env('MARKET_PRODUCT_TAX_DISPLAY_PRICES', 1),    // How to display product prices
 
     // Type prices for shipping
-    'shippingPricesValues'          => [
-        (object)['id' => 1,      'name' => 'market::pulsar.excluding_tax'],
-        (object)['id' => 2,      'name' => 'market::pulsar.including_tax']
+    'shipping_prices_values' => [
+        (object)['id' => 1, 'name' => 'market::pulsar.excluding_tax'],
+        (object)['id' => 2, 'name' => 'market::pulsar.including_tax']
     ],
-    'taxShippingPrices'             => env('MARKET_TAX_SHIPPING_PRICES', 1),           // Shipping prices type
-    'taxShippingDisplayPrices'      => env('MARKET_TAX_SHIPPING_DISPLAY_PRICES', 1),   // How to display shipping prices
+    'tax_shipping_prices'           => env('MARKET_TAX_SHIPPING_PRICES', 1),           // Shipping prices type
+    'tax_shipping_display_prices'   => env('MARKET_TAX_SHIPPING_DISPLAY_PRICES', 1),   // How to display shipping prices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //******************************************************************************************************************
     //***   Stripe settings
@@ -66,13 +80,13 @@ return [
     // STRIPE MODE, test | live
     'stripeMode'                    => env('MARKET_STRIPE_MODE', 'test'),
 
+    // TEST
+    'stripeTestPublishKey'          => env('MARKET_STRIPE_TEST_PUBLISH_KEY', ''),
+    'stripeTestSecretKey'           => env('MARKET_STRIPE_TEST_SECRET_KEY', ''),
 
-
-
-
-
-
-
+    // LIVE
+    'stripeLivePublishKey'          => env('MARKET_STRIPE_LIVE_PUBLISH_KEY', ''),
+    'stripeLiveSecretKey'           => env('MARKET_STRIPE_LIVE_SECRET_KEY', ''),
 
     //******************************************************************************************************************
     //***   PayPal settings
