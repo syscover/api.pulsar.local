@@ -51,14 +51,14 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   '\App\Http\Controllers\ShoppingCartController@addProduct')->name('addProduct-en');
     Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('deleteProduct-en');
     Route::put('/en/shopping/cart/update',                                                  '\App\Http\Controllers\ShoppingCartController@updateProduct')->name('updateProduct-en');
-    Route::post('/en/shopping/cart/check/coupon/code',                                      '\App\Http\Controllers\ShoppingCartController@checkCouponCode')->name('checkCouponCode-en');
+    Route::post('/en/shopping/cart/check/coupon/code',                                      '\App\Http\Controllers\ShoppingCartController@checkCoupon')->name('checkCoupon-en');
 
     // ES
     Route::get('/es/carro-compra',                                                          '\App\Http\Controllers\ShoppingCartController@shoppingCart')->name('getShoppingCart-es');
     Route::match(['get', 'post'], '/es/carro-compra/anadir-producto/{slug}',                '\App\Http\Controllers\ShoppingCartController@addProduct')->name('addProduct-es');
     Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('deleteProduct-es');
     Route::put('/es/carro-compra/actualizar',                                               '\App\Http\Controllers\ShoppingCartController@updateProduct')->name('updateProduct-es');
-    Route::post('/es/carro-compra/comprueba/codigo/cupon',                                  '\App\Http\Controllers\ShoppingCartController@checkCouponCode')->name('checkCouponCode-es');
+    Route::post('/es/carro-compra/comprueba/codigo/cupon',                                  '\App\Http\Controllers\ShoppingCartController@checkCoupon')->name('checkCoupon-es');
 
     //
 });

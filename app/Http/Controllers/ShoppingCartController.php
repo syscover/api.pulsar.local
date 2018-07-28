@@ -122,7 +122,7 @@ class ShoppingCartController extends Controller
         // check idf exist coupon code
         if($request->has('applyCouponCode'))
         {
-            CouponLibrary::addCouponCode(CartProvider::instance(), $request->input('applyCouponCode'), user_lang(), auth('crm'));
+            CouponLibrary::addCoupon(CartProvider::instance(), $request->input('applyCouponCode'), user_lang(), auth('crm'));
         }
 
         $cartItems = CartProvider::instance()->getCartItems();
@@ -154,9 +154,9 @@ class ShoppingCartController extends Controller
      * @param   Request $request
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function checkCouponCode(Request $request)
+    public function checkCoupon(Request $request)
     {
         return response()
-            ->json(CouponLibrary::checkCouponCode($request->input('couponCode'), user_lang(), auth('crm')));
+            ->json(CouponLibrary::checkCoupon($request->input('couponCode'), user_lang(), auth('crm')));
     }
 }

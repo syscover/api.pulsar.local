@@ -26,7 +26,7 @@
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    url: '{{ route('checkCouponCode-' . user_lang()) }}',
+                    url: '{{ route('checkCoupon-' . user_lang()) }}',
                     data: {
                         couponCode: $('[name=couponCode]').val()
                     },
