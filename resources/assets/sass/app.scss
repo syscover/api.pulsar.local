@@ -1,9 +1,17 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap/scss/bootstrap';
+
+// Material
+@import "../../../workbench/syscover/pulsar-core/src/assets/scss/material/elevations";
+
+// Partials
+@import "../../../workbench/syscover/pulsar-core/src/assets/scss/partials/forms";
+@import "../../../workbench/syscover/pulsar-core/src/assets/scss/partials/typography";
+@import "../../../workbench/syscover/pulsar-core/src/assets/scss/partials/helpers";
+@import "../../../workbench/syscover/pulsar-core/src/assets/scss/partials/cookies-consent";
+@import "partials/colors";
+@import "partials/theme";
+

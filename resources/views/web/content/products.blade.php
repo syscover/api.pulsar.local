@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <h1 class="margin-vertical-20">{{ trans_choice('core::common.product', 2) }}</h1>
+    <h1 class="my-20">{{ trans_choice('core::common.product', 2) }}</h1>
 
     <div class="card-columns">
 
@@ -21,10 +21,8 @@
         @foreach($products as $product)
 
             <!-- prueba para evitar sobreescribir el trais CustomizableValues en el modelo Producto ya que tiene public function __get($name) -->
-            {{ $product->size }}
-
-
             <div class="card">
+
                 <!-- slider -->
                 <div id="carouselExampleIndicators{{ $loop->index }}" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -81,15 +79,15 @@
 
                     <p class="card-text">
                         Price: {{ $product->getPrice() }} €<br>
-                        {{--<small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>--}}
+                        <small><strong>Tax: {{ $product->getTaxAmount() }} €</strong></small>
                     </p>
-                    {{--<div>--}}
-                        {{--<a href="{{ route('getProduct-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>--}}
-                        {{--<a href="{{ route('addProduct-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ __('core::common.add_to_cart') }}</a>--}}
-                    {{--</div>--}}
-                    {{--<div class="margin-top-10">--}}
-                        {{--<a href="{{ route('review-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-primary col-4">{{ trans_choice('core::common.review', 1) }}</a>--}}
-                    {{--</div>--}}
+                    <div>
+                        <a href="{{ route('web.product-'. user_lang(), ['category' => $product->categories->first()->slug, 'slug' => $product->slug]) }}" class="btn btn-primary col-4">Show</a>
+                        <a href="{{ route('web.add_shopping_cart-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-info offset-1 col-4">{{ __('core::common.add_to_cart') }}</a>
+                    </div>
+                    <div class="mt-10">
+                        <a href="{{ route('web.create_review-' . user_lang(), ['slug' => $product->slug]) }}" class="btn btn-primary col-4">{{ trans_choice('core::common.review', 1) }}</a>
+                    </div>
 
 
                 </div>

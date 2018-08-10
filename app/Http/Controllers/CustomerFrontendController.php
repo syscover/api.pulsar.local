@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 // CRM
+use Syscover\Admin\Models\Country;
 use Syscover\Crm\Models\CustomerGroup;
 use Syscover\Crm\Services\AddressService;
 use Syscover\Crm\Services\CustomerService;
@@ -36,21 +37,21 @@ class CustomerFrontendController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'account-';
+    protected $redirectTo = 'web.account-';
 
     /**
      * Route to get login form
      *
      * @var string
      */
-    protected $loginPath = 'getLogin-';
+    protected $loginPath = 'web.get_login-';
 
     /**
      * Redirect route after logout
      *
      * @var string
      */
-    protected $logoutPath = 'home-';
+    protected $logoutPath = 'web.home-';
 
     /**
      * Here you can customize your guard, this guard has to set in auth.php config
@@ -59,29 +60,53 @@ class CustomerFrontendController extends Controller
      */
     protected $guard;
 
-
-
+    /**
+     * Show login view
+     */
+    public function getLogin()
+    {
+        $response = [];
+        return view('web.content.customer.login', $response);
+    }
 
     /**
      * Show sing in view
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getSingIn()
     {
         // get customer groups
         $response['groups'] = CustomerGroup::builder()->get();
 
-        return view('web.content.sing_in', $response);
+        return view('web.content.customer.sing_in', $response);
     }
 
     /**
-     * Create customer in CRM module and login customer created
-     *
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * Show reset password form
      */
-    public function postSingIn(Request $request)
+    public function resetPassword(Request $request)
+    {
+        return view('web.content.customer.passwords.email');
+    }
+
+    /**
+     * Show account view
+     */
+    public function account(Request $request)
+    {
+            $response['countries']  = Country::builder()->where('lang_id', user_lang())->get();
+        $response['groups']     = CustomerGroup::builder()->get();
+        $response['customer']   = auth('crm')->user();
+
+        return view('web.content.customer.account', $response);
+    }
+
+
+
+
+    /**
+     * Create customer in CRM module and login customer created
+     */
+    public function createCustomer(Request $request)
     {
         // validation
         $validator = Validator::make($request->all(), [
@@ -104,7 +129,7 @@ class CustomerFrontendController extends Controller
             else
             {
                 return redirect()
-                    ->route('getSingIn-' . user_lang())
+                    ->route('web.get_sing_in-' . user_lang())
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -131,17 +156,14 @@ class CustomerFrontendController extends Controller
                 'message'   => '<strong>New customer</strong> has been saved.'
             ]);
 
-            return redirect()->route('account-' . user_lang());
+            return redirect()->route('web.account-' . user_lang());
         }
     }
 
     /**
      * Update customer in CRM module and login customer updated
-     *
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function putSingIn(Request $request)
+    public function updateCustomer()
     {
         $rules   = [
             'name'      => 'required|max:255',
@@ -150,19 +172,19 @@ class CustomerFrontendController extends Controller
             'password'  => 'required|between:4,15|same:repassword',
         ];
 
-        if($request->input('email') === auth('crm')->user()->email)
+        if(request('email') === auth('crm')->user()->email)
             $rules['email'] = 'required|max:255|email';
 
-        if(! $request->has('password'))
+        if(! request('password'))
             $rules['password'] = '';
 
         // manual validate
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make(request()->all(), $rules);
 
         // manage fails
         if ($validator->fails())
         {
-            if($request->input('responseType') == 'json')
+            if(request('responseType') == 'json')
             {
                 return response()->json([
                     'status'    => 'error',
@@ -172,23 +194,23 @@ class CustomerFrontendController extends Controller
             else
             {
                 return redirect()
-                    ->route('account-' . user_lang())
+                    ->route('web.account-' . user_lang())
                     ->withErrors($validator)
                     ->withInput();
             }
         }
 
         // update customer
-        $customer = CustomerService::update($request->all(), $request->input('id'));
+        $customer = CustomerService::update(request()->all(), request('id'));
 
         // update password
-        if($request->has('password'))
-            CustomerService::updatePassword($request->all());
+        if(request('password'))
+            CustomerService::updatePassword(request()->all());
 
         // auth the customer created
         Auth::guard('crm')->login($customer);
 
-        if($request->input('responseType') == 'json')
+        if(request('responseType') == 'json')
         {
             return response()->json([
                 'status'    => 'success',
@@ -198,35 +220,21 @@ class CustomerFrontendController extends Controller
         else
         {
             // show message
-            $request->session()->flash('successMessage', [
+            session()->flash('successMessage', [
                 'value'     => true,
                 'message'   => '<strong>Customer</strong> has been updated.'
             ]);
 
-            return redirect()->route('account-' . user_lang());
+            return redirect()->route('web.account-' . user_lang());
         }
     }
 
     /**
      * Create customer address
-     *
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postAddress(Request $request)
+    public function postAddress()
     {
-        AddressService::create($request->all());
-    }
-
-    /**
-     * Show login view
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getLogin()
-    {
-        $response = [];
-        return view('web.content.login', $response);
+        AddressService::create(request()->all());
     }
 
     /**
@@ -321,22 +329,7 @@ class CustomerFrontendController extends Controller
             ->route($this->logoutPath . user_lang());
     }
 
-    /**
-     * Show account view
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function account(Request $request)
-    {
-        $response['groups']     = CustomerGroup::builder()->get();
-        $response['customer']   = auth('crm')->user();
 
-        return view('web.content.account', $response);
-    }
 
-    public function getPasswordReset(Request $request)
-    {
-        return view('web.content.passwords.email');
-    }
+
 }

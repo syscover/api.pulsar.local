@@ -39,7 +39,7 @@
         </div>
         @if(isset($delete) && $delete)
             <div class="col-md-1">
-                <a href="{{ route('deleteProduct-' . user_lang(), ['rowId' => $item->rowId]) }}">
+                <a href="{{ route('web.delete_shopping_cart-' . user_lang(), ['rowId' => $item->rowId]) }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
             </div>

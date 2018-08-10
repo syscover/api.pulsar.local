@@ -18,47 +18,54 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
 
     // REVIEWS
     // EN
-    Route::get('/en/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-en');
-    Route::get('/en/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@review')->name('review.fill_review');
+    Route::get('/en/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('web.create_review-en');
+    Route::get('/en/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@review')->name('web.review');
 
     // ES
-    Route::get('/es/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('review-es');
-    Route::get('/es/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@review')->name('review.fill_review');
+    Route::get('/es/review/{slug}',                                                         '\App\Http\Controllers\ReviewFrontendController@createReview')->name('web.create_review-es');
+    Route::get('/es/review/poll/{code}',                                                    '\App\Http\Controllers\ReviewFrontendController@review')->name('web.review');
 
     // CUSTOMER ACCOUNT
     // EN
-    Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-en');
-    Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-en');
-    Route::get('/en/account/password',                                                      '\App\Http\Controllers\CustomerFrontendController@getPasswordReset')->name('getPasswordReset-en');
-    Route::get('/en/account/password/reset/{token}',                                        '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('showResetForm-en');
+    Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('web.get_login-en');
+    Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('web.get_sing_in-en');
+    Route::get('/en/account/password',                                                      '\App\Http\Controllers\CustomerFrontendController@resetPassword')->name('web.reset_password-en');
+    Route::get('/en/account/password/reset/{token}',                                        '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('web.show_reset_form-en');
 
     // ES
-    Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('getLogin-es');
-    Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('getSingIn-es');
-    Route::get('/es/cuenta/password',                                                       '\App\Http\Controllers\CustomerFrontendController@getPasswordReset')->name('getPasswordReset-es');
-    Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('showResetForm-es');
+    Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('web.get_login-es');
+    Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('web.get_sing_in-es');
+    Route::get('/es/cuenta/password',                                                       '\App\Http\Controllers\CustomerFrontendController@resetPassword')->name('web.reset_password-es');
+    Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('web.show_reset_form-es');
 
     //
-    Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('postLogin');
-    Route::post('/account/sing-in',                                                         '\App\Http\Controllers\CustomerFrontendController@postSingIn')->name('postSingIn');
-    Route::post('/account/password/email',                                                  '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::post('/account/password/reset',                                                  '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.reset');
+    Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('web.post_login');
+    Route::post('/account/create',                                                          '\App\Http\Controllers\CustomerFrontendController@createCustomer')->name('web.create_customer');
+    Route::post('/account/password/email',                                                  '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('web.send_reset_link_email');
+    Route::post('/account/password/reset',                                                  '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('web.password_reset');
 
+    // MARKET ROUTES
+    // EN
+    Route::get('/en/products',                                                              '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-en');
+    Route::get('/en/product/{category}/{slug}',                                             '\App\Http\Controllers\MarketFrontendController@getProduct')->name('web.product-en');
+
+    // ES
+    Route::get('/es/productos',                                                             '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-es');
+    Route::get('/es/producto/{category}/{slug}',                                            '\App\Http\Controllers\MarketFrontendController@product')->name('web.product-es');
 
     // SHOPPING CART
     // EN
-    Route::get('/en/shopping/cart',                                                         '\App\Http\Controllers\ShoppingCartController@shoppingCart')->name('getShoppingCart-en');
-    Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   '\App\Http\Controllers\ShoppingCartController@addProduct')->name('addProduct-en');
-    Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('deleteProduct-en');
-    Route::put('/en/shopping/cart/update',                                                  '\App\Http\Controllers\ShoppingCartController@updateProduct')->name('updateProduct-en');
-    Route::post('/en/shopping/cart/check/coupon/code',                                      '\App\Http\Controllers\ShoppingCartController@checkCoupon')->name('checkCoupon-en');
+    Route::get('/en/shopping/cart',                                                         '\App\Http\Controllers\ShoppingCartController@index')->name('web.shopping_cart-en');
+    Route::match(['get', 'post'], '/en/shopping/cart/add/product/{slug}',                   '\App\Http\Controllers\ShoppingCartController@addProduct')->name('web.add_shopping_cart-en');
+    Route::match(['get', 'post'], '/en/shopping/cart/delete/product/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('web.delete_shopping_cart-en');
+    Route::put('/en/shopping/cart/update',                                                  '\App\Http\Controllers\ShoppingCartController@update')->name('web.update_shopping_cart-en');
 
     // ES
-    Route::get('/es/carro-compra',                                                          '\App\Http\Controllers\ShoppingCartController@shoppingCart')->name('getShoppingCart-es');
-    Route::match(['get', 'post'], '/es/carro-compra/anadir-producto/{slug}',                '\App\Http\Controllers\ShoppingCartController@addProduct')->name('addProduct-es');
-    Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               '\App\Http\Controllers\ShoppingCartController@deleteProduct')->name('deleteProduct-es');
-    Route::put('/es/carro-compra/actualizar',                                               '\App\Http\Controllers\ShoppingCartController@updateProduct')->name('updateProduct-es');
-    Route::post('/es/carro-compra/comprueba/codigo/cupon',                                  '\App\Http\Controllers\ShoppingCartController@checkCoupon')->name('checkCoupon-es');
+    Route::get('/es/carro-compra',                                                          '\App\Http\Controllers\ShoppingCartController@index')->name('web.shopping_cart-es');
+    Route::match(['get', 'post'], '/es/carro-compra/anadir-producto/{slug}',                '\App\Http\Controllers\ShoppingCartController@add')->name('web.add_shopping_cart-es');
+    Route::match(['get', 'post'], '/es/carro-compra/borrar-producto/{rowId}',               '\App\Http\Controllers\ShoppingCartController@delete')->name('web.delete_shopping_cart-es');
+    Route::put('/es/carro-compra/actualizar',                                               '\App\Http\Controllers\ShoppingCartController@update')->name('web.update_shopping_cart-es');
+
 
     //
 });
@@ -67,15 +74,17 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
 
     // CUSTOMER ACCOUNT
     // EN
-    Route::match(['get', 'post'], '/en/account',                                            '\App\Http\Controllers\CustomerFrontendController@account')->name('account-en');
-    Route::match(['get', 'post'], '/en/account/logout',                                     '\App\Http\Controllers\CustomerFrontendController@logout')->name('logout-en');
+    Route::match(['get', 'post'], '/en/account',                                            '\App\Http\Controllers\CustomerFrontendController@account')->name('web.account-en');
+    Route::match(['get', 'post'], '/en/account/logout',                                     '\App\Http\Controllers\CustomerFrontendController@logout')->name('web.logout-en');
 
     // ES
-    Route::match(['get', 'post'], '/es/cuenta',                                             '\App\Http\Controllers\CustomerFrontendController@account')->name('account-es');
-    Route::match(['get', 'post'], '/es/cuenta/logout',                                      '\App\Http\Controllers\CustomerFrontendController@logout')->name('logout-es');
+    Route::match(['get', 'post'], '/es/cuenta',                                             '\App\Http\Controllers\CustomerFrontendController@account')->name('web.account-es');
+    Route::match(['get', 'post'], '/es/cuenta/logout',                                      '\App\Http\Controllers\CustomerFrontendController@logout')->name('web.logout-es');
 
     //
-    Route::put('/account/sing-in',                                                          '\App\Http\Controllers\CustomerFrontendController@putSingIn')->name('putSingIn');
+    Route::put('/account/update',                                                           '\App\Http\Controllers\CustomerFrontendController@updateCustomer')->name('web.update_customer');
+
+
 
 
     // MARKET
@@ -94,33 +103,7 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
     Route::post('/es/realizar/pedido/factura',                                              '\App\Http\Controllers\MarketFrontendController@postCheckout02')->name('postCheckout02-es');
     Route::get('/es/realizar/pedido/pago',                                                  '\App\Http\Controllers\MarketFrontendController@getCheckout03')->name('getCheckout03-es');
     Route::post('/es/realizar/pedido/pago',                                                 '\App\Http\Controllers\MarketFrontendController@postCheckout03')->name('postCheckout03-es');
-
-    //
-    Route::get('/market/redsys/successful',                                                 '\App\Http\Controllers\MarketFrontendController@marketRedsysSuccessful')->name('marketRedsysSuccessful');
-    Route::get('/market/redsys/error',                                                      '\App\Http\Controllers\MarketFrontendController@marketRedsysError')->name('marketRedsysError');
-    Route::post('/market/paypal/successful',                                                '\App\Http\Controllers\MarketFrontendController@marketPayPalSuccessful')->name('marketPayPalSuccessful');
-    Route::get('/market/paypal/error',                                                      '\App\Http\Controllers\MarketFrontendController@marketPayPalError')->name('marketPayPalError');
-
-});
-
-// Route with pulsar.tax.rule, this instance taxCountry and taxCustomerClass from data customer loged,
-// necessary to show tax products according to the customer.
-Route::group(['middleware' => ['pulsar.navtools']], function () {
-
-    // MARKET ROUTES
-    // EN
-    Route::get('/en/products',                                                              '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-en');
-    Route::get('/en/product/{category}/{slug}',                                             '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-en');
-
-    // ES
-    Route::get('/es/productos',                                                             '\App\Http\Controllers\MarketFrontendController@products')->name('web.products-es');
-    Route::get('/es/producto/{category}/{slug}',                                            '\App\Http\Controllers\MarketFrontendController@getProduct')->name('getProduct-es');
 });
 
 // URL TESTING
 Route::get('/es/ups',                                                                       '\App\Http\Controllers\WebFrontendController@ups')->name('ups');
-
-// Password Reset Routes...
-//$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');

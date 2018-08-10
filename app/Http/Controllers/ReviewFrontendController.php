@@ -52,7 +52,7 @@ class ReviewFrontendController extends Controller
 
             // set poll url in review
             // can to use $poll->review_route from database
-            $review->review_url = route('review.fill_review', ['code' => encrypt($review->id)]);
+            $review->review_url = route('web.review', ['code' => encrypt($review->id)]);
 
             $review->save();
         }

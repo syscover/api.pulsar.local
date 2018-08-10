@@ -22,7 +22,7 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest:crm');
-        $this->redirectTo = nt_route('getLogin-' . user_lang());
+        $this->redirectTo = nt_route('web.get_login-' . user_lang());
     }
 
     /**

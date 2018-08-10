@@ -36,16 +36,13 @@ class MarketFrontendController extends Controller
             ->get()
             ->load('categories', 'attachments'); // lazy load categories and attachments
         
-        return view('web.content.product_list', $response);
+        return view('web.content.products', $response);
     }
 
     /**
-     * function to show singular product
-     *
-     * @param   Request     $request
-     * @return  \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * function to show product
      */
-    public function getProduct(Request $request)
+    public function product(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
@@ -59,8 +56,7 @@ class MarketFrontendController extends Controller
             ->first();
 
         // check that product exist
-        if($response['product'] == null)
-            return view('errors.common', ['message' => 'Error! Product not exist']);
+        if($response['product'] == null) abort(404);
 
         $response['product']->load('categories'); // lazy load categories;
 

@@ -26,14 +26,14 @@
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    url: '{{ route('checkCoupon-' . user_lang()) }}',
+                    url: '{{ route('api.market.check_coupon_code_cart_price_rule') }}',
                     data: {
-                        couponCode: $('[name=couponCode]').val()
+                        coupon_code: $('[name=coupon_code]').val()
                     },
                     success: function (data) {
                         if(data.status == 'success')
                         {
-                            $('[name=applyCouponCode]').val($('[name=couponCode]').val());
+                            $('[name=apply_coupon_code]').val($('[name=coupon_code]').val());
                             $('#shoppingCartForm').submit();
                         }
                         else
@@ -70,10 +70,10 @@
     @include('web.includes.head_shopping_cart', ['delete' => true])
     <!-- /head shopping cart -->
 
-    <form id="shoppingCartForm" action="{{ route('updateProduct-' . user_lang()) }}" method="post">
+    <form id="shoppingCartForm" action="{{ route('web.update_shopping_cart-' . user_lang()) }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="PUT">
-        <input type="hidden" name="applyCouponCode">
+        <input type="hidden" name="apply_coupon_code">
 
         <!-- body shopping cart -->
         @include('web.includes.body_shopping_cart', ['quantity' => true, 'delete' => true])
@@ -93,7 +93,7 @@
         <div class="col-md-5 ml-auto">
             <form>
                 <div class="form-group">
-                    <input class="form-control" name="couponCode" placeholder="{{ trans('core::common.coupon_code') }}">
+                    <input class="form-control" name="coupon_code" placeholder="{{ trans('core::common.coupon_code') }}">
                 </div>
                 <div class="form-group">
                     <a class="btn btn-primary" id="couponCodeBt" href="#">{{ trans('core::common.apply') }}</a>

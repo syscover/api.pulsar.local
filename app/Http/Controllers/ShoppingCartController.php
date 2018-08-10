@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
-//use Syscover\Market\Libraries\CouponLibrary;
+use Syscover\Market\Services\CouponService;
 use Syscover\Market\Models\CartPriceRule;
 use Syscover\Market\Models\Product;
 use Syscover\Market\Models\TaxRule;
@@ -22,11 +22,8 @@ class ShoppingCartController extends Controller
 {
     /**
      * Show shopping cart
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function shoppingCart(Request $request)
+    public function index()
     {
         // get cart items from shoppingCart
         $response['cartItems'] = CartProvider::instance()->getCartItems();
@@ -36,24 +33,17 @@ class ShoppingCartController extends Controller
 
     /**
      * Add product to shopping cart
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function addProduct(Request $request)
+    public function add($slug)
     {
-        // get parameters from url route
-        $parameters = $request->route()->parameters();
-
         $product = Product::builder()
             ->where('lang_id', user_lang())
-            ->where('slug', $parameters['slug'])
+            ->where('slug', $slug)
             ->where('active', true)
             ->first()
             ->load('attachments');
 
-        // create a property on product to save image for shopping cart list
-        //$product->shoppingCartImage = $attachment;
+        if($product === null) abort(404);
 
         //**************************************************************************************
         // Know if product is transportable
@@ -69,21 +59,21 @@ class ShoppingCartController extends Controller
         $isTransportable = $product->type_id == 2 || $product->type_id == 3? true : false;
 
         // create taxRule with format for shopping cart
-        $taxRulesShoppingCart = [];
-        foreach ($product->tax_rules as $taxRule)
-        {
-            $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
-                Lang::has($taxRule->translation) ? trans($taxRule->translation) : $taxRule->name,
-                $taxRule->tax_rate_zones->sum('tax_rate'),
-                $taxRule->priority,
-                $taxRule->sort
-            );
-        }
+//        $taxRulesShoppingCart = [];
+//        foreach ($product->tax_rules as $taxRule)
+//        {
+//            $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
+//                Lang::has($taxRule->translation) ? trans($taxRule->translation) : $taxRule->name,
+//                $taxRule->tax_rate_zones->sum('tax_rate'),
+//                $taxRule->priority,
+//                $taxRule->sort
+//            );
+//        }
 
         // when get price from product, internally calculate subtotal and total.
         // we don't want save this object on shopping cart, if login user with different prices and add same product,
         // will be different because the product will have different prices
-        $optionsProduct = $product;
+        $cloneProduct = clone $product;
 
         try
         {
@@ -96,9 +86,8 @@ class ShoppingCartController extends Controller
                     $product->price,
                     $product->weight,
                     $isTransportable,
-                    $taxRulesShoppingCart,
                     [
-                        'product' => $optionsProduct
+                        'product' => $cloneProduct
                     ]
                 )
             );
@@ -108,21 +97,18 @@ class ShoppingCartController extends Controller
             dd($e->getMessage());
         }
         
-        return redirect()->route('getShoppingCart-' . user_lang());
+        return redirect()->route('web.shopping_cart-' . user_lang());
     }
 
     /**
      * Update shopping cart quantity and apply coupon code, this method is call from shopping cart view
-     *
-     * @param   Request     $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateProduct(Request $request)
+    public function update(Request $request)
     {
         // check idf exist coupon code
-        if($request->has('applyCouponCode'))
+        if($request->has('apply_coupon_code'))
         {
-            CouponLibrary::addCoupon(CartProvider::instance(), $request->input('applyCouponCode'), user_lang(), auth('crm'));
+            CouponService::addCoupon(CartProvider::instance(), $request->input('apply_coupon_code'), user_lang(), auth('crm'));
         }
 
         $cartItems = CartProvider::instance()->getCartItems();
@@ -135,28 +121,28 @@ class ShoppingCartController extends Controller
             }
         }
 
-        return redirect()->route('getShoppingCart-' . user_lang());
+        return redirect()->route('web.shopping_cart-' . user_lang());
     }
 
-    public function deleteProduct(Request $request)
+    /**
+     * Delete product from shopping cart
+     */
+    public function delete(Request $request)
     {
         // get parameters from url route
         $parameters = $request->route()->parameters();
 
         CartProvider::instance()->remove($parameters['rowId']);
 
-        return redirect()->route('getShoppingCart-' . user_lang());
+        return redirect()->route('web.shopping_cart-' . user_lang());
     }
 
     /**
      * Check if coupon code is correct
-     *
-     * @param   Request $request
-     * @return  \Illuminate\Http\JsonResponse
      */
-    public function checkCoupon(Request $request)
+    public function checkCoupon()
     {
         return response()
-            ->json(CouponLibrary::checkCoupon($request->input('couponCode'), user_lang(), auth('crm')));
+            ->json(CouponService::checkCoupon(request('coupon_code'), user_lang(), auth('crm')));
     }
 }
