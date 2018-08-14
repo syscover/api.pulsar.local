@@ -252,8 +252,8 @@ class CustomerFrontendController extends Controller
 
         // set $credentials
         $credentials = [
-            'user' => $request->input('user'),
-            'password' => $request->input('password')
+            'user'      => request('user'),
+            'password'  => request('password')
         ];
 
         if (auth('crm')->attempt($credentials, $request->has('remember'))) {
@@ -267,8 +267,8 @@ class CustomerFrontendController extends Controller
                 if ($request->input('responseType') == 'json')
                 {
                     return response()->json([
-                        'status' => 'error',
-                        'message' => 'User inactive'
+                        'status'    => 'error',
+                        'message'   => 'User inactive'
                     ], 401);
                 }
                 else
@@ -283,7 +283,7 @@ class CustomerFrontendController extends Controller
             }
 
             // authentication successful!
-            if ($request->input('responseType') == 'json')
+            if (request('responseType') == 'json')
             {
                 return response()->json([
                     'status'    => 'success',

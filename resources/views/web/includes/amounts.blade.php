@@ -7,7 +7,7 @@
     </tr>
     @foreach(CartProvider::instance()->getTaxRules() as $taxRule)
         <tr>
-            <th scope="row">{{ $taxRule->name }} ({{ $taxRule->getTaxRate() }}%)</th>
+            <th scope="row">{{ __($taxRule->name) }} ({{ $taxRule->getTaxRate() }}%)</th>
             <td>{{ $taxRule->getTaxAmount() }} €</td>
         </tr>
     @endforeach

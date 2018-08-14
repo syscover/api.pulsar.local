@@ -12,9 +12,13 @@
                 var input = $(this).siblings('input[type=hidden]');
 
                 if ($(this).hasClass('increase'))
+                {
                     input.val(parseInt(input.val()) + 1);
+                }
                 else if($(this).hasClass('decrease') && input.val() > 0)
+                {
                     input.val(parseInt(input.val()) - 1);
+                }
 
                 $('#shoppingCartForm').submit();
             });
@@ -64,7 +68,7 @@
 
 @section('content')
 
-    <h1 class="margin-vertical-20">{{ trans('core::common.shopping_cart') }}</h1>
+    <h1 class="my-20">{{ trans('core::common.shopping_cart') }}</h1>
 
     <!-- head shopping cart-->
     @include('web.includes.head_shopping_cart', ['delete' => true])

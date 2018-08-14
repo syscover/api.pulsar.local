@@ -13,8 +13,8 @@
             <p>{{ $item->getQuantity() }}</p>
             @if(isset($quantity) && $quantity)
                 <input type="hidden" name="{{ $item->rowId }}" value="{{ $item->getQuantity() }}">
-                <a href="#" class="increase"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                <a href="#" class="decrease"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                <a href="#" class="increase"><i class="fas fa-plus"></i></a>
+                <a href="#" class="decrease"><i class="fas fa-minus"></i></a>
             @endif
         </div>
         <div class="col-md-1">
@@ -40,7 +40,7 @@
         @if(isset($delete) && $delete)
             <div class="col-md-1">
                 <a href="{{ route('web.delete_shopping_cart-' . user_lang(), ['rowId' => $item->rowId]) }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fas fa-trash-alt"></i>
                 </a>
             </div>
         @endif

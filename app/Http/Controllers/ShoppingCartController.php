@@ -1,15 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Lang;
 use Syscover\Market\Services\CouponService;
-use Syscover\Market\Models\CartPriceRule;
 use Syscover\Market\Models\Product;
-use Syscover\Market\Models\TaxRule;
-
-use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException;
-use Syscover\ShoppingCart\PriceRule;
-use Syscover\ShoppingCart\TaxRule as TaxRuleShoppingCart;
+use Syscover\ShoppingCart\TaxRule as ShoppingCartTaxRule;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\ShoppingCart\Item;
 
@@ -46,7 +40,7 @@ class ShoppingCartController extends Controller
         if($product === null) abort(404);
 
         //**************************************************************************************
-        // Know if product is transportable
+        // know if product is transportable
         // Options:
         // 1 - downloadable
         // 2 - transportable
@@ -54,26 +48,27 @@ class ShoppingCartController extends Controller
         // 4 - service
         //
         // You can change this value, if you have same product transportable and downloadable
-        //
         //***************************************
-        $isTransportable = $product->type_id == 2 || $product->type_id == 3? true : false;
-
-        // create taxRule with format for shopping cart
-//        $taxRulesShoppingCart = [];
-//        foreach ($product->tax_rules as $taxRule)
-//        {
-//            $taxRulesShoppingCart[] = new TaxRuleShoppingCart(
-//                Lang::has($taxRule->translation) ? trans($taxRule->translation) : $taxRule->name,
-//                $taxRule->tax_rate_zones->sum('tax_rate'),
-//                $taxRule->priority,
-//                $taxRule->sort
-//            );
-//        }
+        $isTransportable = $product->type_id == 2 || $product->type_id == 3;
 
         // when get price from product, internally calculate subtotal and total.
         // we don't want save this object on shopping cart, if login user with different prices and add same product,
         // will be different because the product will have different prices
         $cloneProduct = clone $product;
+
+        $taxRules = session('pulsar-market.tax_rules')->where('product_class_tax_id', $product->product_class_tax_id);
+
+        // add tax rules
+        $shoppingCartTaxRules = [];
+        foreach ($taxRules as $taxRule)
+        {
+            $shoppingCartTaxRules[] = new ShoppingCartTaxRule(
+                __($taxRule->translation),
+                $taxRule->tax_rate,
+                $taxRule->priority,
+                $taxRule->sort
+            );
+        }
 
         try
         {
@@ -86,6 +81,7 @@ class ShoppingCartController extends Controller
                     $product->price,
                     $product->weight,
                     $isTransportable,
+                    $shoppingCartTaxRules,
                     [
                         'product' => $cloneProduct
                     ]
@@ -103,21 +99,19 @@ class ShoppingCartController extends Controller
     /**
      * Update shopping cart quantity and apply coupon code, this method is call from shopping cart view
      */
-    public function update(Request $request)
+    public function update()
     {
-        // check idf exist coupon code
-        if($request->has('apply_coupon_code'))
+        // check if exist coupon code
+        if(request('apply_coupon_code'))
         {
-            CouponService::addCoupon(CartProvider::instance(), $request->input('apply_coupon_code'), user_lang(), auth('crm'));
+            CouponService::addCoupon(CartProvider::instance(), request('apply_coupon_code'), user_lang(), auth('crm'));
         }
 
-        $cartItems = CartProvider::instance()->getCartItems();
-
-        foreach($cartItems as $item)
+        foreach(CartProvider::instance()->getCartItems() as $item)
         {
-            if(is_numeric($request->input($item->rowId)))
+            if(is_numeric(request($item->rowId)))
             {
-                CartProvider::instance()->setQuantity($item->rowId, (int)$request->input($item->rowId));
+                CartProvider::instance()->setQuantity($item->rowId, (int)request($item->rowId));
             }
         }
 
