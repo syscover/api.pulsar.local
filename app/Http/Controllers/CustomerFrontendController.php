@@ -93,7 +93,7 @@ class CustomerFrontendController extends Controller
      */
     public function account(Request $request)
     {
-            $response['countries']  = Country::builder()->where('lang_id', user_lang())->get();
+        $response['countries']  = Country::builder()->where('lang_id', user_lang())->get();
         $response['groups']     = CustomerGroup::builder()->get();
         $response['customer']   = auth('crm')->user();
 
@@ -302,7 +302,7 @@ class CustomerFrontendController extends Controller
         {
             return response()->json([
                 'status'    => 'error',
-                'message'   => 'User or password incorrect'
+                'message'   => __('crm::common.authentication_error_code_01')
             ], 401);
         }
         else
@@ -310,7 +310,7 @@ class CustomerFrontendController extends Controller
             return redirect()
                 ->route($this->loginPath . user_lang())
                 ->withErrors([
-                    'message' => 'User or password incorrect'
+                    'message' => __('crm::common.authentication_error_code_01')
                 ])
                 ->withInput();
         }

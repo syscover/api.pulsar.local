@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Syscover\Market\Services\CouponService;
 use Syscover\Market\Models\Product;
-use Syscover\ShoppingCart\TaxRule as ShoppingCartTaxRule;
+use Syscover\Market\Services\TaxRuleService;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\ShoppingCart\Item;
 
@@ -56,19 +56,8 @@ class ShoppingCartController extends Controller
         // will be different because the product will have different prices
         $cloneProduct = clone $product;
 
-        $taxRules = session('pulsar-market.tax_rules')->where('product_class_tax_id', $product->product_class_tax_id);
-
-        // add tax rules
-        $shoppingCartTaxRules = [];
-        foreach ($taxRules as $taxRule)
-        {
-            $shoppingCartTaxRules[] = new ShoppingCartTaxRule(
-                __($taxRule->translation),
-                $taxRule->tax_rate,
-                $taxRule->priority,
-                $taxRule->sort
-            );
-        }
+        // get shopping cart tax rule array (Syscover\ShoppingCart\TaxRule[])
+        $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
 
         try
         {
@@ -81,7 +70,7 @@ class ShoppingCartController extends Controller
                     $product->price,
                     $product->weight,
                     $isTransportable,
-                    $shoppingCartTaxRules,
+                    $taxRules,
                     [
                         'product' => $cloneProduct
                     ]
