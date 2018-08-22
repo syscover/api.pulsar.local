@@ -11,12 +11,6 @@ use Syscover\Crm\Models\CustomerGroup;
 use Syscover\Crm\Services\AddressService;
 use Syscover\Crm\Services\CustomerService;
 
-
-/**
- * Class CustomerFrontendController
- * @package App\Http\Controllers
- */
-
 class CustomerFrontendController extends Controller
 {
     /*
@@ -44,7 +38,7 @@ class CustomerFrontendController extends Controller
      *
      * @var string
      */
-    protected $loginPath = 'web.get_login-';
+    protected $loginPath = 'web.login-';
 
     /**
      * Redirect route after logout
@@ -60,19 +54,20 @@ class CustomerFrontendController extends Controller
      */
     protected $guard;
 
+
+
     /**
      * Show login view
      */
-    public function getLogin()
+    public function login()
     {
-        $response = [];
-        return view('web.content.customer.login', $response);
+        return view('web.content.customer.login');
     }
 
     /**
      * Show sing in view
      */
-    public function getSingIn()
+    public function singIn()
     {
         // get customer groups
         $response['groups'] = CustomerGroup::builder()->get();
@@ -91,7 +86,7 @@ class CustomerFrontendController extends Controller
     /**
      * Show account view
      */
-    public function account(Request $request)
+    public function account()
     {
         $response['countries']  = Country::builder()->where('lang_id', user_lang())->get();
         $response['groups']     = CustomerGroup::builder()->get();
@@ -129,7 +124,7 @@ class CustomerFrontendController extends Controller
             else
             {
                 return redirect()
-                    ->route('web.get_sing_in-' . user_lang())
+                    ->route('web.sing_in-' . user_lang())
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -239,13 +234,10 @@ class CustomerFrontendController extends Controller
 
     /**
      * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function postLogin(Request $request)
+    public function authenticate(Request $request)
     {
-        $this->validate($request, [
+        $this->validate(request(), [
             'user'      => 'required',
             'password'  => 'required',
         ]);
@@ -256,15 +248,15 @@ class CustomerFrontendController extends Controller
             'password'  => request('password')
         ];
 
-        if (auth('crm')->attempt($credentials, $request->has('remember'))) {
-
+        if (auth('crm')->attempt($credentials, request()->has('remember')))
+        {
             // check if customer is active
             if (! auth('crm')->user()->active)
             {
                 auth('crm')->logout();
 
                 // error user inactive
-                if ($request->input('responseType') == 'json')
+                if (request('response_type') == 'json')
                 {
                     return response()->json([
                         'status'    => 'error',
@@ -283,7 +275,7 @@ class CustomerFrontendController extends Controller
             }
 
             // authentication successful!
-            if (request('responseType') == 'json')
+            if (request('response_type') == 'json')
             {
                 return response()->json([
                     'status'    => 'success',
@@ -298,7 +290,7 @@ class CustomerFrontendController extends Controller
         }
 
         // error authentication!
-        if($request->input('responseType') == 'json')
+        if(request('response_type') == 'json')
         {
             return response()->json([
                 'status'    => 'error',
@@ -318,8 +310,6 @@ class CustomerFrontendController extends Controller
 
     /**
      * Logout user and load default tax rules.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function logout()
     {
@@ -328,8 +318,4 @@ class CustomerFrontendController extends Controller
         return redirect()
             ->route($this->logoutPath . user_lang());
     }
-
-
-
-
 }

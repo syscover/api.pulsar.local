@@ -27,19 +27,19 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
 
     // CUSTOMER ACCOUNT
     // EN
-    Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('web.get_login-en');
-    Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('web.get_sing_in-en');
+    Route::get('/en/account/login',                                                         '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('web.login-en');
+    Route::get('/en/account/sing-in',                                                       '\App\Http\Controllers\CustomerFrontendController@singIn')->name('web.sing_in-en');
     Route::get('/en/account/password',                                                      '\App\Http\Controllers\CustomerFrontendController@resetPassword')->name('web.reset_password-en');
     Route::get('/en/account/password/reset/{token}',                                        '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('web.show_reset_form-en');
 
     // ES
-    Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@getLogin')->name('web.get_login-es');
-    Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@getSingIn')->name('web.get_sing_in-es');
+    Route::get('/es/cuenta/login',                                                          '\App\Http\Controllers\CustomerFrontendController@login')->name('web.login-es');
+    Route::get('/es/cuenta/registro',                                                       '\App\Http\Controllers\CustomerFrontendController@singIn')->name('web.sing_in-es');
     Route::get('/es/cuenta/password',                                                       '\App\Http\Controllers\CustomerFrontendController@resetPassword')->name('web.reset_password-es');
     Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('web.show_reset_form-es');
 
     //
-    Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@postLogin')->name('web.post_login');
+    Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@authenticate')->name('web.authenticate');
     Route::post('/account/create',                                                          '\App\Http\Controllers\CustomerFrontendController@createCustomer')->name('web.create_customer');
     Route::post('/account/password/email',                                                  '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('web.send_reset_link_email');
     Route::post('/account/password/reset',                                                  '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('web.password_reset');

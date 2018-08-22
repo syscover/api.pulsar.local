@@ -7,13 +7,16 @@ class LogSuccessfulLogout
 {
     public function handle(Logout $event)
     {
-        // get default tax rules
-        $taxRules = TaxRuleService::getCustomerTaxRules();
+        if(! auth('crm')->check())
+        {
+            // get default tax rules
+            $taxRules = TaxRuleService::getCustomerTaxRules();
 
-        // calculate prices in shopping cart with default values
-        TaxRuleService::taxCalculateOverShoppingCart($taxRules);
+            // calculate prices in shopping cart with default values
+            TaxRuleService::taxCalculateOverShoppingCart($taxRules);
 
-        // reset tax_rules session variable
-        session(['pulsar-market.tax_rules' => $taxRules]);
+            // reset tax_rules session variable
+            session(['pulsar-market.tax_rules' => $taxRules]);
+        }
     }
 }

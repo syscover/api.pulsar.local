@@ -169,7 +169,7 @@ return [
          */
 
         /*
-         * Pulsar Application Service Providers...
+         * DH2 Application Service Providers...
          */
         App\Providers\NavtoolsServiceProvider::class,
         App\Providers\CoreServiceProvider::class,

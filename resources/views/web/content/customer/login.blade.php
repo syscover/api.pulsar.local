@@ -7,7 +7,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
 
             <div class="col-6 mt-100">
-                <form method="post" action="{{ route('web.post_login') }}">
+                <form method="post" action="{{ route('web.authenticate') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="email">Email address</label>
@@ -30,7 +30,7 @@
                         </div>
                     @endif
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ route('web.get_sing_in-' . user_lang()) }}" class="btn btn-outline-primary">Sing In</a>
+                    <a href="{{ route('web.sing_in-' . user_lang()) }}" class="btn btn-outline-primary">Sing In</a>
                 </form>
             </div>
 

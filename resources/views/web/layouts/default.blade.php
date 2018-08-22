@@ -39,7 +39,7 @@
                 <li class="nav-item {{ active_route('web.shopping_cart-' . user_lang(), 'active') }}">
                     <a class="nav-link" href="{{ route('web.shopping_cart-' . user_lang()) }}">{{ trans('core::common.shopping_cart') }}</a>
                 </li>
-                <li class="nav-item dropdown {{ active_route(['web.account-' . user_lang(), 'web.get_login-' . user_lang()], 'active') }}">
+                <li class="nav-item dropdown {{ active_route(['web.account-' . user_lang(), 'web.login-' . user_lang()], 'active') }}">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ trans('core::common.my_account') }}
                     </a>
@@ -51,7 +51,7 @@
                         </div>
                     @else
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('web.get_login-' . user_lang()) }}">{{ trans('core::common.login') }}</a>
+                            <a class="dropdown-item" href="{{ route('web.login-' . user_lang()) }}">{{ trans('core::common.login') }}</a>
                         </div>
                     @endif
                 </li>
