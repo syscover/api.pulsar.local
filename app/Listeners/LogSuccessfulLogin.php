@@ -23,7 +23,7 @@ class LogSuccessfulLogin
             TaxRuleService::taxCalculateOverShoppingCart(auth('crm')->user()->tax_rules);
 
             // set tax_rules session variable, to calculate prices
-            session(['pulsar-market.tax_rules' => auth('crm')->user()->tax_rules]);
+            TaxRuleService::setTaxRules(auth('crm')->user()->tax_rules);
         }
     }
 }

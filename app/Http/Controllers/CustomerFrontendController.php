@@ -235,7 +235,7 @@ class CustomerFrontendController extends Controller
     /**
      * Handle a login request to the application.
      */
-    public function authenticate(Request $request)
+    public function authenticate()
     {
         $this->validate(request(), [
             'user'      => 'required',

@@ -16,7 +16,7 @@ class LogSuccessfulLogout
             TaxRuleService::taxCalculateOverShoppingCart($taxRules);
 
             // reset tax_rules session variable
-            session(['pulsar-market.tax_rules' => $taxRules]);
+            TaxRuleService::setTaxRules($taxRules);
         }
     }
 }
