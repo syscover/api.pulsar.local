@@ -36,24 +36,21 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+        'crm' => [
+            'driver'    => 'session',
+            'provider'  => 'crmCustomer',
         ],
 
-        'api' => [
-            'driver' => 'jwt',
-            'provider' => 'adminUser',
-        ],
-
+        // Api guard get the auth from provider defined un default guard,
+        // and to define a default guard, this must to be defined like session driver
         'admin' => [
             'driver'    => 'session',
             'provider'  => 'adminUser',
         ],
 
-        'crm' => [
-            'driver'    => 'session',
-            'provider'  => 'crmCustomer',
+        'api' => [
+            'driver'    => 'passport',
+            'provider'  => 'adminUser',
         ],
     ],
 
@@ -75,16 +72,6 @@ return [
     */
 
     'providers' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-        ],
-
         'adminUser' => [
             'driver'    => 'eloquent',
             'model'     => Syscover\Admin\Models\User::class,
@@ -112,7 +99,6 @@ return [
     */
 
     'passwords' => [
-        
         'adminPasswordBroker' => [
             'provider'  => 'adminUser',
             'table'     => 'admin_password_resets',

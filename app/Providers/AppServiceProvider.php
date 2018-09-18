@@ -15,10 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-//        \Illuminate\Support\Facades\DB::listen(function ($query) {
-//            \Illuminate\Support\Facades\Log::info($query->sql);
-//        });
+        \Illuminate\Support\Facades\DB::listen(function ($query) {
+            \Illuminate\Support\Facades\Log::info($query->sql);
+        });
     }
 
     /**
@@ -36,5 +35,4 @@ class AppServiceProvider extends ServiceProvider
             return new AnyType();
         });
     }
-
 }

@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,24 +12,15 @@ let mix = require('laravel-mix');
  */
 
 mix
-    .sass('resources/assets/sass/app.scss', 'public/css')
-    .js('resources/assets/js/app.js', 'public/js')
-    .styles([
-        'node_modules/swiper/dist/css/swiper.min.css',
-        'node_modules/magnific-popup/dist/magnific-popup.css',
-        'node_modules/animate.css/animate.min.css'
-    ], 'public/css/all.css')
+    .js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
     .scripts([
-        'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/popper.js/dist/umd/popper.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js',
-        'node_modules/moment/moment.js',
-        'node_modules/jquery-validation/dist/jquery.validate.js',
-        'node_modules/jquery-validation/dist/additional-methods.js',
-        'node_modules/swiper/dist/js/swiper.min.js',
-        'node_modules/magnific-popup/dist/jquery.magnific-popup.js',
-        'workbench/syscover/pulsar-core/src/public/vendor/territories/js/jquery.territories.js'
+        'public/js/custom.js'
+
     ], 'public/js/all.js')
+    .styles([
+
+    ], 'public/css/all.css')
     .options({
         processCssUrls: true
     })
