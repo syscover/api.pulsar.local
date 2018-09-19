@@ -1,0 +1,32 @@
+# Core
+#import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/scalars.graphql
+#import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/inputs.graphql
+#import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/types.graphql
+
+# Admin
+#import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/inputs.graphql
+#import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
+
+# CRM
+
+# CMS
+#import ./../../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/types.graphql
+
+# Market
+#import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/types.graphql
+
+type Query {
+    # Core
+    #import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/queries.graphql
+
+    # Admin
+    #import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/queries.graphql
+
+    # Cms
+    #import ./../../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/queries.graphql
+}
+
+type Mutation {
+    #Admin
+    #import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+}

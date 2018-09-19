@@ -157,12 +157,12 @@ return [
         App\Providers\NavtoolsServiceProvider::class,
         App\Providers\CoreServiceProvider::class,
         App\Providers\AdminServiceProvider::class,
-        App\Providers\CrmServiceProvider::class,
-        App\Providers\MarketServiceProvider::class,
-        App\Providers\CmsServiceProvider::class,
-        App\Providers\ReviewServiceProvider::class,
-        App\Providers\ShoppingCartServiceProvider::class,
-        App\Providers\UpsServiceProvider::class,
+       // App\Providers\CrmServiceProvider::class,
+       // App\Providers\MarketServiceProvider::class,
+       App\Providers\CmsServiceProvider::class,
+       // App\Providers\ReviewServiceProvider::class,
+       // App\Providers\ShoppingCartServiceProvider::class,
+       // App\Providers\UpsServiceProvider::class,
 
         /*
          * Application Service Providers...

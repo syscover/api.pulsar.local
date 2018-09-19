@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
-            \Syscover\Market\Middleware\TaxRule::class
+            //\Syscover\Market\Middleware\TaxRule::class
         ],
 
         'api' => [

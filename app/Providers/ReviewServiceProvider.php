@@ -40,10 +40,6 @@ class ReviewServiceProvider extends ServiceProvider
             $this->app->basePath() . '/workbench/syscover/pulsar-review/src/config/pulsar-review.php' => config_path('pulsar-review.php'),
         ]);
 
-        // register GraphQL types and schema
-        ReviewGraphQLServiceProvider::bootGraphQLTypes();
-        ReviewGraphQLServiceProvider::bootGraphQLSchema();
-
         // call code after boot application
         $this->app->booted(function () {
             // declare schedule

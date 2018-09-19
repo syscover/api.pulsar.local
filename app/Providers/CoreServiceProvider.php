@@ -26,10 +26,6 @@ class CoreServiceProvider extends ServiceProvider
 
         // register translations
         $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/lang', 'core');
-
-        // register GraphQL types and schema
-        CoreGraphQLServiceProvider::bootGraphQLTypes();
-        CoreGraphQLServiceProvider::bootGraphQLSchema();
     }
 
 	/**
