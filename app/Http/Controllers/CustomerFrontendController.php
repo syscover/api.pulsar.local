@@ -13,18 +13,7 @@ use Syscover\Crm\Services\CustomerService;
 
 class CustomerFrontendController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
 
-    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login / registration.
@@ -39,13 +28,6 @@ class CustomerFrontendController extends Controller
      * @var string
      */
     protected $loginPath = 'web.login-';
-
-    /**
-     * Redirect route after logout
-     *
-     * @var string
-     */
-    protected $logoutPath = 'web.home-';
 
     /**
      * Here you can customize your guard, this guard has to set in auth.php config
@@ -94,9 +76,6 @@ class CustomerFrontendController extends Controller
 
         return view('web.content.customer.account', $response);
     }
-
-
-
 
     /**
      * Create customer in CRM module and login customer created
@@ -230,92 +209,5 @@ class CustomerFrontendController extends Controller
     public function postAddress()
     {
         AddressService::create(request()->all());
-    }
-
-    /**
-     * Handle a login request to the application.
-     */
-    public function authenticate()
-    {
-        $this->validate(request(), [
-            'user'      => 'required',
-            'password'  => 'required',
-        ]);
-
-        // set $credentials
-        $credentials = [
-            'user'      => request('user'),
-            'password'  => request('password')
-        ];
-
-        if (auth('crm')->attempt($credentials, request()->has('remember')))
-        {
-            // check if customer is active
-            if (! auth('crm')->user()->active)
-            {
-                auth('crm')->logout();
-
-                // error user inactive
-                if (request('response_type') == 'json')
-                {
-                    return response()->json([
-                        'status'    => 'error',
-                        'message'   => 'User inactive'
-                    ], 401);
-                }
-                else
-                {
-                    return redirect()
-                        ->route($this->loginPath . user_lang())
-                        ->withErrors([
-                            'message' => 'User inactive'
-                        ])
-                        ->withInput();
-                }
-            }
-
-            // authentication successful!
-            if (request('response_type') == 'json')
-            {
-                return response()->json([
-                    'status'    => 'success',
-                    'customer'  => auth('crm')->user()
-                ], 200);
-            }
-            else
-            {
-                return redirect()
-                    ->intended(route($this->redirectTo . user_lang()));
-            }
-        }
-
-        // error authentication!
-        if(request('response_type') == 'json')
-        {
-            return response()->json([
-                'status'    => 'error',
-                'message'   => __('crm::common.authentication_error_code_01')
-            ], 401);
-        }
-        else
-        {
-            return redirect()
-                ->route($this->loginPath . user_lang())
-                ->withErrors([
-                    'message' => __('crm::common.authentication_error_code_01')
-                ])
-                ->withInput();
-        }
-    }
-
-    /**
-     * Logout user and load default tax rules.
-     */
-    public function logout()
-    {
-        auth('crm')->logout();
-
-        return redirect()
-            ->route($this->logoutPath . user_lang());
     }
 }

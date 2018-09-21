@@ -70,7 +70,7 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     //
 });
 
-Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function() {
+Route::group(['middleware' => ['pulsar.navtools', 'pulsar.auth:crm']], function() {
 
     // CUSTOMER ACCOUNT
     // EN
@@ -83,8 +83,6 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.crm.auth']], function(
 
     //
     Route::put('/account/update',                                                           '\App\Http\Controllers\CustomerFrontendController@updateCustomer')->name('web.update_customer');
-
-
 
 
     // MARKET
