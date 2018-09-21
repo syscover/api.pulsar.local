@@ -36,6 +36,8 @@ return [
     */
     'route' => [
         'prefix' => '',
+        'middleware' => ['sessions'],
+        // 'middleware' => ['auth:api'],
         // 'middleware' => ['web','api'],    // [ 'loghttp']
     ],
 

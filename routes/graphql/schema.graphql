@@ -12,6 +12,9 @@
 # CMS
 #import ./../../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/types.graphql
 
+# ShoppingCart
+#import ./../../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/types.graphql
+
 # Market
 #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/types.graphql
 
@@ -24,6 +27,9 @@ type Query {
 
     # Cms
     #import ./../../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/queries.graphql
+
+    # ShoppingCart
+    #import ./../../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/queries.graphql
 }
 
 type Mutation {

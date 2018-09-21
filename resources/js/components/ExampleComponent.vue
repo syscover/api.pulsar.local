@@ -18,6 +18,14 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        created() {
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            axios
+                .post('/api/v1/shopping-cart/item')
+                .then(res => {
+                    console.log(res);
+                });
         }
     }
 </script>
