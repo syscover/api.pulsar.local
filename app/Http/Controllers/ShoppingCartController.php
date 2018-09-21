@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Syscover\Market\Services\CouponService;
 use Syscover\Market\Models\Product;
 use Syscover\Market\Services\TaxRuleService;
@@ -93,7 +94,7 @@ class ShoppingCartController extends Controller
         // check if exist coupon code
         if(request('apply_coupon_code'))
         {
-            CouponService::addCoupon(CartProvider::instance(), request('apply_coupon_code'), user_lang(), auth('crm'));
+            CouponService::addCoupon(CartProvider::instance(), request('apply_coupon_code'), user_lang(), Auth::guard('crm'));
         }
 
         foreach(CartProvider::instance()->getCartItems() as $item)
