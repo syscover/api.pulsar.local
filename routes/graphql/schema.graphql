@@ -30,6 +30,9 @@ type Query {
 
     # ShoppingCart
     #import ./../../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/queries.graphql
+
+    # Market
+    #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/queries.graphql
 }
 
 type Mutation {
