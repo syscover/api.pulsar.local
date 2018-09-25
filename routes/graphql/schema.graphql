@@ -46,6 +46,9 @@ type Query {
 }
 
 type Mutation {
-    #Admin
+    # Admin
     #import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+
+    # Market
+    #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/mutations.graphql
 }

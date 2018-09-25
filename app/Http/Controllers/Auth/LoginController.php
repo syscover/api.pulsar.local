@@ -76,8 +76,20 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return redirect()
-            ->route($this->redirectToRouteName . user_lang());
+        if ($request->input('type') === 'json')
+        {
+            return response()
+                ->json([
+                    'status'        => 200,
+                    'statusText'    => "OK",
+                    'customer'      => Auth::guard('crm')->user()
+                ]);
+        }
+        else
+        {
+            return redirect()
+                ->route($this->redirectToRouteName . user_lang());
+        }
     }
 
     /**

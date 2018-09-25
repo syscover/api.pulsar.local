@@ -39,7 +39,7 @@ Route::group(['middleware' => ['pulsar.navtools']], function () {
     Route::get('/es/cuenta/password/reset/{token}',                                         '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('web.show_reset_form-es');
 
     //
-    Route::post('/account/login',                                                           '\App\Http\Controllers\CustomerFrontendController@authenticate')->name('web.authenticate');
+    Route::post('/account/login',                                                           '\App\Http\Controllers\Auth\LoginController@login')->name('web.authenticate');
     Route::post('/account/create',                                                          '\App\Http\Controllers\CustomerFrontendController@createCustomer')->name('web.create_customer');
     Route::post('/account/password/email',                                                  '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('web.send_reset_link_email');
     Route::post('/account/password/reset',                                                  '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('web.password_reset');
