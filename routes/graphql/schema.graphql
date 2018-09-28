@@ -17,6 +17,7 @@
 #import ./../../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/types.graphql
 
 # Market
+#import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/types.graphql
 
 # Review
