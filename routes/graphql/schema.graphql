@@ -8,6 +8,7 @@
 #import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
 
 # Crm
+#import ./../../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/types.graphql
 
 # Cms
@@ -50,6 +51,9 @@ type Query {
 type Mutation {
     # Admin
     #import ./../../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+
+    # Crm
+    #import ./../../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/mutations.graphql
 
     # Cms
     #import ./../../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/mutations.graphql
