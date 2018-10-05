@@ -75,11 +75,11 @@ Route::group(['middleware' => ['pulsar.navtools', 'pulsar.auth:crm']], function(
     // CUSTOMER ACCOUNT
     // EN
     Route::match(['get', 'post'], '/en/account',                                            '\App\Http\Controllers\CustomerFrontendController@account')->name('web.account-en');
-    Route::match(['get', 'post'], '/en/account/logout',                                     '\App\Http\Controllers\CustomerFrontendController@logout')->name('web.logout-en');
+    Route::match(['get', 'post'], '/en/account/logout',                                     '\App\Http\Controllers\Auth\LoginController@logout')->name('web.logout-en');
 
     // ES
     Route::match(['get', 'post'], '/es/cuenta',                                             '\App\Http\Controllers\CustomerFrontendController@account')->name('web.account-es');
-    Route::match(['get', 'post'], '/es/cuenta/logout',                                      '\App\Http\Controllers\CustomerFrontendController@logout')->name('web.logout-es');
+    Route::match(['get', 'post'], '/es/cuenta/logout',                                      '\App\Http\Controllers\Auth\LoginController@logout')->name('web.logout-es');
 
     //
     Route::put('/account/update',                                                           '\App\Http\Controllers\CustomerFrontendController@updateCustomer')->name('web.update_customer');

@@ -20,9 +20,21 @@
             console.log('Component mounted.')
         },
         created() {
-            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             axios
-                .post('/api/v1/shopping-cart/item')
+                .post('/graphql/localhost', {
+                    query: `
+                        query AdminCountries  {
+                          adminCountries{
+                            ix
+                            id
+                            name
+                            slug
+                            sort
+                                zones
+                          }
+                        }
+                    `
+                })
                 .then(res => {
                     console.log(res);
                 });

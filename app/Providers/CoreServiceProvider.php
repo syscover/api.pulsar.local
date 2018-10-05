@@ -15,6 +15,9 @@ class CoreServiceProvider extends ServiceProvider
 		// load autoload from package composer.json
 		require $this->app->basePath() . '/workbench/syscover/pulsar-core/vendor/autoload.php';
 
+        // register routes
+        $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/routes/api.php');
+
         // register views
         $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/views', 'core');
 

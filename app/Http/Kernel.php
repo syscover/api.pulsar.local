@@ -36,19 +36,13 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
-            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
             \Syscover\Market\Middleware\TaxRule::class
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
-        ],
-
-        'sessions' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-        ],
+        ]
     ];
 
     /**
@@ -68,6 +62,7 @@ class Kernel extends HttpKernel
         'signed'                => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle'              => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'              => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'client'                => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
 
         // pulsar middlewares
         'pulsar.navtools'       => \Syscover\Navtools\Middleware\Navtools::class,
