@@ -18,17 +18,16 @@ class ReviewServiceProvider extends ServiceProvider
 		require $this->app->basePath() . '/workbench/syscover/pulsar-review/vendor/autoload.php';
 
         // register routes
-        $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/routes/api.php');
         $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/routes/web.php');
 
         // register migrations
         $this->loadMigrationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/database/migrations');
 
         // register translations
-        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/lang', 'review');
+        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/resources/lang', 'review');
 
         // register views
-        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/views', 'review');
+        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-review/src/resources/views', 'review');
 
         // register seeds
         $this->publishes([

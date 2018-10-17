@@ -22,6 +22,10 @@
 #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/types.graphql
 
+# Ups
+#import ./../../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/inputs.graphql
+#import ./../../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/types.graphql
+
 # Review
 #import ./../../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/types.graphql
@@ -45,6 +49,9 @@ type Query {
     # Market
     #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/queries.graphql
 
+    # Ups
+    #import ./../../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/queries.graphql
+
     # Review
     #import ./../../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/queries.graphql
 }
@@ -64,6 +71,9 @@ type Mutation {
 
     # Market
     #import ./../../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/mutations.graphql
+
+    # Ups
+    #import ./../../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/mutations.graphql
 
     # Review
     #import ./../../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/mutations.graphql

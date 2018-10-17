@@ -19,16 +19,15 @@ class CoreServiceProvider extends ServiceProvider
         $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/routes/api.php');
 
         // register views
-        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/views', 'core');
+        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/resources/views', 'core');
 
         // register config files
         $this->publishes([
-            $this->app->basePath() . '/workbench/syscover/pulsar-core/src/config/pulsar-core.php' => config_path('pulsar-core.php'),
-            $this->app->basePath() . '/workbench/syscover/pulsar-core/src/public'                 => public_path('/vendor/pulsar-core')
+            $this->app->basePath() . '/workbench/syscover/pulsar-core/src/config/pulsar-core.php' => config_path('pulsar-core.php')
         ]);
 
         // register translations
-        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/lang', 'core');
+        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-core/src/resources/lang', 'core');
     }
 
 	/**

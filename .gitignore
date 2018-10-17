@@ -28,8 +28,7 @@
 /config/pulsar-cms.php
 /config/pulsar-shopping_cart.php
 /config/pulsar-navtools.php
-/config/jwt.php
-/config/graphql.php
+/config/pulsar-review.php
 
 # -- Test -----------------------------------------------------
 /tests/Feature/AdminTest.php
