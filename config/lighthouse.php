@@ -36,7 +36,7 @@ return [
     */
     'route' => [
         'prefix' => '',
-        'middleware' => ['api', 'client'],
+        'middleware' => ['api'],
     ],
 
     /*

@@ -6,7 +6,7 @@ use Syscover\Market\Models\PaymentMethod;
 use Syscover\Market\Services\OrderRowService;
 use Syscover\Market\Services\OrderService;
 use Syscover\Market\Services\PaymentMethodService;
-use Syscover\Market\Services\PayPalService;
+use Syscover\Market\Services\PayPalPaymentService;
 use Syscover\Market\Services\RedsysService;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\Admin\Models\Country;
@@ -252,7 +252,7 @@ class MarketFrontendController extends Controller
 
     public function marketPayPalSuccessful(Request $request)
     {
-        //$order = PayPalService::successful($request);
+        //$order = PayPalPaymentService::successful($request);
         dd('marketPayPalSuccessful');
         dd($order);
         dd($request->all());
@@ -260,7 +260,7 @@ class MarketFrontendController extends Controller
 
     public function marketPayPalError(Request $request)
     {
-        $order = PayPalService::error($request);
+        $order = PayPalPaymentService::error($request);
         dd('marketPayPalError');
         dd($order);
         dd($request->all());

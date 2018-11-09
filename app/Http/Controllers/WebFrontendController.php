@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use Syscover\Market\Models\Product;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
+use Syscover\Wine\Models\Wine;
 
 class WebFrontendController extends Controller
 {

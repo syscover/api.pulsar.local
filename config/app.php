@@ -163,6 +163,7 @@ return [
         App\Providers\ReviewServiceProvider::class,
         App\Providers\ShoppingCartServiceProvider::class,
         App\Providers\UpsServiceProvider::class,
+        App\Providers\WineServiceProvider::class,
 
         /*
          * Application Service Providers...

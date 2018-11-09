@@ -36,6 +36,7 @@
 # -- Public --------------------------------------------
 /public/pulsar/
 /public/packages/
+/public/.well-known/
 
 # -- Symlink ----------------------------------------
 /public/storage
