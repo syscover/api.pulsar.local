@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Syscover\Market\Models\Product;
+use Syscover\Admin\Models\Country;
+use Syscover\Core\Services\SQLService;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
 use Syscover\Wine\Models\Wine;
@@ -9,6 +10,53 @@ class WebFrontendController extends Controller
 {
     public function home()
     {
+
+        dd(Wine::builder()->get()->first()->price);
+
+
+//        $test = [
+//            'filter' => [
+//                'type'  => 'and',
+//                'sql'   => [
+//                    [
+//                        'type'  => 'and',
+//                        'sql'   => [
+//                            [
+//                                'column' => 'prefix',
+//                                'operator' => '>',
+//                                'value' => 40
+//
+//                            ],
+//                            [
+//                                'column' => 'prefix',
+//                                'operator' => '<',
+//                                'value' => 50
+//                            ]
+//                        ],
+//                    ],
+//                    [
+//                        'type'  => 'or',
+//                        'sql'   => [
+//                            [
+//                                'column' => 'lang_id',
+//                                'operator' => '=',
+//                                'value' => 'es'
+//
+//                            ],
+//                            [
+//                                'raw' => 'CASE `market_product`.`product_class_tax_id` WHEN 1 THEN (`market_product`.`subtotal` * 1.21) > 8 END'
+//                            ]
+//
+//                        ]
+//                    ]
+//                ]
+//            ]
+//        ];
+//
+//        $query = Country::builder();
+//        $query  = SQLService::setGroupQueryFilter($query, $test['filter']);
+//        dd($query->toSql());
+
         return view('web.content.home');
     }
 
