@@ -34,6 +34,10 @@
 #import ./../../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/types.graphql
 
+# Forem
+#import ./../../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/inputs.graphql
+#import ./../../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/types.graphql
+
 type Query {
     # Core
     #import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/queries.graphql
@@ -61,6 +65,9 @@ type Query {
 
     # Wine
     #import ./../../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/queries.graphql
+
+    # Forem
+    #import ./../../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/queries.graphql
 }
 
 type Mutation {
@@ -90,4 +97,7 @@ type Mutation {
 
     # Wine
     #import ./../../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/mutations.graphql
+
+    # Forem
+    #import ./../../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/mutations.graphql
 }

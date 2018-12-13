@@ -1,5 +1,6 @@
 <?php
 
+use GraphQL\Error\Debug;
 use GraphQL\Validator\Rules\DisableIntrospection;
 
 return [
@@ -89,8 +90,10 @@ return [
     */
     'namespaces' => [
         'models' => 'App\\Models',
-        'mutations' => 'App\\Http\\GraphQL\\Mutations',
         'queries' => 'App\\Http\\GraphQL\\Queries',
+        'mutations' => 'App\\Http\\GraphQL\\Mutations',
+        'interfaces' => 'App\\Http\\GraphQL\\Interfaces',
+        'unions' => 'App\\Http\\GraphQL\\Unions',
         'scalars' => 'App\\Http\\GraphQL\\Scalars',
     ],
 
@@ -110,6 +113,43 @@ return [
         'disable_introspection' => DisableIntrospection::DISABLED,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Debug
+    |--------------------------------------------------------------------------
+    |
+    | Control the debug level as described in http://webonyx.github.io/graphql-php/error-handling/
+    | Debugging is only applied if the global Laravel debug config is set to true.
+    |
+    */
+    'debug' => Debug::INCLUDE_DEBUG_MESSAGE | Debug::INCLUDE_TRACE,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Error Handlers
+    |--------------------------------------------------------------------------
+    |
+    | Register error handlers that receive the Errors that occur during execution and
+    | handle them. You may use this to log, filter or format the errors.
+    | The classes must implement Nuwave\Lighthouse\Execution\ErrorHandler
+    |
+    */
+    'error_handlers' => [
+        \Nuwave\Lighthouse\Execution\ExtensionErrorHandler::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Extensions
+    |--------------------------------------------------------------------------
+    |
+    | Register extension classes that extend \Nuwave\Lighthouse\Schema\Extensions\GraphQLExtension
+    |
+    */
+    'extensions' => [
+        // \Nuwave\Lighthouse\Schema\Extensions\TracingExtension::class
+    ],
+
      /*
      |--------------------------------------------------------------------------
      | GraphQL Controller
@@ -125,9 +165,20 @@ return [
     | Global ID
     |--------------------------------------------------------------------------
     |
-    | When creating a GraphQL type that is Relay compliant, provide a named field
-    | for the Node identifier.
+    | The name that is used for the global id field on the Node interface.
+    | When creating a Relay compliant server, this must be named "id".
     |
     */
-    'global_id_field' => '_id',
+    'global_id_field' => 'id',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Batched Queries
+    |--------------------------------------------------------------------------
+    |
+    | GraphQL query batching means sending multiple queries to the server in one request,
+    | You may set this flag to process/deny batched queries.
+    |
+     */
+    'batched_queries' => true,
 ];
