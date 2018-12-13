@@ -164,6 +164,7 @@ return [
         App\Providers\ShoppingCartServiceProvider::class,
         App\Providers\UpsServiceProvider::class,
         App\Providers\WineServiceProvider::class,
+        App\Providers\ForemServiceProvider::class,
 
         /*
          * Application Service Providers...
