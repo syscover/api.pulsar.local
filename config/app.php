@@ -165,6 +165,7 @@ return [
         App\Providers\UpsServiceProvider::class,
         App\Providers\WineServiceProvider::class,
         App\Providers\ForemServiceProvider::class,
+        App\Providers\SearchServiceProvider::class,
 
         /*
          * Application Service Providers...

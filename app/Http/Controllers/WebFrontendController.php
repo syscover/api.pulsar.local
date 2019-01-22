@@ -10,7 +10,6 @@ class WebFrontendController extends Controller
 {
     public function home()
     {
-
         dd(Wine::builder()->get()->first()->price);
 
 
