@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Syscover\Admin\Models\Country;
+use Syscover\Admin\Models\User;
 use Syscover\Core\Services\SQLService;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
@@ -10,7 +11,8 @@ class WebFrontendController extends Controller
 {
     public function home()
     {
-        dd(Wine::builder()->get()->first()->price);
+
+        dd(User::builder()->get()->first());
 
 
 //        $test = [
