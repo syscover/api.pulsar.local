@@ -1,24 +1,5 @@
 # -- Provider dev --------------------------------------------
 /workbench
-/app/Providers/AdminServiceProvider.php
-/app/Providers/CoreServiceProvider.php
-/app/Providers/BookingServiceProvider.php
-/app/Providers/CmsServiceProvider.php
-/app/Providers/ComunikServiceProvider.php
-/app/Providers/CrmServiceProvider.php
-/app/Providers/FormsServiceProvider.php
-/app/Providers/HotelsServiceProvider.php
-/app/Providers/MarketServiceProvider.php
-/app/Providers/NavToolsServiceProvider.php
-/app/Providers/OctopusServiceProvider.php
-/app/Providers/ShoppingCartServiceProvider.php
-/app/Providers/SpasServiceProvider.php
-/app/Providers/WineriesServiceProvider.php
-/app/Providers/ProjectsServiceProvider.php
-/app/Providers/PulsarServiceProvider.php
-/app/Providers/FacturaDirectaServiceProvider.php
-/app/Providers/HotelManagerServiceProvider.php
-/app/Providers/VinipadServiceProvider.php
 
 # -- Test -----------------------------------------------------
 /tests/Feature/AdminTest.php

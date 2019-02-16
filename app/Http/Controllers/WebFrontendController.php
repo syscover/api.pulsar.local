@@ -1,62 +1,34 @@
 <?php namespace App\Http\Controllers;
 
-use Syscover\Admin\Models\Country;
-use Syscover\Admin\Models\User;
-use Syscover\Core\Services\SQLService;
+use Illuminate\Support\Facades\Artisan;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
-use Syscover\Wine\Models\Wine;
 
 class WebFrontendController extends Controller
 {
     public function home()
     {
+        // First we will see if we have a cache configuration file. If we do, we'll load
+        // the configuration items from that file so that it is very quick. Otherwise
+        // we will need to spin through every configuration file and load them all.
 
-        dd(User::builder()->get()->first());
 
 
-//        $test = [
-//            'filter' => [
-//                'type'  => 'and',
-//                'sql'   => [
-//                    [
-//                        'type'  => 'and',
-//                        'sql'   => [
-//                            [
-//                                'column' => 'prefix',
-//                                'operator' => '>',
-//                                'value' => 40
-//
-//                            ],
-//                            [
-//                                'column' => 'prefix',
-//                                'operator' => '<',
-//                                'value' => 50
-//                            ]
-//                        ],
-//                    ],
-//                    [
-//                        'type'  => 'or',
-//                        'sql'   => [
-//                            [
-//                                'column' => 'lang_id',
-//                                'operator' => '=',
-//                                'value' => 'es'
-//
-//                            ],
-//                            [
-//                                'raw' => 'CASE `market_product`.`product_class_tax_id` WHEN 1 THEN (`market_product`.`subtotal` * 1.21) > 8 END'
-//                            ]
-//
-//                        ]
-//                    ]
-//                ]
-//            ]
-//        ];
-//
-//        $query = Country::builder();
-//        $query  = SQLService::setGroupQueryFilter($query, $test['filter']);
-//        dd($query->toSql());
+        $exitCode = Artisan::call('migrate');
+
+        dd($exitCode);
+
+        if (env('APP_ENV') === 'production') {
+            $path = 'vendor/syscover/pulsar-core/src/version.php';
+        }
+        else {
+            $path = 'workbench/syscover/pulsar-core/src/version.php';
+        }
+
+        if (file_exists(base_path($path))) {
+            $version = require base_path($path);
+            dd($version);
+        }
 
         return view('web.content.home');
     }
