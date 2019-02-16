@@ -136,6 +136,7 @@ return [
     */
     'error_handlers' => [
         \Nuwave\Lighthouse\Execution\ExtensionErrorHandler::class,
+        \Syscover\Core\GraphQL\Execution\ExtensionValidationErrorHandler::class,
     ],
 
     /*
