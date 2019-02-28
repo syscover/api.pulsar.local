@@ -169,6 +169,11 @@ return [
         App\Providers\UpdateServiceProvider::class,
 
         /*
+         * Techedge Application Service Providers...
+         */
+        App\Providers\BcciServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
