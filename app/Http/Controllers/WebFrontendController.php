@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Artisan;
+use Syscover\Market\Models\Order;
 use Syscover\Ups\Entities\Service;
 use Syscover\Ups\Facades\Rate;
 
@@ -8,28 +9,6 @@ class WebFrontendController extends Controller
 {
     public function home()
     {
-        // First we will see if we have a cache configuration file. If we do, we'll load
-        // the configuration items from that file so that it is very quick. Otherwise
-        // we will need to spin through every configuration file and load them all.
-
-
-
-        $exitCode = Artisan::call('migrate');
-
-        dd($exitCode);
-
-        if (env('APP_ENV') === 'production') {
-            $path = 'vendor/syscover/pulsar-core/src/version.php';
-        }
-        else {
-            $path = 'workbench/syscover/pulsar-core/src/version.php';
-        }
-
-        if (file_exists(base_path($path))) {
-            $version = require base_path($path);
-            dd($version);
-        }
-
         return view('web.content.home');
     }
 

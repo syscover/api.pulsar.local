@@ -15,7 +15,7 @@ class BcciServiceProvider extends ServiceProvider
 		require $this->app->basePath() . '/workbench/techedge/pulsar-bcci/vendor/autoload.php';
 
         // register routes
-        // $this->loadRoutesFrom($this->app->basePath() . '/workbench/techedge/pulsar-bcci/src/routes/api.php');
+        $this->loadRoutesFrom($this->app->basePath() . '/workbench/techedge/pulsar-bcci/src/routes/api.php');
 
         // register migrations
         $this->loadMigrationsFrom($this->app->basePath() . '/workbench/techedge/pulsar-bcci/src/database/migrations');

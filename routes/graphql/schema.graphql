@@ -42,6 +42,10 @@
 #import ./../../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/inputs.graphql
 #import ./../../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/types.graphql
 
+# Bcci
+#import ./../../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/inputs.graphql
+#import ./../../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/types.graphql
+
 type Query {
     # Core
     #import ./../../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/queries.graphql
@@ -75,6 +79,9 @@ type Query {
 
     # Update
     #import ./../../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/queries.graphql
+
+    # Bcci
+    #import ./../../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/queries.graphql
 }
 
 type Mutation {
@@ -110,4 +117,7 @@ type Mutation {
 
     # Update
     #import ./../../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/mutations.graphql
+
+    # Bcci
+    #import ./../../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/mutations.graphql
 }

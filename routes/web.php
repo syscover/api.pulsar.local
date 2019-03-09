@@ -29,6 +29,8 @@
 
 Route::group(['middleware' => ['pulsar.navtools']], function () {
 
+    Route::get('/playground',                                                               '\App\Http\Controllers\PlaygroundController@index')->name('web.playground');
+
     Route::get('/',                                                                         '\App\Http\Controllers\WebFrontendController@home')->name('web.home');
     Route::get('/es',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('web.home-es');
     Route::get('/en',                                                                       '\App\Http\Controllers\WebFrontendController@home')->name('web.home-en');
