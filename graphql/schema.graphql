@@ -1,0 +1,123 @@
+# Core
+#import ./../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/scalars.graphql
+#import ./../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/types.graphql
+
+# Admin
+#import ./../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
+
+# Crm
+#import ./../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/types.graphql
+
+# Cms
+#import ./../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/types.graphql
+
+# ShoppingCart
+#import ./../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/types.graphql
+
+# Market
+#import ./../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/types.graphql
+
+# Ups
+#import ./../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/types.graphql
+
+# Review
+#import ./../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/types.graphql
+
+# Wine
+#import ./../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/types.graphql
+
+# Forem
+#import ./../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/types.graphql
+
+# Update
+#import ./../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/inputs.graphql
+#import ./../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/types.graphql
+
+# Bcci
+#import ./../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/inputs.graphql
+#import ./../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/types.graphql
+
+type Query {
+    # Core
+    #import ./../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/queries.graphql
+
+    # Admin
+    #import ./../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/queries.graphql
+
+    # Crm
+    #import ./../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/queries.graphql
+
+    # Cms
+    #import ./../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/queries.graphql
+
+    # ShoppingCart
+    #import ./../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/queries.graphql
+
+    # Market
+    #import ./../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/queries.graphql
+
+    # Ups
+    #import ./../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/queries.graphql
+
+    # Review
+    #import ./../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/queries.graphql
+
+    # Wine
+    #import ./../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/queries.graphql
+
+    # Forem
+    #import ./../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/queries.graphql
+
+    # Update
+    #import ./../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/queries.graphql
+
+    # Bcci
+    #import ./../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/queries.graphql
+}
+
+type Mutation {
+    # Core
+    #import ./../workbench/syscover/pulsar-core/src/Syscover/Core/GraphQL/mutations.graphql
+
+    # Admin
+    #import ./../workbench/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+
+    # Crm
+    #import ./../workbench/syscover/pulsar-crm/src/Syscover/Crm/GraphQL/mutations.graphql
+
+    # Cms
+    #import ./../workbench/syscover/pulsar-cms/src/Syscover/Cms/GraphQL/mutations.graphql
+
+    # ShoppingCart
+    #import ./../workbench/syscover/pulsar-shopping-cart/src/Syscover/ShoppingCart/GraphQL/mutations.graphql
+
+    # Market
+    #import ./../workbench/syscover/pulsar-market/src/Syscover/Market/GraphQL/mutations.graphql
+
+    # Ups
+    #import ./../workbench/syscover/pulsar-ups/src/Syscover/Ups/GraphQL/mutations.graphql
+
+    # Review
+    #import ./../workbench/syscover/pulsar-review/src/Syscover/Review/GraphQL/mutations.graphql
+
+    # Wine
+    #import ./../workbench/syscover/pulsar-wine/src/Syscover/Wine/GraphQL/mutations.graphql
+
+    # Forem
+    #import ./../workbench/syscover/pulsar-forem/src/Syscover/Forem/GraphQL/mutations.graphql
+
+    # Update
+    #import ./../workbench/syscover/pulsar-update/src/Syscover/Update/GraphQL/mutations.graphql
+
+    # Bcci
+    #import ./../workbench/techedge/pulsar-bcci/src/Techedge/Bcci/GraphQL/mutations.graphql
+}
