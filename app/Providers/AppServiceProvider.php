@@ -7,6 +7,16 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -16,15 +26,5 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\DB::listen(function ($query) {
             // info($query->sql);
         });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-
     }
 }
