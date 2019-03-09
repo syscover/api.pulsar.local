@@ -16,6 +16,7 @@
         "laravel/passport": "^7.2",
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "nuwave/lighthouse": "dev-master",
         "paypal/rest-api-sdk-php": "*",
         "ssheduardo/redsys-laravel": "^1.3"
