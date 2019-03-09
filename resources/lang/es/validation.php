@@ -32,6 +32,7 @@ return [
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
     'confirmed'            => 'La confirmación de :attribute no coincide.',
     'date'                 => ':attribute no es una fecha válida.',
+    'date_equals'          => 'El :attribute debe ser una fecha igual a :date.',
     'date_format'          => ':attribute no corresponde al formato :format.',
     'different'            => ':attribute y :other deben ser diferentes.',
     'digits'               => ':attribute debe tener :digits dígitos.',
@@ -107,11 +108,13 @@ return [
         'string'  => ':attribute debe contener :size caracteres.',
         'array'   => ':attribute debe contener :size elementos.',
     ],
+    'starts_with'          => 'El :attribute debe comenzar con uno de los siguientes: :values',
     'string'               => 'El campo :attribute debe ser una cadena de caracteres.',
     'timezone'             => 'El :attribute debe ser una zona válida.',
     'unique'               => ':attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
+    'uuid'                 => 'El :attribute debe ser un UUID válido.',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,11 +128,8 @@ return [
     */
 
     'custom' => [
-        'password' => [
-            'min' => 'La :attribute debe contener más de :min caracteres',
-        ],
-        'email'    => [
-            'unique' => 'El :attribute ya ha sido registrado.',
+        'attribute-name' => [
+            'rule-name' => 'custom-message',
         ],
     ],
 
