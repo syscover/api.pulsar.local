@@ -1,32 +1,5 @@
 <?php
 
-//Route::get('/paypal',      function() {
-//    $res = \Syscover\Market\Services\PayPalWebProfileService::list();
-//
-//
-//    $webProfiles = $res;
-//    dd($webProfiles[0]->toJSON());
-//});
-//
-//Route::get('/paypal/create',      function() {
-//    dd(\Syscover\Market\Services\PayPalWebProfileService::create([
-//        'landing_type' => 'Login',
-//        'bank_txn_pending_url' => 'https://xfeat.com',
-//        'user_action' => 'commit',
-//        'return_uri_http_method' => 'GET',
-//        'logo_image' => 'https://xfeat.com/images/logos/paypal_logo_xfeat.svg',
-//        'brand_name' => 'XFeat',
-//        'local_code' => 'ES',
-//        'return_url_label' => 'Volver a Xfeat',
-//        'note_to_seller_label' => 'Gracias por comprar en Xfeat.',
-//        'allow_note' => false,
-//        'no_shipping' => 1,
-//        'address_override' => 0,
-//        'name' => 'Xfeat default profile',
-//        'temporary' => false
-//    ]));
-//});
-
 Route::group(['middleware' => ['pulsar.navtools']], function () {
 
     Route::get('/playground',                                                               '\App\Http\Controllers\PlaygroundController@index')->name('web.playground');
