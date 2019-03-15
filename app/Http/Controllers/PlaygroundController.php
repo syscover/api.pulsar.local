@@ -1,12 +1,28 @@
 <?php namespace App\Http\Controllers;
 
 
+use Syscover\Admin\Models\Country;
+use Syscover\Admin\Models\User;
 use Syscover\Core\Services\SchemaService;
 
 class PlaygroundController extends Controller
 {
     public function index()
     {
+
+        $user = User::find(1);
+
+        dd($user->profile->toArray());
+
+
+
+
+        $object = Country::find(1);
+        dd($object->only('id', 'sort', 'prefix', 'zones'));
+
+        Country::where('id', 'ES')
+            ->update($object->only('id', 'sort', 'prefix', 'zones'));
+
         // dd(SchemaService::hasIndex('admin_lang', 'ix01_admin_lang'));
 
         // dd(now()->toDateTimeString());
