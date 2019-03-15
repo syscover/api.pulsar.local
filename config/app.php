@@ -182,6 +182,7 @@ return [
         App\Providers\ForemServiceProvider::class,
         App\Providers\SearchServiceProvider::class,
         App\Providers\UpdateServiceProvider::class,
+        App\Providers\InnovaConcreteServiceProvider::class,
 
         /*
          * Techedge Application Service Providers...
