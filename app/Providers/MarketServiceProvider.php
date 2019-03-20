@@ -34,6 +34,11 @@ class MarketServiceProvider extends ServiceProvider
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-market/src/config/pulsar-market.php' => config_path('pulsar-market.php'),
         ]);
+
+        // register tests
+        $this->publishes([
+            $this->app->basePath() . '/workbench/syscover/pulsar-market/src/tests/Feature' => base_path('/tests/Feature'),
+        ], 'tests');
     }
 
 	/**

@@ -18,6 +18,9 @@ class AdminServiceProvider extends ServiceProvider
         // register routes
         $this->loadRoutesFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/routes/api.php');
 
+        // register translations
+        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/resources/lang', 'admin');
+
         // register migrations
         $this->loadMigrationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/database/migrations');
 
@@ -26,13 +29,15 @@ class AdminServiceProvider extends ServiceProvider
             $this->app->basePath() . '/workbench/syscover/pulsar-admin/src/database/seeds/' => base_path('/database/seeds')
         ], 'seeds');
 
-        // register translations
-        $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/resources/lang', 'admin');
-
         // register config files
         $this->publishes([
             $this->app->basePath() . '/workbench/syscover/pulsar-admin/src/config/pulsar-admin.php' => config_path('pulsar-admin.php'),
         ]);
+
+        // register tests
+        $this->publishes([
+            $this->app->basePath() . '/workbench/syscover/pulsar-admin/src/tests/Feature' => base_path('/tests/Feature'),
+        ], 'tests');
     }
 
 	/**
