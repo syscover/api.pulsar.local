@@ -15,7 +15,7 @@ return [
     //******************************************************************************************************************
     //***   Route to call composer
     //******************************************************************************************************************
-    'composer_bin' => env('ADMIN_COMPOSER_BIN', '/usr/local/bin/composer'),
+    'composer_bin' => env('ADMIN_COMPOSER_BIN', 'composer'),
 
     //******************************************************************************************************************
     //***   Resources that could contain custom fields
@@ -40,6 +40,7 @@ return [
         (object)['id' => 'wine-wine',               'name' => 'Wines'],
         (object)['id' => 'wine-winery',             'name' => 'Wineries'],
         (object)['id' => 'forem-group',             'name' => 'Groups'],
+        (object)['id' => 'innova-monument',         'name' => 'Monuments'],
     ],
 
     //******************************************************************************************************************
@@ -98,5 +99,16 @@ return [
         (object)['id' => 'csv',     'name' => '.csv'],
         (object)['id' => 'xls',     'name' => '.xls'],
         (object)['id' => 'xlsx',    'name' => '.xlsx']
-    ]
+    ],
+
+    //******************************************************************************************************************
+    //***  Fit types to adjust images
+    //******************************************************************************************************************
+    'fit_types' => [
+        (object)['id' => 1, 'name' => 'admin::pulsar.fit_crop'],
+        (object)['id' => 2, 'name' => 'admin::pulsar.width'],
+        (object)['id' => 3, 'name' => 'admin::pulsar.height'],
+        (object)['id' => 4, 'name' => 'admin::pulsar.width_free_crop'],
+        (object)['id' => 5, 'name' => 'admin::pulsar.height_free_crop']
+    ],
 ];
