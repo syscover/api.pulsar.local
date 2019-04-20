@@ -99,8 +99,8 @@ return [
     ],
 
     // Tables:
-    // - forem_inscription.road_type_id :: <id_tipo_via></id_tipo_via>
-    'type_roads' => [
+    // - forem_inscription.address_type_id :: <id_tipo_via></id_tipo_via>
+    'address_types' => [
         (object)['id' => 1,     'code' => 'AD',   'name' => 'Aldea'],
         (object)['id' => 2,     'code' => 'AL',   'name' => 'Alameda'],
         (object)['id' => 3,     'code' => 'AP',   'name' => 'Apartamento'],
