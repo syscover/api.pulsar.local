@@ -21,6 +21,9 @@ class AdminServiceProvider extends ServiceProvider
         // register translations
         $this->loadTranslationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/resources/lang', 'admin');
 
+        // register views
+        $this->loadViewsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/resources/views', 'admin');
+
         // register migrations
         $this->loadMigrationsFrom($this->app->basePath() . '/workbench/syscover/pulsar-admin/src/database/migrations');
 

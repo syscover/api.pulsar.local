@@ -27,7 +27,9 @@ return [
         (object)['id' => 'spas-spa',                'name' => 'Spas'],
         (object)['id' => 'wineries-winery',         'name' => 'Wineries'],
 
+
         (object)['id' => 'peci-file',               'name' => 'PECI']
+
     ],
 
     //******************************************************************************************************************
@@ -43,6 +45,7 @@ return [
         (object)['id' => 'wine-winery',             'name' => 'Wineries'],
         (object)['id' => 'forem-group',             'name' => 'Groups'],
         (object)['id' => 'innova-monument',         'name' => 'Monuments'],
+        (object)['id' => 'innova-characteristic',   'name' => 'Characteristics'],
     ],
 
     //******************************************************************************************************************
@@ -58,7 +61,9 @@ return [
         (object)['id' => 'text',                'name' => 'Text',                   'values' => false],
         (object)['id' => 'text-area',           'name' => 'Text Area',              'values' => false],
         (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg',                'values' => false],
-        (object)['id' => 'datetime-local',      'name' => 'Datetime local',         'values' => false],
+        (object)['id' => 'date',                'name' => 'Date',                   'values' => false],
+        (object)['id' => 'datetime',            'name' => 'Datetime',               'values' => false],
+        (object)['id' => 'header',              'name' => 'Header',                 'values' => false],
     ],
 
     //******************************************************************************************************************
